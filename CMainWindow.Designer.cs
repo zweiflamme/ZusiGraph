@@ -101,6 +101,7 @@
             this.lblVerbstatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.pnlDebug = new System.Windows.Forms.Panel();
             this.grpDebug = new System.Windows.Forms.GroupBox();
+            this.btnDebugTickmark = new System.Windows.Forms.Button();
             this.btnDebugGraphSeparated = new System.Windows.Forms.Button();
             this.grpDebugoffline = new System.Windows.Forms.GroupBox();
             this.numDebugsetspeed = new System.Windows.Forms.NumericUpDown();
@@ -117,6 +118,7 @@
             this.btnNacht = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.timerGraph = new System.Windows.Forms.Timer(this.components);
+            this.lblDebugKmsprung = new System.Windows.Forms.Label();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabGraph.SuspendLayout();
@@ -776,8 +778,6 @@
             // cbTopmost
             // 
             this.cbTopmost.AutoSize = true;
-            this.cbTopmost.Checked = true;
-            this.cbTopmost.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbTopmost.Location = new System.Drawing.Point(6, 252);
             this.cbTopmost.Name = "cbTopmost";
             this.cbTopmost.Size = new System.Drawing.Size(128, 17);
@@ -964,6 +964,8 @@
             // grpDebug
             // 
             this.grpDebug.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.grpDebug.Controls.Add(this.lblDebugKmsprung);
+            this.grpDebug.Controls.Add(this.btnDebugTickmark);
             this.grpDebug.Controls.Add(this.btnDebugGraphSeparated);
             this.grpDebug.Controls.Add(this.grpDebugoffline);
             this.grpDebug.Controls.Add(this.btnDebugFokusZusi);
@@ -977,6 +979,16 @@
             this.grpDebug.TabIndex = 12;
             this.grpDebug.TabStop = false;
             this.grpDebug.Text = "Debug";
+            // 
+            // btnDebugTickmark
+            // 
+            this.btnDebugTickmark.Location = new System.Drawing.Point(12, 227);
+            this.btnDebugTickmark.Name = "btnDebugTickmark";
+            this.btnDebugTickmark.Size = new System.Drawing.Size(75, 23);
+            this.btnDebugTickmark.TabIndex = 23;
+            this.btnDebugTickmark.Text = "Tickmark";
+            this.btnDebugTickmark.UseVisualStyleBackColor = true;
+            this.btnDebugTickmark.Click += new System.EventHandler(this.btnDebugTickmark_Click);
             // 
             // btnDebugGraphSeparated
             // 
@@ -1153,6 +1165,15 @@
             // 
             this.timerGraph.Tick += new System.EventHandler(this.timerGraph_Tick);
             // 
+            // lblDebugKmsprung
+            // 
+            this.lblDebugKmsprung.AutoSize = true;
+            this.lblDebugKmsprung.Location = new System.Drawing.Point(6, 320);
+            this.lblDebugKmsprung.Name = "lblDebugKmsprung";
+            this.lblDebugKmsprung.Size = new System.Drawing.Size(61, 13);
+            this.lblDebugKmsprung.TabIndex = 24;
+            this.lblDebugKmsprung.Text = "(kmSprung)";
+            // 
             // CMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1300,6 +1321,8 @@
         private System.Windows.Forms.Button btnAufzeichnung;
         private System.Windows.Forms.CheckBox cbGraphSeparate;
         private System.Windows.Forms.CheckBox cbLmgleiten;
+        private System.Windows.Forms.Button btnDebugTickmark;
+        private System.Windows.Forms.Label lblDebugKmsprung;
 
     }
 

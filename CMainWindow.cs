@@ -250,7 +250,10 @@ namespace ZusiGraph
         String graphMode = "Aufzeichnung"; //TODO
         bool graphIsRunning = false;
         bool graphIsSeparated = false;
-        bool showsepgraph = false;
+        bool showseparatedgraph = false;
+
+        double streckenmeterOld = 0.0;
+        double deltaStreckenmeter = 0.0;
 
         //TODO: TEST: is this the best place?
         SettingsForm frmSettings = new SettingsForm();
@@ -493,7 +496,16 @@ namespace ZusiGraph
                 #region Streckenkilometer
                 case 2645:
                 {
-                    streckenmeter = Convert.ToDouble(data.Value);                    
+                    streckenmeter = Convert.ToDouble(data.Value);   
+
+                    //TEST: Kilometersprung
+                    deltaStreckenmeter = streckenmeterOld - streckenmeter;
+                    //if (hasMoved && deltaStreckenmeter != (vmps * (0.1)))
+                    //    lblDebugKmsprung.Text = "KILOMETERSPRUNG bei : " + streckenmeter.ToString();
+                    if(deltaStreckenmeter > 100)
+                        lblDebugKmsprung.Text = "KILOMETERSPRUNG bei : " + streckenmeter.ToString();
+
+                    streckenmeterOld = streckenmeter;
                     break;
                 }
                 #endregion
@@ -1417,7 +1429,7 @@ namespace ZusiGraph
 
         public void ShowSeparateGraphWindow()
         {
-            if (showsepgraph && graphIsSeparated == false)            
+            if (showseparatedgraph && graphIsSeparated == false)            
             {
                 frmGraph.BackColor = this.BackColor; // makes sure day-/nightmode is set for the form too
 
@@ -1442,7 +1454,7 @@ namespace ZusiGraph
                 //cbSettingsSeparate.Checked = true;
 
             }
-            else if (showsepgraph == false && graphIsSeparated == true)
+            else if (showseparatedgraph == false && graphIsSeparated == true)
             {
                 //this.pnlGraph.Location = new Point(pnlLeft.Location.X + pnlLeft.Width + 10, pnlLeft.Location.Y);
                 frmGraph.Controls.Remove(pnlGraph);
@@ -1595,7 +1607,7 @@ namespace ZusiGraph
 
         private void cbGraphSeparate_CheckedChanged(object sender, EventArgs e)
         {
-            showsepgraph = cbGraphSeparate.Checked;
+            showseparatedgraph = cbGraphSeparate.Checked;
             ShowSeparateGraphWindow();
         }
 
@@ -1613,18 +1625,18 @@ namespace ZusiGraph
 
         private void graph1_DoubleClick(object sender, EventArgs e)
         {
-            switch(showsepgraph && graphIsSeparated)
+            switch(showseparatedgraph && graphIsSeparated)
             {
                 case true:
                     {
-                        showsepgraph = false; // reintegrate graph
+                        showseparatedgraph = false; // reintegrate graph
                         ShowSeparateGraphWindow();
                         tabEinstellungen.SelectTab("tabGraph");
                         break;
                     }
                 case false:
                     {
-                        showsepgraph = true; // separate graph
+                        showseparatedgraph = true; // separate graph
                         ShowSeparateGraphWindow();   
                         break;
                     }
@@ -1642,6 +1654,12 @@ namespace ZusiGraph
             //}
 
                          
+        }
+
+        private void btnDebugTickmark_Click(object sender, EventArgs e)
+        {
+            //plot a tickmark
+            //TODO
         }
           
     }
