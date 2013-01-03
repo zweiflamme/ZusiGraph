@@ -509,7 +509,8 @@ namespace ZusiGraph
                     if (deltaStreckenmeter > 100)
                     {
                         lblDebugKmsprung.Text = "KILOMETERSPRUNG bei : " + streckenmeter.ToString();
-                        graph1.Series["kmSprung"].Points.AddXY(graphStreckenKmDouble, geschwindigkeit);
+                        //TODO:
+                        //graph1.Series["kmSprung"].Points.AddY(geschwindigkeit);
 
                     }
 
@@ -1667,7 +1668,9 @@ namespace ZusiGraph
         private void btnDebugTickmark_Click(object sender, EventArgs e)
         {
             //plot a tickmark
-            //TODO
+            graph1.Series["kmSprung"].Points.AddY(10);
+            graph1.Series["hlldruck"].Points.AddY(3);
+            graph1.Series["geschw"].Points.AddY(5);
         }
           
     }

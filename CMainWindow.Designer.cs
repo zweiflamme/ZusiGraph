@@ -215,10 +215,8 @@
             series2.Legend = "Legend1";
             series2.Name = "hlldruck";
             series2.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
-            series3.BorderWidth = 2;
-            series3.ChartArea = "ChartArea2";
+            series3.ChartArea = "ChartArea1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series3.Color = System.Drawing.Color.Red;
             series3.IsXValueIndexed = true;
             series3.Legend = "Legend1";
             series3.Name = "kmSprung";
