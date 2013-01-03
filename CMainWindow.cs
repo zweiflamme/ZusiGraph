@@ -247,8 +247,14 @@ namespace ZusiGraph
         bool lzbIsActive = false; // is LZB active (LM LZB Ü)?
         double afbsoll, lzbsoll; //TEST
 
+        String graphMode = "Aufzeichnung"; //TODO
+        bool graphIsRunning = false;
+        bool graphIsSeparated = false;
+        bool showsepgraph = false;
+
         //TODO: TEST: is this the best place?
         SettingsForm frmSettings = new SettingsForm();
+        GraphForm frmGraph = new GraphForm();
         
     
 
@@ -300,7 +306,7 @@ namespace ZusiGraph
             //if a narrow tab page is selected (such as tabSystem)...
             if (tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabSystem"])
             {
-                tabEinstellungen.Width = 202;
+                tabEinstellungen.Width = 220;
             }
 
             //adding a global function for all checkboxes, main reason is to determine if user has clicked
@@ -992,19 +998,19 @@ namespace ZusiGraph
         {
 
             if (tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabSystem"] 
-                | tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabDarstellung"])
+                | tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabDarstellung"]
+                | tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabAnzeigen1"])
             {
-                tabEinstellungen.Width = 202;
+                tabEinstellungen.Width = 220;
                int offsetX = pnlSettings.Location.X + pnlSettings.Width + 10;
                 pnlDebug.Location = new Point(offsetX, pnlDebug.Location.Y);
             }
-            else
+            else if (tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabGraph"] && graphIsSeparated == false)
             {
-                tabEinstellungen.Width = 420;
+                tabEinstellungen.Width = 450;
                 int offsetX = pnlSettings.Location.X + pnlSettings.Width + 10;
                 pnlDebug.Location = new Point(offsetX, pnlDebug.Location.Y);
             }
-            
         }
 
         #endregion
@@ -1411,48 +1417,47 @@ namespace ZusiGraph
 
         public void ShowSeparateGraphWindow()
         {
-            //if (cbSettingsSeparate.Checked && settingsAreSeparated == false)
-            //DEBUG:  //WORKAROUND - if checkbox is bound to settings, weird things happened
+            if (showsepgraph && graphIsSeparated == false)            
             {
-                //MessageBox.Show("SEPARATED");
+                frmGraph.BackColor = this.BackColor; // makes sure day-/nightmode is set for the form too
 
-
-                frmSettings.BackColor = this.BackColor; // makes sure day-/nightmode is set for the form too
-
-                frmSettings.StartPosition = FormStartPosition.Manual;
-                frmSettings.Location = new Point(this.Location.X + 200, this.Location.Y);
+                frmGraph.StartPosition = FormStartPosition.Manual;
+                frmGraph.Location = new Point(this.Width + 180, this.Location.Y);
 
                 this.Controls.Remove(pnlGraph); // removing settings panel from main form
-                frmSettings.Controls.Add(pnlGraph); //adding settings panel to settings form               
+                frmGraph.Controls.Add(pnlGraph); //adding settings panel to settings form               
 
-                settingsAreSeparated = true;
+                graphIsSeparated = true;
 
                 this.pnlGraph.Location = new Point(0, 0);
-                frmSettings.AutoSize = true;
-                frmSettings.PerformAutoScale();
-                frmSettings.Show();
+                this.pnlGraph.Dock = DockStyle.None; //TEST - otherwise, frmGraph does not size properly
 
+                frmGraph.AutoSize = true;
+                frmGraph.PerformAutoScale();
+                frmGraph.Show();
+
+                tabEinstellungen.SelectTab("tabAnzeigen1");
+               
                 //DEBUG:
-                cbSettingsSeparate.Checked = true;
+                //cbSettingsSeparate.Checked = true;
 
             }
-            //else if (cbSettingsSeparate.Checked == false && settingsAreSeparated == true) //DEBUG:
-            ////WORKAROUND - if checkbox is bound to settings, weird things happened
-            //{
-            //    //MessageBox.Show("NOT separated");
+            else if (showsepgraph == false && graphIsSeparated == true)
+            {
+                //this.pnlGraph.Location = new Point(pnlLeft.Location.X + pnlLeft.Width + 10, pnlLeft.Location.Y);
+                frmGraph.Controls.Remove(pnlGraph);
+                this.tabGraph.Controls.Add(pnlGraph);
 
-            //    this.pnlGraph.Location = new Point(pnlLeft.Location.X + pnlLeft.Width + 10, pnlLeft.Location.Y);
-            //    this.tabGraph.Controls.Add(pnlGraph);
-            //    //cbHidesettings.Checked = hideSettingsCheckedOLD; // restore value from before settings were separated                
-            //    this.pnlGraph.Visible = true;
+                this.pnlGraph.Dock = DockStyle.Fill; //TEST, see above if()
+                //this.pnlGraph.Visible = true;
 
-            //    settingsAreSeparated = false;
+                graphIsSeparated = false;
 
-            //    frmSettings.Hide();
+                frmGraph.Hide();
 
-            //    //DEBUG:
-            //    cbSettingsSeparate.Checked = false;
-            //}        
+                //DEBUG:
+                //cbSettingsSeparate.Checked = false;
+            }        
         }
 
         public void ShowSeparateSettingsWindow()
@@ -1551,6 +1556,7 @@ namespace ZusiGraph
         private void btnDebugGraphSeparated_Click(object sender, EventArgs e)
         {
             //TEST
+            cbGraphSeparate.Checked = true;
             ShowSeparateGraphWindow();
         }
 
@@ -1568,7 +1574,74 @@ namespace ZusiGraph
         private void btnAufzeichnung_Click(object sender, EventArgs e)
         {
             //TODO
-            timerGraph.Start();
+            if (graphIsRunning == false)
+            {
+                graphIsRunning = true;
+                timerGraph.Start();
+                tabEinstellungen.SelectTab("tabGraph");
+                
+                btnAufzeichnung.BackColor = Color.LightGreen;
+                btnAufzeichnung.Text = "Läuft...";
+            }
+            else if (graphIsRunning)
+            {
+                graphIsRunning = false;
+                timerGraph.Stop();
+                
+                btnAufzeichnung.BackColor = Color.FromName("Control");
+                btnAufzeichnung.Text = "Aufzeichnung";
+            }
+        }
+
+        private void cbGraphSeparate_CheckedChanged(object sender, EventArgs e)
+        {
+            showsepgraph = cbGraphSeparate.Checked;
+            ShowSeparateGraphWindow();
+        }
+
+        private void tabEinstellungen_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabGraph"] && graphIsSeparated == true)
+                //We do not want the user to be able to select the tab here
+                e.Cancel = true;
+        }
+
+        private void graph1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void graph1_DoubleClick(object sender, EventArgs e)
+        {
+            switch(showsepgraph && graphIsSeparated)
+            {
+                case true:
+                    {
+                        showsepgraph = false; // reintegrate graph
+                        ShowSeparateGraphWindow();
+                        tabEinstellungen.SelectTab("tabGraph");
+                        break;
+                    }
+                case false:
+                    {
+                        showsepgraph = true; // separate graph
+                        ShowSeparateGraphWindow();   
+                        break;
+                    }
+                default: break;
+            }            
+            //if (cbGraphSeparate.Checked && graphIsSeparated)
+            //{
+            //    cbGraphSeparate.Checked = false; // reintegrate graph
+            //    ShowSeparateGraphWindow();   
+            //}
+            //else if (cbGraphSeparate.Checked == false && graphIsSeparated == false)
+            //{
+            //    cbGraphSeparate.Checked = true; // separate graph
+            //    ShowSeparateGraphWindow();   
+            //}
+
+                         
         }
           
     }

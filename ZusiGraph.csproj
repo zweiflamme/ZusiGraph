@@ -82,6 +82,12 @@
     <Compile Include="CMainWindow.Designer.cs">
       <DependentUpon>CMainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="GraphForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GraphForm.Designer.cs">
+      <DependentUpon>GraphForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="SettingsForm.cs">
       <SubType>Form</SubType>
@@ -96,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CMainWindow.resx">
       <DependentUpon>CMainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GraphForm.resx">
+      <DependentUpon>GraphForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
