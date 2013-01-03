@@ -255,6 +255,10 @@ namespace ZusiGraph
         double streckenmeterOld = 0.0;
         double deltaStreckenmeter = 0.0;
 
+        //TEST for graph
+        String graphStreckenKm = "";
+        double graphStreckenKmDouble = 0.0;
+
         //TODO: TEST: is this the best place?
         SettingsForm frmSettings = new SettingsForm();
         GraphForm frmGraph = new GraphForm();
@@ -502,8 +506,12 @@ namespace ZusiGraph
                     deltaStreckenmeter = streckenmeterOld - streckenmeter;
                     //if (hasMoved && deltaStreckenmeter != (vmps * (0.1)))
                     //    lblDebugKmsprung.Text = "KILOMETERSPRUNG bei : " + streckenmeter.ToString();
-                    if(deltaStreckenmeter > 100)
+                    if (deltaStreckenmeter > 100)
+                    {
                         lblDebugKmsprung.Text = "KILOMETERSPRUNG bei : " + streckenmeter.ToString();
+                        graph1.Series["kmSprung"].Points.AddXY(graphStreckenKmDouble, geschwindigkeit);
+
+                    }
 
                     streckenmeterOld = streckenmeter;
                     break;
@@ -1574,8 +1582,8 @@ namespace ZusiGraph
 
         private void timerGraph_Tick(object sender, EventArgs e)
         {
-            String graphStreckenKm = String.Format("{0:0.00}", (streckenmeter / 1000));
-            double graphStreckenKmDouble = Convert.ToDouble(graphStreckenKm);
+           graphStreckenKm = String.Format("{0:0.00}", (streckenmeter / 1000));
+           graphStreckenKmDouble = Convert.ToDouble(graphStreckenKm);
 
             //if (cbGraphGeschwindigkeit.Checked)
             graph1.Series["geschw"].Points.AddXY(graphStreckenKmDouble, geschwindigkeit);

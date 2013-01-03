@@ -31,9 +31,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CMainWindow));
             this.pnlSettings = new System.Windows.Forms.Panel();
             this.tabEinstellungen = new System.Windows.Forms.TabControl();
@@ -194,7 +196,9 @@
             // graph1
             // 
             chartArea1.Name = "ChartArea1";
+            chartArea2.Name = "ChartArea2";
             this.graph1.ChartAreas.Add(chartArea1);
+            this.graph1.ChartAreas.Add(chartArea2);
             this.graph1.Dock = System.Windows.Forms.DockStyle.Fill;
             legend1.Name = "Legend1";
             this.graph1.Legends.Add(legend1);
@@ -211,8 +215,16 @@
             series2.Legend = "Legend1";
             series2.Name = "hlldruck";
             series2.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
+            series3.BorderWidth = 2;
+            series3.ChartArea = "ChartArea2";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series3.Color = System.Drawing.Color.Red;
+            series3.IsXValueIndexed = true;
+            series3.Legend = "Legend1";
+            series3.Name = "kmSprung";
             this.graph1.Series.Add(series1);
             this.graph1.Series.Add(series2);
+            this.graph1.Series.Add(series3);
             this.graph1.Size = new System.Drawing.Size(401, 425);
             this.graph1.TabIndex = 0;
             this.graph1.Click += new System.EventHandler(this.graph1_Click);
@@ -1167,10 +1179,9 @@
             // 
             // lblDebugKmsprung
             // 
-            this.lblDebugKmsprung.AutoSize = true;
             this.lblDebugKmsprung.Location = new System.Drawing.Point(6, 320);
             this.lblDebugKmsprung.Name = "lblDebugKmsprung";
-            this.lblDebugKmsprung.Size = new System.Drawing.Size(61, 13);
+            this.lblDebugKmsprung.Size = new System.Drawing.Size(120, 42);
             this.lblDebugKmsprung.TabIndex = 24;
             this.lblDebugKmsprung.Text = "(kmSprung)";
             // 
