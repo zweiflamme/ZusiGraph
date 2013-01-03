@@ -84,7 +84,6 @@
             this.btnLoadSettings = new System.Windows.Forms.Button();
             this.btnAbout = new System.Windows.Forms.Button();
             this.grpVerbindung = new System.Windows.Forms.GroupBox();
-            this.tbPort = new System.Windows.Forms.TextBox();
             this.btnConnect = new System.Windows.Forms.Button();
             this.btnDebugpanel = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -104,8 +103,13 @@
             this.pnlLeft = new System.Windows.Forms.TableLayoutPanel();
             this.btnNacht = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
-            this.timer100 = new System.Windows.Forms.Timer(this.components);
             this.tbServer = new System.Windows.Forms.TextBox();
+            this.tbPort = new System.Windows.Forms.TextBox();
+            this.tabGraph = new System.Windows.Forms.TabPage();
+            this.timerGraph = new System.Windows.Forms.Timer(this.components);
+            this.btnDebugGraphSeparated = new System.Windows.Forms.Button();
+            this.pnlGraph = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen1.SuspendLayout();
@@ -127,6 +131,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numDebugsetspeed)).BeginInit();
             this.pnlRight.SuspendLayout();
             this.pnlLeft.SuspendLayout();
+            this.tabGraph.SuspendLayout();
+            this.pnlGraph.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlSettings
@@ -142,6 +148,7 @@
             // 
             // tabEinstellungen
             // 
+            this.tabEinstellungen.Controls.Add(this.tabGraph);
             this.tabEinstellungen.Controls.Add(this.tabAnzeigen1);
             this.tabEinstellungen.Controls.Add(this.tabDarstellung);
             this.tabEinstellungen.Controls.Add(this.tabSystem);
@@ -233,7 +240,7 @@
             this.pnlAFBLZB.Controls.Add(this.cbAFBgeschw);
             this.pnlAFBLZB.Location = new System.Drawing.Point(217, 190);
             this.pnlAFBLZB.Name = "pnlAFBLZB";
-            this.pnlAFBLZB.Size = new System.Drawing.Size(182, 113);
+            this.pnlAFBLZB.Size = new System.Drawing.Size(182, 55);
             this.pnlAFBLZB.TabIndex = 24;
             // 
             // cbLZBvziel
@@ -406,7 +413,7 @@
             // 
             this.cbZusbremse.AutoSize = true;
             this.cbZusbremse.Enabled = false;
-            this.cbZusbremse.Location = new System.Drawing.Point(3, 83);
+            this.cbZusbremse.Location = new System.Drawing.Point(108, 45);
             this.cbZusbremse.Name = "cbZusbremse";
             this.cbZusbremse.Size = new System.Drawing.Size(92, 17);
             this.cbZusbremse.TabIndex = 25;
@@ -416,7 +423,7 @@
             // cbDruckhbl
             // 
             this.cbDruckhbl.AutoSize = true;
-            this.cbDruckhbl.Location = new System.Drawing.Point(113, 6);
+            this.cbDruckhbl.Location = new System.Drawing.Point(121, 6);
             this.cbDruckhbl.Name = "cbDruckhbl";
             this.cbDruckhbl.Size = new System.Drawing.Size(79, 17);
             this.cbDruckhbl.TabIndex = 11;
@@ -427,7 +434,7 @@
             // cbDruckhlb
             // 
             this.cbDruckhlb.AutoSize = true;
-            this.cbDruckhlb.Location = new System.Drawing.Point(113, 23);
+            this.cbDruckhlb.Location = new System.Drawing.Point(121, 24);
             this.cbDruckhlb.Name = "cbDruckhlb";
             this.cbDruckhlb.Size = new System.Drawing.Size(79, 17);
             this.cbDruckhlb.TabIndex = 10;
@@ -439,7 +446,7 @@
             // 
             this.cbDynbremse.AutoSize = true;
             this.cbDynbremse.Enabled = false;
-            this.cbDynbremse.Location = new System.Drawing.Point(113, 62);
+            this.cbDynbremse.Location = new System.Drawing.Point(3, 45);
             this.cbDynbremse.Name = "cbDynbremse";
             this.cbDynbremse.Size = new System.Drawing.Size(86, 17);
             this.cbDynbremse.TabIndex = 24;
@@ -451,7 +458,7 @@
             this.cbDruckhll.AutoSize = true;
             this.cbDruckhll.Checked = true;
             this.cbDruckhll.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbDruckhll.Location = new System.Drawing.Point(3, 23);
+            this.cbDruckhll.Location = new System.Drawing.Point(3, 6);
             this.cbDruckhll.Name = "cbDruckhll";
             this.cbDruckhll.Size = new System.Drawing.Size(70, 17);
             this.cbDruckhll.TabIndex = 2;
@@ -464,7 +471,7 @@
             this.cbDruckbz.AutoSize = true;
             this.cbDruckbz.Checked = true;
             this.cbDruckbz.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbDruckbz.Location = new System.Drawing.Point(3, 43);
+            this.cbDruckbz.Location = new System.Drawing.Point(3, 24);
             this.cbDruckbz.Name = "cbDruckbz";
             this.cbDruckbz.Size = new System.Drawing.Size(122, 17);
             this.cbDruckbz.TabIndex = 3;
@@ -504,8 +511,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Enabled = false;
-            this.checkBox1.Location = new System.Drawing.Point(3, 94);
+            this.checkBox1.Location = new System.Drawing.Point(3, 49);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(63, 17);
             this.checkBox1.TabIndex = 26;
@@ -515,8 +521,7 @@
             // cbMotorsch
             // 
             this.cbMotorsch.AutoSize = true;
-            this.cbMotorsch.Enabled = false;
-            this.cbMotorsch.Location = new System.Drawing.Point(101, 29);
+            this.cbMotorsch.Location = new System.Drawing.Point(101, 7);
             this.cbMotorsch.Name = "cbMotorsch";
             this.cbMotorsch.Size = new System.Drawing.Size(53, 17);
             this.cbMotorsch.TabIndex = 25;
@@ -526,8 +531,7 @@
             // cbFahrtrichtg
             // 
             this.cbFahrtrichtg.AutoSize = true;
-            this.cbFahrtrichtg.Enabled = false;
-            this.cbFahrtrichtg.Location = new System.Drawing.Point(3, 49);
+            this.cbFahrtrichtg.Location = new System.Drawing.Point(3, 30);
             this.cbFahrtrichtg.Name = "cbFahrtrichtg";
             this.cbFahrtrichtg.Size = new System.Drawing.Size(124, 17);
             this.cbFahrtrichtg.TabIndex = 24;
@@ -537,8 +541,7 @@
             // cbHauptsch
             // 
             this.cbHauptsch.AutoSize = true;
-            this.cbHauptsch.Enabled = false;
-            this.cbHauptsch.Location = new System.Drawing.Point(3, 29);
+            this.cbHauptsch.Location = new System.Drawing.Point(3, 7);
             this.cbHauptsch.Name = "cbHauptsch";
             this.cbHauptsch.Size = new System.Drawing.Size(92, 17);
             this.cbHauptsch.TabIndex = 22;
@@ -799,15 +802,6 @@
             this.grpVerbindung.TabStop = false;
             this.grpVerbindung.Text = "Verbindung";
             // 
-            // tbPort
-            // 
-            this.tbPort.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::ZusiGraph.Properties.Settings.Default, "tbPort", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.tbPort.Location = new System.Drawing.Point(7, 52);
-            this.tbPort.Name = "tbPort";
-            this.tbPort.Size = new System.Drawing.Size(74, 20);
-            this.tbPort.TabIndex = 12;
-            this.tbPort.Text = global::ZusiGraph.Properties.Settings.Default.tbPort;
-            // 
             // btnConnect
             // 
             this.btnConnect.Location = new System.Drawing.Point(6, 78);
@@ -868,6 +862,7 @@
             // grpDebug
             // 
             this.grpDebug.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.grpDebug.Controls.Add(this.btnDebugGraphSeparated);
             this.grpDebug.Controls.Add(this.grpDebugoffline);
             this.grpDebug.Controls.Add(this.btnDebugFokusZusi);
             this.grpDebug.Controls.Add(this.label13);
@@ -1033,10 +1028,6 @@
             this.btnSettings.UseVisualStyleBackColor = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
-            // timer100
-            // 
-            this.timer100.Tick += new System.EventHandler(this.timer100_Tick);
-            // 
             // tbServer
             // 
             this.tbServer.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::ZusiGraph.Properties.Settings.Default, "tbServer", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -1046,6 +1037,54 @@
             this.tbServer.TabIndex = 13;
             this.tbServer.Text = global::ZusiGraph.Properties.Settings.Default.tbServer;
             // 
+            // tbPort
+            // 
+            this.tbPort.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::ZusiGraph.Properties.Settings.Default, "tbPort", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tbPort.Location = new System.Drawing.Point(7, 52);
+            this.tbPort.Name = "tbPort";
+            this.tbPort.Size = new System.Drawing.Size(74, 20);
+            this.tbPort.TabIndex = 12;
+            this.tbPort.Text = global::ZusiGraph.Properties.Settings.Default.tbPort;
+            // 
+            // tabGraph
+            // 
+            this.tabGraph.BackColor = System.Drawing.SystemColors.Control;
+            this.tabGraph.Controls.Add(this.pnlGraph);
+            this.tabGraph.Location = new System.Drawing.Point(4, 22);
+            this.tabGraph.Name = "tabGraph";
+            this.tabGraph.Padding = new System.Windows.Forms.Padding(3);
+            this.tabGraph.Size = new System.Drawing.Size(407, 376);
+            this.tabGraph.TabIndex = 3;
+            this.tabGraph.Text = "Graph";
+            // 
+            // btnDebugGraphSeparated
+            // 
+            this.btnDebugGraphSeparated.Location = new System.Drawing.Point(12, 197);
+            this.btnDebugGraphSeparated.Name = "btnDebugGraphSeparated";
+            this.btnDebugGraphSeparated.Size = new System.Drawing.Size(75, 23);
+            this.btnDebugGraphSeparated.TabIndex = 22;
+            this.btnDebugGraphSeparated.Text = "Graph ->";
+            this.btnDebugGraphSeparated.UseVisualStyleBackColor = true;
+            this.btnDebugGraphSeparated.Click += new System.EventHandler(this.btnDebugGraphSeparated_Click);
+            // 
+            // pnlGraph
+            // 
+            this.pnlGraph.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlGraph.Controls.Add(this.label1);
+            this.pnlGraph.Location = new System.Drawing.Point(6, 6);
+            this.pnlGraph.Name = "pnlGraph";
+            this.pnlGraph.Size = new System.Drawing.Size(395, 364);
+            this.pnlGraph.TabIndex = 20;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(32, 42);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "label1";
+            // 
             // CMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1053,7 +1092,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1003, 593);
+            this.ClientSize = new System.Drawing.Size(1045, 754);
             this.Controls.Add(this.pnlLeft);
             this.Controls.Add(this.pnlRight);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -1101,6 +1140,9 @@
             this.pnlRight.PerformLayout();
             this.pnlLeft.ResumeLayout(false);
             this.pnlLeft.PerformLayout();
+            this.tabGraph.ResumeLayout(false);
+            this.pnlGraph.ResumeLayout(false);
+            this.pnlGraph.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1163,7 +1205,6 @@
         private System.Windows.Forms.CheckBox cbLZBvsoll;
         private System.Windows.Forms.CheckBox cbAFBgeschw;
         private System.Windows.Forms.Button btnDebugFokusZusi;
-        private System.Windows.Forms.Timer timer100;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numDebugsetspeed;
@@ -1183,6 +1224,11 @@
         private System.Windows.Forms.Button btnLoadSettings;
         private System.Windows.Forms.Button btnNacht;
         private System.Windows.Forms.Button btnSettings;
+        private System.Windows.Forms.TabPage tabGraph;
+        private System.Windows.Forms.Timer timerGraph;
+        private System.Windows.Forms.Button btnDebugGraphSeparated;
+        private System.Windows.Forms.Panel pnlGraph;
+        private System.Windows.Forms.Label label1;
 
     }
 

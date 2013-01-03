@@ -46,7 +46,7 @@ namespace ZusiGraph
 
             //we need to define a new connection to the TCP server:
             MyTCPConnection = new ZusiTcpConn(
-             "ZusiMeter - v" + Assembly.GetExecutingAssembly().GetName().Version.ToString(), // Name and version, showing up in server's list
+             "ZusiGraph - v" + Assembly.GetExecutingAssembly().GetName().Version.ToString(), // Name and version, showing up in server's list
              ClientPriority.Low);
 
             MyTCPConnection.ErrorReceived += TCPConnection_ErrorReceived;
@@ -1417,6 +1417,52 @@ namespace ZusiGraph
             
         }
 
+        public void ShowSeparateGraphWindow()
+        {
+            //if (cbSettingsSeparate.Checked && settingsAreSeparated == false)
+            //DEBUG:  //WORKAROUND - if checkbox is bound to settings, weird things happened
+            {
+                //MessageBox.Show("SEPARATED");
+
+
+                frmSettings.BackColor = this.BackColor; // makes sure day-/nightmode is set for the form too
+
+                frmSettings.StartPosition = FormStartPosition.Manual;
+                frmSettings.Location = new Point(this.Location.X + 200, this.Location.Y);
+
+                this.Controls.Remove(pnlGraph); // removing settings panel from main form
+                frmSettings.Controls.Add(pnlGraph); //adding settings panel to settings form               
+
+                settingsAreSeparated = true;
+
+                this.pnlGraph.Location = new Point(0, 0);
+                frmSettings.AutoSize = true;
+                frmSettings.PerformAutoScale();
+                frmSettings.Show();
+
+                //DEBUG:
+                cbSettingsSeparate.Checked = true;
+
+            }
+            //else if (cbSettingsSeparate.Checked == false && settingsAreSeparated == true) //DEBUG:
+            ////WORKAROUND - if checkbox is bound to settings, weird things happened
+            //{
+            //    //MessageBox.Show("NOT separated");
+
+            //    this.pnlGraph.Location = new Point(pnlLeft.Location.X + pnlLeft.Width + 10, pnlLeft.Location.Y);
+            //    this.tabGraph.Controls.Add(pnlGraph);
+            //    //cbHidesettings.Checked = hideSettingsCheckedOLD; // restore value from before settings were separated                
+            //    this.pnlGraph.Visible = true;
+
+            //    settingsAreSeparated = false;
+
+            //    frmSettings.Hide();
+
+            //    //DEBUG:
+            //    cbSettingsSeparate.Checked = false;
+            //}        
+        }
+
         public void ShowSeparateSettingsWindow()
         {
 
@@ -1510,7 +1556,11 @@ namespace ZusiGraph
                 + "automatisch beim Beenden. Mit einer späteren Version werden mehrere Einstellungen anlegbar sein.");
         }
 
-        
+        private void btnDebugGraphSeparated_Click(object sender, EventArgs e)
+        {
+            //TEST
+            ShowSeparateGraphWindow();
+        }
           
     }
 }
