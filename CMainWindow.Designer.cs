@@ -50,6 +50,7 @@
             this.cbLZBvsoll = new System.Windows.Forms.CheckBox();
             this.cbAFBgeschw = new System.Windows.Forms.CheckBox();
             this.pnlGrunddaten = new System.Windows.Forms.Panel();
+            this.cbLmgleiten = new System.Windows.Forms.CheckBox();
             this.cbStreckenmeter = new System.Windows.Forms.CheckBox();
             this.cbGeschwindigkeit = new System.Windows.Forms.CheckBox();
             this.cbFahrstufe = new System.Windows.Forms.CheckBox();
@@ -116,7 +117,6 @@
             this.btnNacht = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.timerGraph = new System.Windows.Forms.Timer(this.components);
-            this.cbLmgleiten = new System.Windows.Forms.CheckBox();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabGraph.SuspendLayout();
@@ -362,6 +362,17 @@
             this.pnlGrunddaten.Name = "pnlGrunddaten";
             this.pnlGrunddaten.Size = new System.Drawing.Size(182, 95);
             this.pnlGrunddaten.TabIndex = 19;
+            // 
+            // cbLmgleiten
+            // 
+            this.cbLmgleiten.AutoSize = true;
+            this.cbLmgleiten.Enabled = false;
+            this.cbLmgleiten.Location = new System.Drawing.Point(3, 73);
+            this.cbLmgleiten.Name = "cbLmgleiten";
+            this.cbLmgleiten.Size = new System.Drawing.Size(59, 17);
+            this.cbLmgleiten.TabIndex = 8;
+            this.cbLmgleiten.Text = "Gleiten";
+            this.cbLmgleiten.UseVisualStyleBackColor = true;
             // 
             // cbStreckenmeter
             // 
@@ -753,8 +764,7 @@
             // cbHidesettings
             // 
             this.cbHidesettings.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.cbHidesettings.Checked = true;
-            this.cbHidesettings.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbHidesettings.Enabled = false;
             this.cbHidesettings.Location = new System.Drawing.Point(6, 275);
             this.cbHidesettings.Name = "cbHidesettings";
             this.cbHidesettings.Size = new System.Drawing.Size(159, 33);
@@ -1142,17 +1152,6 @@
             // timerGraph
             // 
             this.timerGraph.Tick += new System.EventHandler(this.timerGraph_Tick);
-            // 
-            // cbLmgleiten
-            // 
-            this.cbLmgleiten.AutoSize = true;
-            this.cbLmgleiten.Enabled = false;
-            this.cbLmgleiten.Location = new System.Drawing.Point(3, 73);
-            this.cbLmgleiten.Name = "cbLmgleiten";
-            this.cbLmgleiten.Size = new System.Drawing.Size(59, 17);
-            this.cbLmgleiten.TabIndex = 8;
-            this.cbLmgleiten.Text = "Gleiten";
-            this.cbLmgleiten.UseVisualStyleBackColor = true;
             // 
             // CMainWindow
             // 

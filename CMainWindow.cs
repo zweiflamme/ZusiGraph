@@ -377,8 +377,8 @@ namespace ZusiGraph
 
                     if (geschwindigkeit > 0.1) 
                         hasMoved = true;
-                    
-                    if (hasMoved == true && alwaysShowSettings == false && cbHidesettings.Checked && debugging == false) 
+
+                    if (hasMoved == true && alwaysShowSettings == false && cbHidesettings.Checked && debugging == false)
                     {
                         if (settingsAreSeparated)
                             frmSettings.Hide();
