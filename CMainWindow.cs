@@ -241,7 +241,7 @@ namespace ZusiGraph
         double afbschalter = 0.0; // storing value of AFB Schalter
         bool rrSoundplayed = false; //has Railrunner sound been played?
         double stunde, minute, sekunde; //TODO: if DLL 1.1.6 is used, this will be obsolete
-        double druckhbl, druckhlb;
+        double druckhbl, druckhlb, hlldruck;
         double schaltersifa; // if pressed twice RR is activated
         bool settingsAreSeparated = false; // true if settings are shown on a separate form (frmSettings)
         bool lzbIsActive = false; // is LZB active (LM LZB Ü)?
@@ -456,7 +456,7 @@ namespace ZusiGraph
                 #region Druck Hll
                 case 2562:
                 {
-                    float hlldruck = data.Value;
+                    hlldruck = data.Value;
                     //TODO
                     break;
                 }
@@ -1562,13 +1562,13 @@ namespace ZusiGraph
 
         private void timerGraph_Tick(object sender, EventArgs e)
         {
-            //String graphStreckenKm = String.Format("{0:0.00}", (streckenmeter / 1000));
-            //double graphStreckenKmDouble = Convert.ToDouble(graphStreckenKm);
+            String graphStreckenKm = String.Format("{0:0.00}", (streckenmeter / 1000));
+            double graphStreckenKmDouble = Convert.ToDouble(graphStreckenKm);
 
             //if (cbGraphGeschwindigkeit.Checked)
-            graph1.Series["geschw"].Points.AddY(geschwindigkeit);
+            graph1.Series["geschw"].Points.AddXY(graphStreckenKmDouble, geschwindigkeit);
             //if (cbGraphDruckhll.Checked)
-            //    graph1.Series["druckhll"].Points.AddXY(graphStreckenKmDouble, druckhll);
+            graph1.Series["hlldruck"].Points.AddXY(graphStreckenKmDouble, hlldruck);
         }
 
         private void btnAufzeichnung_Click(object sender, EventArgs e)
