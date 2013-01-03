@@ -990,26 +990,15 @@ namespace ZusiGraph
 
         private void tabEinstellungen_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            if(tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabSystem"])
+
+            if (tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabSystem"] 
+                | tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabDarstellung"])
             {
                 tabEinstellungen.Width = 202;
                int offsetX = pnlSettings.Location.X + pnlSettings.Width + 10;
                 pnlDebug.Location = new Point(offsetX, pnlDebug.Location.Y);
             }
-            if (tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabDarstellung"])
-            {
-                tabEinstellungen.Width = 202;                
-                int offsetX = pnlSettings.Location.X + pnlSettings.Width + 10;
-                pnlDebug.Location = new Point(offsetX, pnlDebug.Location.Y);
-            }
-            if (tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabAnzeigen1"])
-            {
-                tabEinstellungen.Width = 420;
-                int offsetX = pnlSettings.Location.X + pnlSettings.Width + 10;
-                pnlDebug.Location = new Point(offsetX, pnlDebug.Location.Y);
-            }
-            if (tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabAnzeigen2"])
+            else
             {
                 tabEinstellungen.Width = 420;
                 int offsetX = pnlSettings.Location.X + pnlSettings.Width + 10;
@@ -1185,7 +1174,10 @@ namespace ZusiGraph
             if (verbunden == false)
             {
                 geschwindigkeit = Convert.ToDouble(numDebugsetspeed.Value);
-                vmps = geschwindigkeit / 3.6;                
+                vmps = geschwindigkeit / 3.6;   
+             
+                //TEST
+                graph1.Series["geschw"].Points.AddY(geschwindigkeit);
             }
         }
 
@@ -1560,6 +1552,23 @@ namespace ZusiGraph
         {
             //TEST
             ShowSeparateGraphWindow();
+        }
+
+        private void timerGraph_Tick(object sender, EventArgs e)
+        {
+            //String graphStreckenKm = String.Format("{0:0.00}", (streckenmeter / 1000));
+            //double graphStreckenKmDouble = Convert.ToDouble(graphStreckenKm);
+
+            //if (cbGraphGeschwindigkeit.Checked)
+            graph1.Series["geschw"].Points.AddY(geschwindigkeit);
+            //if (cbGraphDruckhll.Checked)
+            //    graph1.Series["druckhll"].Points.AddXY(graphStreckenKmDouble, druckhll);
+        }
+
+        private void btnAufzeichnung_Click(object sender, EventArgs e)
+        {
+            //TODO
+            timerGraph.Start();
         }
           
     }

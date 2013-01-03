@@ -30,6 +30,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CMainWindow));
             this.pnlSettings = new System.Windows.Forms.Panel();
             this.tabEinstellungen = new System.Windows.Forms.TabControl();
@@ -109,7 +113,8 @@
             this.timerGraph = new System.Windows.Forms.Timer(this.components);
             this.btnDebugGraphSeparated = new System.Windows.Forms.Button();
             this.pnlGraph = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.graph1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.btnAufzeichnung = new System.Windows.Forms.Button();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen1.SuspendLayout();
@@ -133,6 +138,7 @@
             this.pnlLeft.SuspendLayout();
             this.tabGraph.SuspendLayout();
             this.pnlGraph.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.graph1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlSettings
@@ -983,22 +989,16 @@
             this.pnlLeft.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlLeft.ColumnCount = 1;
             this.pnlLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.pnlLeft.Controls.Add(this.btnAufzeichnung, 0, 2);
             this.pnlLeft.Controls.Add(this.btnNacht, 0, 0);
             this.pnlLeft.Controls.Add(this.btnSettings, 0, 1);
             this.pnlLeft.Location = new System.Drawing.Point(2, 13);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.RowCount = 2;
+            this.pnlLeft.RowCount = 3;
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.pnlLeft.Size = new System.Drawing.Size(88, 60);
+            this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlLeft.Size = new System.Drawing.Size(90, 91);
             this.pnlLeft.TabIndex = 19;
             // 
             // btnNacht
@@ -1008,7 +1008,7 @@
             this.btnNacht.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnNacht.Location = new System.Drawing.Point(3, 3);
             this.btnNacht.Name = "btnNacht";
-            this.btnNacht.Size = new System.Drawing.Size(82, 23);
+            this.btnNacht.Size = new System.Drawing.Size(84, 23);
             this.btnNacht.TabIndex = 15;
             this.btnNacht.Text = "Nachtmodus";
             this.btnNacht.UseVisualStyleBackColor = true;
@@ -1022,7 +1022,7 @@
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSettings.Location = new System.Drawing.Point(3, 32);
             this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(82, 25);
+            this.btnSettings.Size = new System.Drawing.Size(84, 25);
             this.btnSettings.TabIndex = 6;
             this.btnSettings.Text = "Einstellungen";
             this.btnSettings.UseVisualStyleBackColor = true;
@@ -1057,6 +1057,10 @@
             this.tabGraph.TabIndex = 3;
             this.tabGraph.Text = "Graph";
             // 
+            // timerGraph
+            // 
+            this.timerGraph.Tick += new System.EventHandler(this.timerGraph_Tick);
+            // 
             // btnDebugGraphSeparated
             // 
             this.btnDebugGraphSeparated.Location = new System.Drawing.Point(12, 197);
@@ -1070,20 +1074,49 @@
             // pnlGraph
             // 
             this.pnlGraph.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.pnlGraph.Controls.Add(this.label1);
+            this.pnlGraph.Controls.Add(this.graph1);
             this.pnlGraph.Location = new System.Drawing.Point(6, 6);
             this.pnlGraph.Name = "pnlGraph";
             this.pnlGraph.Size = new System.Drawing.Size(395, 364);
             this.pnlGraph.TabIndex = 20;
             // 
-            // label1
+            // graph1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 42);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            chartArea1.Name = "ChartArea1";
+            this.graph1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.graph1.Legends.Add(legend1);
+            this.graph1.Location = new System.Drawing.Point(4, 5);
+            this.graph1.Name = "graph1";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.IsXValueIndexed = true;
+            series1.Legend = "Legend1";
+            series1.Name = "geschw";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.IsXValueIndexed = true;
+            series2.Legend = "Legend1";
+            series2.Name = "hlldruck";
+            series2.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
+            this.graph1.Series.Add(series1);
+            this.graph1.Series.Add(series2);
+            this.graph1.Size = new System.Drawing.Size(388, 356);
+            this.graph1.TabIndex = 0;
+            // 
+            // btnAufzeichnung
+            // 
+            this.btnAufzeichnung.AutoSize = true;
+            this.btnAufzeichnung.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAufzeichnung.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAufzeichnung.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAufzeichnung.Location = new System.Drawing.Point(3, 63);
+            this.btnAufzeichnung.Name = "btnAufzeichnung";
+            this.btnAufzeichnung.Size = new System.Drawing.Size(84, 25);
+            this.btnAufzeichnung.TabIndex = 16;
+            this.btnAufzeichnung.Text = "Aufzeichnung";
+            this.btnAufzeichnung.UseVisualStyleBackColor = true;
+            this.btnAufzeichnung.Click += new System.EventHandler(this.btnAufzeichnung_Click);
             // 
             // CMainWindow
             // 
@@ -1142,7 +1175,7 @@
             this.pnlLeft.PerformLayout();
             this.tabGraph.ResumeLayout(false);
             this.pnlGraph.ResumeLayout(false);
-            this.pnlGraph.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.graph1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1228,7 +1261,8 @@
         private System.Windows.Forms.Timer timerGraph;
         private System.Windows.Forms.Button btnDebugGraphSeparated;
         private System.Windows.Forms.Panel pnlGraph;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart graph1;
+        private System.Windows.Forms.Button btnAufzeichnung;
 
     }
 
