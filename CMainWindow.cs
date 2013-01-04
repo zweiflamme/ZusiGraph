@@ -504,14 +504,12 @@ namespace ZusiGraph
 
                     //TEST: Kilometersprung
                     deltaStreckenmeter = streckenmeterOld - streckenmeter;
-                    //if (hasMoved && deltaStreckenmeter != (vmps * (0.1)))
-                    //    lblDebugKmsprung.Text = "KILOMETERSPRUNG bei : " + streckenmeter.ToString();
+                    
                     if (deltaStreckenmeter > 100)
                     {
+                        //DEBUG
                         lblDebugKmsprung.Text = "KILOMETERSPRUNG bei : " + streckenmeter.ToString();
-                        //TODO:
-                        //graph1.Series["kmSprung"].Points.AddY(geschwindigkeit);
-
+                        //TODO: Add some gridmark into chart at kmSprung
                     }
 
                     streckenmeterOld = streckenmeter;
@@ -1667,8 +1665,7 @@ namespace ZusiGraph
 
         private void btnDebugTickmark_Click(object sender, EventArgs e)
         {
-            //plot a tickmark
-            graph1.Series["kmSprung"].Points.AddY(10);
+            //plot a tickmark            
             graph1.Series["hlldruck"].Points.AddY(3);
             graph1.Series["geschw"].Points.AddY(5);
         }
