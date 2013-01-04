@@ -746,8 +746,10 @@ namespace ZusiGraph
             {
                 btnConnect.Text = "Verbinden";
                 lblVerbstatus.Text = "Getrennt";
-                verbunden = false;
+                //TEST
+                btnAufzeichnung.Enabled = false;
 
+                verbunden = false;
             }
             else if (statusNeu == "Warte")
             {
@@ -765,7 +767,8 @@ namespace ZusiGraph
                 lblVerbstatus.Text = "Verbunden mit Zusi";
 
                 grpDebugoffline.Enabled = false; //DEBUG: disabling control of speed via numUD
-
+                //TEST
+                btnAufzeichnung.Enabled = true;
             }
         }
         #endregion
@@ -1454,8 +1457,6 @@ namespace ZusiGraph
                 frmGraph.AutoSize = true;
                 frmGraph.PerformAutoScale();
                 frmGraph.Show();
-
-                tabEinstellungen.SelectTab("tabAnzeigen1");
                
                 //DEBUG:
                 //cbSettingsSeparate.Checked = true;
@@ -1593,7 +1594,7 @@ namespace ZusiGraph
         private void btnAufzeichnung_Click(object sender, EventArgs e)
         {
             //TODO
-            if (graphIsRunning == false)
+            if (graphIsRunning == false && verbunden) // Start recording if connected
             {
                 graphIsRunning = true;
                 timerGraph.Start();
@@ -1602,11 +1603,15 @@ namespace ZusiGraph
                 btnAufzeichnung.BackColor = Color.LightGreen;
                 btnAufzeichnung.Text = "Läuft...";
             }
-            else if (graphIsRunning)
+            else if (verbunden == false)
+            {
+                MessageBox.Show("Zusi ist noch nicht verbunden.");
+            }
+            else if (graphIsRunning)  // Stop recording regardless of connection status
             {
                 graphIsRunning = false;
                 timerGraph.Stop();
-                
+
                 btnAufzeichnung.BackColor = Color.FromName("Control");
                 btnAufzeichnung.Text = "Aufzeichnung";
             }
@@ -1644,7 +1649,8 @@ namespace ZusiGraph
                 case false:
                     {
                         showseparatedgraph = true; // separate graph
-                        ShowSeparateGraphWindow();   
+                        ShowSeparateGraphWindow();
+                        tabEinstellungen.SelectTab("tabAnzeigen1");
                         break;
                     }
                 default: break;

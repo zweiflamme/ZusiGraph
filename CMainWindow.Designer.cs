@@ -215,7 +215,6 @@
             this.graph1.Series.Add(series2);
             this.graph1.Size = new System.Drawing.Size(401, 425);
             this.graph1.TabIndex = 0;
-            this.graph1.Click += new System.EventHandler(this.graph1_Click);
             this.graph1.DoubleClick += new System.EventHandler(this.graph1_DoubleClick);
             // 
             // tabAnzeigen1
@@ -1133,6 +1132,7 @@
             this.btnAufzeichnung.AutoSize = true;
             this.btnAufzeichnung.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnAufzeichnung.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAufzeichnung.Enabled = false;
             this.btnAufzeichnung.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAufzeichnung.Location = new System.Drawing.Point(3, 63);
             this.btnAufzeichnung.Name = "btnAufzeichnung";
