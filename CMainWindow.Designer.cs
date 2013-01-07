@@ -193,6 +193,8 @@
             // 
             // graph1
             // 
+            chartArea1.CursorX.IsUserEnabled = true;
+            chartArea1.CursorX.IsUserSelectionEnabled = true;
             chartArea1.Name = "ChartArea1";
             this.graph1.ChartAreas.Add(chartArea1);
             this.graph1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1180,7 +1182,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1045, 754);
+            this.ClientSize = new System.Drawing.Size(1045, 746);
             this.Controls.Add(this.pnlLeft);
             this.Controls.Add(this.pnlRight);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
