@@ -290,7 +290,7 @@ namespace ZusiGraph
             //make sure checkboxes that exclude each other are properly checked
             //TODO
 
-            #endregion
+            #endregion            
 
             if (cbTopmost.Checked == true)
                 this.TopMost = true;

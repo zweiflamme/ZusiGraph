@@ -210,11 +210,13 @@
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series1.IsXValueIndexed = true;
             series1.Legend = "Legend1";
+            series1.LegendText = "Geschwindigkeit";
             series1.Name = "geschw";
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series2.IsXValueIndexed = true;
             series2.Legend = "Legend1";
+            series2.LegendText = "Hll-Druck";
             series2.Name = "hlldruck";
             series2.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             series3.ChartArea = "ChartArea1";
