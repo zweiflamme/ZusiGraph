@@ -198,7 +198,10 @@
             chartArea1.Name = "ChartArea1";
             this.graph1.ChartAreas.Add(chartArea1);
             this.graph1.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.DockedToChartArea = "ChartArea1";
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
             legend1.Name = "Legend1";
+            legend1.TableStyle = System.Windows.Forms.DataVisualization.Charting.LegendTableStyle.Tall;
             this.graph1.Legends.Add(legend1);
             this.graph1.Location = new System.Drawing.Point(0, 0);
             this.graph1.Name = "graph1";

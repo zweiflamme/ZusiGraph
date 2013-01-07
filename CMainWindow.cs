@@ -1674,8 +1674,8 @@ namespace ZusiGraph
         private void btnDebugTickmark_Click(object sender, EventArgs e)
         {
             //plot a tickmark            
-            graph1.Series["hlldruck"].Points.AddY(3);
-            graph1.Series["geschw"].Points.AddY(5);
+            //graph1.Series["hlldruck"].Points.AddY(3);
+            //graph1.Series["geschw"].Points.InsertXY(graph1.ChartAreas.GetEnumerator(), 5);
         }
           
     }
