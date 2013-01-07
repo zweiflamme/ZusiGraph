@@ -62,6 +62,7 @@ namespace ZusiGraph
 
             #region RequestData
             MyTCPConnection.RequestData(2561); // "Geschwindigkeit"
+            MyTCPConnection.RequestData(2660); // "Aktuelle Höchstgeschwindigkeit"
             MyTCPConnection.RequestData(2578); // "AFB Soll-Geschwindigkeit"
             MyTCPConnection.RequestData(2636); // "LZB Soll-Geschwindigkeit"
             MyTCPConnection.RequestData(2573); // "LZB Ziel-Geschwindigkeit"
@@ -206,6 +207,7 @@ namespace ZusiGraph
 
         //TODO: check for every variable if it's still needed
         double geschwindigkeit;
+        double geschwindigkeitMaxZul;
         public bool abbruch; //TODO: check if still needed
         double vorgabe, entfernung;
         double streckenmeter = 0;
@@ -409,6 +411,15 @@ namespace ZusiGraph
 
                     break;
                 }
+                #endregion
+
+                #region Aktuelle Höchstgeschwindigkeit
+                case 2660:
+                {
+                    geschwindigkeitMaxZul = data.Value;
+                    break;
+                }
+
                 #endregion
 
                 #region AFB Soll-Geschwindigkeit
@@ -1592,6 +1603,8 @@ namespace ZusiGraph
             {
                 //if (cbGraphGeschwindigkeit.Checked)
                 graph1.Series["geschw"].Points.AddXY(graphStreckenKmDouble, geschwindigkeit);
+                //
+                graph1.Series["geschwMaxZul"].Points.AddXY(graphStreckenKmDouble, geschwindigkeitMaxZul);
                 //if (cbGraphDruckhll.Checked)
                 graph1.Series["hlldruck"].Points.AddXY(graphStreckenKmDouble, hlldruck);
                 
