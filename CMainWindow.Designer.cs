@@ -196,6 +196,8 @@
             // 
             chartArea1.CursorX.IsUserEnabled = true;
             chartArea1.CursorX.IsUserSelectionEnabled = true;
+            chartArea1.CursorX.LineColor = System.Drawing.Color.Black;
+            chartArea1.CursorX.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
             chartArea1.Name = "ChartArea1";
             this.graph1.ChartAreas.Add(chartArea1);
             this.graph1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -212,12 +214,14 @@
             series1.Legend = "Legend1";
             series1.LegendText = "Geschwindigkeit";
             series1.Name = "geschw";
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series2.IsXValueIndexed = true;
             series2.Legend = "Legend1";
             series2.LegendText = "Hll-Druck";
             series2.Name = "hlldruck";
+            series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             series2.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             series3.ChartArea = "ChartArea1";
             series3.Color = System.Drawing.Color.Red;
@@ -225,6 +229,7 @@
             series3.IsXValueIndexed = true;
             series3.Legend = "Legend1";
             series3.Name = "kmSprung";
+            series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             series3.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             series3.YValuesPerPoint = 3;
             this.graph1.Series.Add(series1);
