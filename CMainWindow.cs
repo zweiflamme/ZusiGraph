@@ -258,6 +258,7 @@ namespace ZusiGraph
         //TEST for graph
         String graphStreckenKm = "";
         double graphStreckenKmDouble = 0.0;
+        bool kmSprung = false;
 
         //TODO: TEST: is this the best place?
         SettingsForm frmSettings = new SettingsForm();
@@ -502,6 +503,10 @@ namespace ZusiGraph
                 {
                     streckenmeter = Convert.ToDouble(data.Value);   
 
+                    //TODO: is this the best place, or does it belong into timerGraph_Tick?
+                    graphStreckenKm = String.Format("{0:0.00}", (streckenmeter / 1000));
+                    graphStreckenKmDouble = Convert.ToDouble(graphStreckenKm);
+
                     //TEST: Kilometersprung
                     deltaStreckenmeter = streckenmeterOld - streckenmeter;
                     
@@ -510,6 +515,7 @@ namespace ZusiGraph
                         //DEBUG
                         lblDebugKmsprung.Text = "KILOMETERSPRUNG bei : " + streckenmeter.ToString();
                         //TODO: Add some gridmark into chart at kmSprung
+                        kmSprung = true;
                     }
 
                     streckenmeterOld = streckenmeter;
@@ -1582,13 +1588,18 @@ namespace ZusiGraph
 
         private void timerGraph_Tick(object sender, EventArgs e)
         {
-           graphStreckenKm = String.Format("{0:0.00}", (streckenmeter / 1000));
-           graphStreckenKmDouble = Convert.ToDouble(graphStreckenKm);
-
-            //if (cbGraphGeschwindigkeit.Checked)
-            graph1.Series["geschw"].Points.AddXY(graphStreckenKmDouble, geschwindigkeit);
-            //if (cbGraphDruckhll.Checked)
-            graph1.Series["hlldruck"].Points.AddXY(graphStreckenKmDouble, hlldruck);
+            if (hasMoved)
+            {
+                //if (cbGraphGeschwindigkeit.Checked)
+                graph1.Series["geschw"].Points.AddXY(graphStreckenKmDouble, geschwindigkeit);
+                //if (cbGraphDruckhll.Checked)
+                graph1.Series["hlldruck"].Points.AddXY(graphStreckenKmDouble, hlldruck);
+                if (kmSprung)
+                {
+                   //TODO
+                    kmSprung = false;
+                }
+            }
         }
 
         private void btnAufzeichnung_Click(object sender, EventArgs e)
@@ -1643,7 +1654,7 @@ namespace ZusiGraph
                     {
                         showseparatedgraph = false; // reintegrate graph
                         ShowSeparateGraphWindow();
-                        tabEinstellungen.SelectTab("tabGraph");
+                        tabEinstellungen.SelectTab("tabGraph");                        
                         break;
                     }
                 case false:
@@ -1654,19 +1665,10 @@ namespace ZusiGraph
                         break;
                     }
                 default: break;
-            }            
-            //if (cbGraphSeparate.Checked && graphIsSeparated)
-            //{
-            //    cbGraphSeparate.Checked = false; // reintegrate graph
-            //    ShowSeparateGraphWindow();   
-            //}
-            //else if (cbGraphSeparate.Checked == false && graphIsSeparated == false)
-            //{
-            //    cbGraphSeparate.Checked = true; // separate graph
-            //    ShowSeparateGraphWindow();   
-            //}
+            }
 
-                         
+            //if graph is separated, check cb and vice versa
+            cbGraphSeparate.Checked = showseparatedgraph;
         }
 
         private void btnDebugTickmark_Click(object sender, EventArgs e)
