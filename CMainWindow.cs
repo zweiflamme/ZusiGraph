@@ -1594,11 +1594,12 @@ namespace ZusiGraph
                 graph1.Series["geschw"].Points.AddXY(graphStreckenKmDouble, geschwindigkeit);
                 //if (cbGraphDruckhll.Checked)
                 graph1.Series["hlldruck"].Points.AddXY(graphStreckenKmDouble, hlldruck);
+                
+                //TEST TODO plot kmSprung at 0, if true at 1
+                graph1.Series["kmSprung"].Points.AddXY(graphStreckenKmDouble, Convert.ToDouble(kmSprung)*5);
+
                 if (kmSprung)
-                {
-                   //TODO
                     kmSprung = false;
-                }
             }
         }
 
