@@ -1649,8 +1649,10 @@ namespace ZusiGraph
                 //if (cbGraphDruckhll.Checked)
                 graph1.Series["hlldruck"].Points.AddXY(graphStreckenKmDouble, hlldruck);
                 
-                //TEST TODO plot kmSprung at 0, if true at 1
-                graph1.Series["kmSprung"].Points.AddXY(graphStreckenKmDouble, Convert.ToDouble(kmSprung));
+                //TEST draw line up to the maximum Y value when kmSprung = true
+                //DataPoint kmSprungYValue = graph1.Series["geschw"].Points.FindMaxByValue();
+                //graph1.Series["kmSprung"].Points.AddXY(graphStreckenKmDouble, (Convert.ToDouble(kmSprung) * kmSprungYValue.YValues[0]));
+                graph1.Series["kmSprung"].Points.AddXY(graphStreckenKmDouble, (Convert.ToDouble(kmSprung)));
 
                 if (kmSprung)
                     kmSprung = false;
