@@ -1475,14 +1475,14 @@ namespace ZusiGraph
                 frmGraph.BackColor = this.BackColor; // makes sure day-/nightmode is set for the form too
 
                 frmGraph.StartPosition = FormStartPosition.Manual;
-                frmGraph.Location = new Point(this.Width + 180, this.Location.Y);
+                frmGraph.Location = new Point(this.Location.X + this.Width + 10, this.Location.Y);
 
                 this.Controls.Remove(pnlGraph); // removing settings panel from main form
-                frmGraph.Controls.Add(pnlGraph); //adding settings panel to settings form               
+                frmGraph.Controls.Add(pnlGraph); //adding settings panel to graph form               
 
                 graphIsSeparated = true;
 
-                this.pnlGraph.Location = new Point(0, 0);
+                //this.pnlGraph.Location = new Point(0, 0);
                 //this.pnlGraph.Dock = DockStyle.None; //TEST - otherwise, frmGraph does not size properly
                 this.pnlGraph.Dock = DockStyle.Fill; //TEST - otherwise, frmGraph does not size properly
 
@@ -1699,8 +1699,14 @@ namespace ZusiGraph
                 case false:
                     {
                         showseparatedgraph = true; // separate graph
-                        ShowSeparateGraphWindow();
+
+                        //TEST: make sure GraphForm is not minimized
+                        //frmGraph.WindowState = FormWindowState.Normal;
+
+                        //select tab before calling method, this way frmGraph.Location is set properly
                         tabEinstellungen.SelectTab("tabAnzeigen1");
+                        ShowSeparateGraphWindow();
+                        
                         //change button Text
                         btnSeparateGraph.Text = "Graph <-";
                         break;
@@ -1728,6 +1734,11 @@ namespace ZusiGraph
         private void cbKmSprung_CheckedChanged(object sender, EventArgs e)
         {
             graph1.Series["kmSprung"].Enabled = cbKmSprung.Checked;
+        }
+
+        private void btnDebugFrmShift_Click(object sender, EventArgs e)
+        {
+            frmGraph.Location = new Point(100, 100);
         }
           
     }

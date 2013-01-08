@@ -18,18 +18,15 @@ namespace ZusiGraph
 
         private void GraphForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //TODO
-            
-        }
-
-        private void GraphForm_FormClosing_1(object sender, FormClosingEventArgs e)
-        {
             //TODO: reintegrate form into Main form
+            //TEST: minimize instead
+            //this.WindowState = FormWindowState.Minimized;
+
             //Prevents user from closing the form
             e.Cancel = true;
         }
 
-        private void GraphForm_Load(object sender, EventArgs e)
+        private void GraphForm_FormClosing_1(object sender, FormClosingEventArgs e)
         {
             
         }

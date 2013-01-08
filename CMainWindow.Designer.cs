@@ -52,6 +52,8 @@
             this.cbLZBvsoll = new System.Windows.Forms.CheckBox();
             this.cbAFBgeschw = new System.Windows.Forms.CheckBox();
             this.pnlGrunddaten = new System.Windows.Forms.Panel();
+            this.cbGeschwMaxZul = new System.Windows.Forms.CheckBox();
+            this.cbKmSprung = new System.Windows.Forms.CheckBox();
             this.cbLmgleiten = new System.Windows.Forms.CheckBox();
             this.cbGeschwindigkeit = new System.Windows.Forms.CheckBox();
             this.cbFahrstufe = new System.Windows.Forms.CheckBox();
@@ -120,8 +122,7 @@
             this.btnNacht = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.timerGraph = new System.Windows.Forms.Timer(this.components);
-            this.cbKmSprung = new System.Windows.Forms.CheckBox();
-            this.cbGeschwMaxZul = new System.Windows.Forms.CheckBox();
+            this.btnDebugFrmShift = new System.Windows.Forms.Button();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabGraph.SuspendLayout();
@@ -393,6 +394,32 @@
             this.pnlGrunddaten.Name = "pnlGrunddaten";
             this.pnlGrunddaten.Size = new System.Drawing.Size(182, 95);
             this.pnlGrunddaten.TabIndex = 19;
+            // 
+            // cbGeschwMaxZul
+            // 
+            this.cbGeschwMaxZul.AutoSize = true;
+            this.cbGeschwMaxZul.Checked = true;
+            this.cbGeschwMaxZul.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbGeschwMaxZul.Location = new System.Drawing.Point(3, 21);
+            this.cbGeschwMaxZul.Name = "cbGeschwMaxZul";
+            this.cbGeschwMaxZul.Size = new System.Drawing.Size(90, 17);
+            this.cbGeschwMaxZul.TabIndex = 10;
+            this.cbGeschwMaxZul.Text = "Zulässige HG";
+            this.cbGeschwMaxZul.UseVisualStyleBackColor = true;
+            this.cbGeschwMaxZul.CheckedChanged += new System.EventHandler(this.cbGeschwMaxZul_CheckedChanged);
+            // 
+            // cbKmSprung
+            // 
+            this.cbKmSprung.AutoSize = true;
+            this.cbKmSprung.Checked = true;
+            this.cbKmSprung.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbKmSprung.Location = new System.Drawing.Point(3, 38);
+            this.cbKmSprung.Name = "cbKmSprung";
+            this.cbKmSprung.Size = new System.Drawing.Size(112, 17);
+            this.cbKmSprung.TabIndex = 9;
+            this.cbKmSprung.Text = "Kilometer-Sprünge";
+            this.cbKmSprung.UseVisualStyleBackColor = true;
+            this.cbKmSprung.CheckedChanged += new System.EventHandler(this.cbKmSprung_CheckedChanged);
             // 
             // cbLmgleiten
             // 
@@ -968,6 +995,7 @@
             // grpDebug
             // 
             this.grpDebug.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.grpDebug.Controls.Add(this.btnDebugFrmShift);
             this.grpDebug.Controls.Add(this.lblDebugKmsprung);
             this.grpDebug.Controls.Add(this.btnDebugTickmark);
             this.grpDebug.Controls.Add(this.btnDebugGraphSeparated);
@@ -1194,31 +1222,15 @@
             // 
             this.timerGraph.Tick += new System.EventHandler(this.timerGraph_Tick);
             // 
-            // cbKmSprung
+            // btnDebugFrmShift
             // 
-            this.cbKmSprung.AutoSize = true;
-            this.cbKmSprung.Checked = true;
-            this.cbKmSprung.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbKmSprung.Location = new System.Drawing.Point(3, 38);
-            this.cbKmSprung.Name = "cbKmSprung";
-            this.cbKmSprung.Size = new System.Drawing.Size(112, 17);
-            this.cbKmSprung.TabIndex = 9;
-            this.cbKmSprung.Text = "Kilometer-Sprünge";
-            this.cbKmSprung.UseVisualStyleBackColor = true;
-            this.cbKmSprung.CheckedChanged += new System.EventHandler(this.cbKmSprung_CheckedChanged);
-            // 
-            // cbGeschwMaxZul
-            // 
-            this.cbGeschwMaxZul.AutoSize = true;
-            this.cbGeschwMaxZul.Checked = true;
-            this.cbGeschwMaxZul.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbGeschwMaxZul.Location = new System.Drawing.Point(3, 21);
-            this.cbGeschwMaxZul.Name = "cbGeschwMaxZul";
-            this.cbGeschwMaxZul.Size = new System.Drawing.Size(90, 17);
-            this.cbGeschwMaxZul.TabIndex = 10;
-            this.cbGeschwMaxZul.Text = "Zulässige HG";
-            this.cbGeschwMaxZul.UseVisualStyleBackColor = true;
-            this.cbGeschwMaxZul.CheckedChanged += new System.EventHandler(this.cbGeschwMaxZul_CheckedChanged);
+            this.btnDebugFrmShift.Location = new System.Drawing.Point(12, 356);
+            this.btnDebugFrmShift.Name = "btnDebugFrmShift";
+            this.btnDebugFrmShift.Size = new System.Drawing.Size(75, 23);
+            this.btnDebugFrmShift.TabIndex = 25;
+            this.btnDebugFrmShift.Text = "FrmShift";
+            this.btnDebugFrmShift.UseVisualStyleBackColor = true;
+            this.btnDebugFrmShift.Click += new System.EventHandler(this.btnDebugFrmShift_Click);
             // 
             // CMainWindow
             // 
@@ -1370,6 +1382,7 @@
         private System.Windows.Forms.Button btnSeparateGraph;
         private System.Windows.Forms.CheckBox cbGeschwMaxZul;
         private System.Windows.Forms.CheckBox cbKmSprung;
+        private System.Windows.Forms.Button btnDebugFrmShift;
 
     }
 

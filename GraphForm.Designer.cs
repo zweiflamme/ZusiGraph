@@ -42,8 +42,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "ZusiGraph - Graph";
             this.TopMost = true;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GraphForm_FormClosing_1);
-            this.Load += new System.EventHandler(this.GraphForm_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GraphForm_FormClosing);
             this.ResumeLayout(false);
 
         }
