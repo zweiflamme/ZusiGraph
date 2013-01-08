@@ -53,11 +53,9 @@
             this.cbAFBgeschw = new System.Windows.Forms.CheckBox();
             this.pnlGrunddaten = new System.Windows.Forms.Panel();
             this.cbLmgleiten = new System.Windows.Forms.CheckBox();
-            this.cbStreckenmeter = new System.Windows.Forms.CheckBox();
             this.cbGeschwindigkeit = new System.Windows.Forms.CheckBox();
             this.cbFahrstufe = new System.Windows.Forms.CheckBox();
             this.cbLmsifa = new System.Windows.Forms.CheckBox();
-            this.cbTueren = new System.Windows.Forms.CheckBox();
             this.cbTime = new System.Windows.Forms.CheckBox();
             this.cbLmschleudern = new System.Windows.Forms.CheckBox();
             this.pnlBremsen = new System.Windows.Forms.Panel();
@@ -122,6 +120,8 @@
             this.btnNacht = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.timerGraph = new System.Windows.Forms.Timer(this.components);
+            this.cbKmSprung = new System.Windows.Forms.CheckBox();
+            this.cbGeschwMaxZul = new System.Windows.Forms.CheckBox();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabGraph.SuspendLayout();
@@ -231,7 +231,6 @@
             series3.Legend = "Legend1";
             series3.LegendText = "Hll-Druck";
             series3.Name = "hlldruck";
-            series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             series3.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             series4.ChartArea = "ChartArea1";
             series4.Color = System.Drawing.Color.Indigo;
@@ -239,7 +238,6 @@
             series4.IsXValueIndexed = true;
             series4.Legend = "Legend1";
             series4.Name = "kmSprung";
-            series4.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             series4.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             series4.YValuesPerPoint = 3;
             this.graph1.Series.Add(series1);
@@ -383,12 +381,12 @@
             // pnlGrunddaten
             // 
             this.pnlGrunddaten.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlGrunddaten.Controls.Add(this.cbGeschwMaxZul);
+            this.pnlGrunddaten.Controls.Add(this.cbKmSprung);
             this.pnlGrunddaten.Controls.Add(this.cbLmgleiten);
-            this.pnlGrunddaten.Controls.Add(this.cbStreckenmeter);
             this.pnlGrunddaten.Controls.Add(this.cbGeschwindigkeit);
             this.pnlGrunddaten.Controls.Add(this.cbFahrstufe);
             this.pnlGrunddaten.Controls.Add(this.cbLmsifa);
-            this.pnlGrunddaten.Controls.Add(this.cbTueren);
             this.pnlGrunddaten.Controls.Add(this.cbTime);
             this.pnlGrunddaten.Controls.Add(this.cbLmschleudern);
             this.pnlGrunddaten.Location = new System.Drawing.Point(6, 35);
@@ -407,19 +405,6 @@
             this.cbLmgleiten.Text = "Gleiten";
             this.cbLmgleiten.UseVisualStyleBackColor = true;
             // 
-            // cbStreckenmeter
-            // 
-            this.cbStreckenmeter.AutoSize = true;
-            this.cbStreckenmeter.Checked = true;
-            this.cbStreckenmeter.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbStreckenmeter.Location = new System.Drawing.Point(3, 20);
-            this.cbStreckenmeter.Name = "cbStreckenmeter";
-            this.cbStreckenmeter.Size = new System.Drawing.Size(95, 17);
-            this.cbStreckenmeter.TabIndex = 1;
-            this.cbStreckenmeter.Text = "Streckenmeter";
-            this.cbStreckenmeter.UseVisualStyleBackColor = true;
-            this.cbStreckenmeter.CheckedChanged += new System.EventHandler(this.cbStreckenmeter_CheckedChanged);
-            // 
             // cbGeschwindigkeit
             // 
             this.cbGeschwindigkeit.AutoSize = true;
@@ -437,7 +422,7 @@
             // 
             this.cbFahrstufe.AutoSize = true;
             this.cbFahrstufe.Enabled = false;
-            this.cbFahrstufe.Location = new System.Drawing.Point(3, 36);
+            this.cbFahrstufe.Location = new System.Drawing.Point(3, 56);
             this.cbFahrstufe.Name = "cbFahrstufe";
             this.cbFahrstufe.Size = new System.Drawing.Size(70, 17);
             this.cbFahrstufe.TabIndex = 7;
@@ -449,7 +434,7 @@
             // 
             this.cbLmsifa.AutoSize = true;
             this.cbLmsifa.Enabled = false;
-            this.cbLmsifa.Location = new System.Drawing.Point(113, 3);
+            this.cbLmsifa.Location = new System.Drawing.Point(115, 21);
             this.cbLmsifa.Name = "cbLmsifa";
             this.cbLmsifa.Size = new System.Drawing.Size(44, 17);
             this.cbLmsifa.TabIndex = 2;
@@ -457,23 +442,11 @@
             this.cbLmsifa.UseVisualStyleBackColor = true;
             this.cbLmsifa.CheckedChanged += new System.EventHandler(this.cbLmsifa_CheckedChanged);
             // 
-            // cbTueren
-            // 
-            this.cbTueren.AutoSize = true;
-            this.cbTueren.Enabled = false;
-            this.cbTueren.Location = new System.Drawing.Point(113, 20);
-            this.cbTueren.Name = "cbTueren";
-            this.cbTueren.Size = new System.Drawing.Size(54, 17);
-            this.cbTueren.TabIndex = 3;
-            this.cbTueren.Text = "Türen";
-            this.cbTueren.UseVisualStyleBackColor = true;
-            this.cbTueren.CheckedChanged += new System.EventHandler(this.cbLmtueren_CheckedChanged);
-            // 
             // cbTime
             // 
             this.cbTime.AutoSize = true;
             this.cbTime.Enabled = false;
-            this.cbTime.Location = new System.Drawing.Point(113, 36);
+            this.cbTime.Location = new System.Drawing.Point(115, 3);
             this.cbTime.Name = "cbTime";
             this.cbTime.Size = new System.Drawing.Size(59, 17);
             this.cbTime.TabIndex = 6;
@@ -485,7 +458,7 @@
             // 
             this.cbLmschleudern.AutoSize = true;
             this.cbLmschleudern.Enabled = false;
-            this.cbLmschleudern.Location = new System.Drawing.Point(3, 54);
+            this.cbLmschleudern.Location = new System.Drawing.Point(68, 73);
             this.cbLmschleudern.Name = "cbLmschleudern";
             this.cbLmschleudern.Size = new System.Drawing.Size(80, 17);
             this.cbLmschleudern.TabIndex = 4;
@@ -1221,6 +1194,32 @@
             // 
             this.timerGraph.Tick += new System.EventHandler(this.timerGraph_Tick);
             // 
+            // cbKmSprung
+            // 
+            this.cbKmSprung.AutoSize = true;
+            this.cbKmSprung.Checked = true;
+            this.cbKmSprung.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbKmSprung.Location = new System.Drawing.Point(3, 38);
+            this.cbKmSprung.Name = "cbKmSprung";
+            this.cbKmSprung.Size = new System.Drawing.Size(112, 17);
+            this.cbKmSprung.TabIndex = 9;
+            this.cbKmSprung.Text = "Kilometer-Sprünge";
+            this.cbKmSprung.UseVisualStyleBackColor = true;
+            this.cbKmSprung.CheckedChanged += new System.EventHandler(this.cbKmSprung_CheckedChanged);
+            // 
+            // cbGeschwMaxZul
+            // 
+            this.cbGeschwMaxZul.AutoSize = true;
+            this.cbGeschwMaxZul.Checked = true;
+            this.cbGeschwMaxZul.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbGeschwMaxZul.Location = new System.Drawing.Point(3, 21);
+            this.cbGeschwMaxZul.Name = "cbGeschwMaxZul";
+            this.cbGeschwMaxZul.Size = new System.Drawing.Size(90, 17);
+            this.cbGeschwMaxZul.TabIndex = 10;
+            this.cbGeschwMaxZul.Text = "Zulässige HG";
+            this.cbGeschwMaxZul.UseVisualStyleBackColor = true;
+            this.cbGeschwMaxZul.CheckedChanged += new System.EventHandler(this.cbGeschwMaxZul_CheckedChanged);
+            // 
             // CMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1301,7 +1300,6 @@
         private System.Windows.Forms.Panel pnlRight;
         private System.Windows.Forms.CheckBox cbDruckbz;
         private System.Windows.Forms.CheckBox cbDruckhll;
-        private System.Windows.Forms.CheckBox cbStreckenmeter;
         private System.Windows.Forms.CheckBox cbGeschwindigkeit;
         private System.Windows.Forms.TabControl tabEinstellungen;
         private System.Windows.Forms.TabPage tabAnzeigen1;
@@ -1309,7 +1307,6 @@
         private System.Windows.Forms.TabPage tabSystem;
         private System.Windows.Forms.CheckBox cbLmsifa;
         private System.Windows.Forms.CheckBox cbLmschleudern;
-        private System.Windows.Forms.CheckBox cbTueren;
         private System.Windows.Forms.CheckBox cbFahrstufe;
         private System.Windows.Forms.CheckBox cbTime;
         private System.Windows.Forms.CheckBox cbGrunddaten;
@@ -1371,6 +1368,8 @@
         private System.Windows.Forms.Button btnDebugTickmark;
         private System.Windows.Forms.Label lblDebugKmsprung;
         private System.Windows.Forms.Button btnSeparateGraph;
+        private System.Windows.Forms.CheckBox cbGeschwMaxZul;
+        private System.Windows.Forms.CheckBox cbKmSprung;
 
     }
 

@@ -935,7 +935,7 @@ namespace ZusiGraph
 
         private void cbGeschwindigkeit_CheckedChanged(object sender, EventArgs e)
         {
-            
+            graph1.Series["geschw"].Enabled = cbGeschwindigkeit.Checked;
         }
 
         private void cbStreckenmeter_CheckedChanged(object sender, EventArgs e)
@@ -945,7 +945,7 @@ namespace ZusiGraph
 
         private void cbDruckhll_CheckedChanged(object sender, EventArgs e)
         {
-            
+            graph1.Series["hlldruck"].Enabled = cbDruckhll.Checked;
         }
 
         private void cbDruckbz_CheckedChanged(object sender, EventArgs e)
@@ -1713,6 +1713,21 @@ namespace ZusiGraph
 
             
 
+        }
+
+        private void btnDebugHidegeschw_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void cbGeschwMaxZul_CheckedChanged(object sender, EventArgs e)
+        {
+            graph1.Series["geschwMaxZul"].Enabled = cbGeschwMaxZul.Checked;
+        }
+
+        private void cbKmSprung_CheckedChanged(object sender, EventArgs e)
+        {
+            graph1.Series["kmSprung"].Enabled = cbKmSprung.Checked;
         }
           
     }
