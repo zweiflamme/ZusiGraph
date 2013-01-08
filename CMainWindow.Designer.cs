@@ -202,6 +202,7 @@
             chartArea1.CursorX.IsUserSelectionEnabled = true;
             chartArea1.CursorX.LineColor = System.Drawing.Color.Black;
             chartArea1.CursorX.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.CursorY.IsUserSelectionEnabled = true;
             chartArea1.Name = "ChartArea1";
             this.graph1.ChartAreas.Add(chartArea1);
             this.graph1.Dock = System.Windows.Forms.DockStyle.Fill;
