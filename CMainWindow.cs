@@ -12,6 +12,7 @@ using System.Diagnostics; // usage of stopwatch
 using Zusi_Datenausgabe; //TODO: v1.0.0
 using System.Runtime.InteropServices; //to hand over the focus to Zusi main window
 using System.Media; //for sound playback
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ZusiGraph
 {
@@ -1230,13 +1231,21 @@ namespace ZusiGraph
         //DEBUG
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
+            Color geschwDefaultColor = (graph1.Series["geschw"].Color);
+
             if (verbunden == false)
             {
                 geschwindigkeit = Convert.ToDouble(numDebugsetspeed.Value);
                 vmps = geschwindigkeit / 3.6;   
              
                 //TEST
-                graph1.Series["geschw"].Points.AddY(geschwindigkeit);
+                DataPoint dp = new DataPoint(1, geschwindigkeit);
+                if (geschwindigkeit >= 10)
+                    dp.Color = Color.Black;
+                else
+                    dp.Color = geschwDefaultColor;
+
+                graph1.Series["geschw"].Points.Add(dp);
             }
         }
 
