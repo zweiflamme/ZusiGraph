@@ -121,6 +121,7 @@
             this.btnNacht = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.timerGraph = new System.Windows.Forms.Timer(this.components);
+            this.btnSeparateGraph = new System.Windows.Forms.Button();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabGraph.SuspendLayout();
@@ -195,7 +196,8 @@
             // 
             // graph1
             // 
-            chartArea1.CursorX.IsUserEnabled = true;
+            chartArea1.AxisY.Title = "km/h";
+            chartArea1.AxisY2.Title = "bar";
             chartArea1.CursorX.IsUserSelectionEnabled = true;
             chartArea1.CursorX.LineColor = System.Drawing.Color.Black;
             chartArea1.CursorX.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
@@ -218,27 +220,28 @@
             series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Color = System.Drawing.Color.Red;
             series2.IsXValueIndexed = true;
             series2.Legend = "Legend1";
-            series2.LegendText = "Hll-Druck";
-            series2.Name = "hlldruck";
-            series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            series2.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
+            series2.LegendText = "Zulässige HG";
+            series2.Name = "geschwMaxZul";
             series3.ChartArea = "ChartArea1";
-            series3.Color = System.Drawing.Color.Red;
-            series3.IsVisibleInLegend = false;
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series3.IsXValueIndexed = true;
             series3.Legend = "Legend1";
-            series3.Name = "kmSprung";
+            series3.LegendText = "Hll-Druck";
+            series3.Name = "hlldruck";
             series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             series3.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
-            series3.YValuesPerPoint = 3;
             series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series4.Color = System.Drawing.Color.Red;
+            series4.Color = System.Drawing.Color.Indigo;
+            series4.IsVisibleInLegend = false;
             series4.IsXValueIndexed = true;
             series4.Legend = "Legend1";
-            series4.Name = "geschwMaxZul";
+            series4.Name = "kmSprung";
+            series4.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            series4.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
+            series4.YValuesPerPoint = 3;
             this.graph1.Series.Add(series1);
             this.graph1.Series.Add(series2);
             this.graph1.Series.Add(series3);
@@ -1145,16 +1148,18 @@
             this.pnlLeft.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlLeft.ColumnCount = 1;
             this.pnlLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.pnlLeft.Controls.Add(this.btnAufzeichnung, 0, 2);
-            this.pnlLeft.Controls.Add(this.btnNacht, 0, 0);
-            this.pnlLeft.Controls.Add(this.btnSettings, 0, 1);
+            this.pnlLeft.Controls.Add(this.btnSeparateGraph, 0, 1);
+            this.pnlLeft.Controls.Add(this.btnAufzeichnung, 0, 0);
+            this.pnlLeft.Controls.Add(this.btnNacht, 0, 3);
+            this.pnlLeft.Controls.Add(this.btnSettings, 0, 2);
             this.pnlLeft.Location = new System.Drawing.Point(2, 13);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.RowCount = 3;
+            this.pnlLeft.RowCount = 4;
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlLeft.Size = new System.Drawing.Size(90, 91);
+            this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlLeft.Size = new System.Drawing.Size(90, 122);
             this.pnlLeft.TabIndex = 19;
             // 
             // btnAufzeichnung
@@ -1164,7 +1169,7 @@
             this.btnAufzeichnung.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAufzeichnung.Enabled = false;
             this.btnAufzeichnung.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAufzeichnung.Location = new System.Drawing.Point(3, 63);
+            this.btnAufzeichnung.Location = new System.Drawing.Point(3, 3);
             this.btnAufzeichnung.Name = "btnAufzeichnung";
             this.btnAufzeichnung.Size = new System.Drawing.Size(84, 25);
             this.btnAufzeichnung.TabIndex = 16;
@@ -1177,7 +1182,7 @@
             this.btnNacht.AutoSize = true;
             this.btnNacht.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnNacht.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnNacht.Location = new System.Drawing.Point(3, 3);
+            this.btnNacht.Location = new System.Drawing.Point(3, 96);
             this.btnNacht.Name = "btnNacht";
             this.btnNacht.Size = new System.Drawing.Size(84, 23);
             this.btnNacht.TabIndex = 15;
@@ -1191,7 +1196,7 @@
             this.btnSettings.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnSettings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettings.Location = new System.Drawing.Point(3, 32);
+            this.btnSettings.Location = new System.Drawing.Point(3, 65);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(84, 25);
             this.btnSettings.TabIndex = 6;
@@ -1202,6 +1207,20 @@
             // timerGraph
             // 
             this.timerGraph.Tick += new System.EventHandler(this.timerGraph_Tick);
+            // 
+            // btnSeparateGraph
+            // 
+            this.btnSeparateGraph.AutoSize = true;
+            this.btnSeparateGraph.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnSeparateGraph.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSeparateGraph.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSeparateGraph.Location = new System.Drawing.Point(3, 34);
+            this.btnSeparateGraph.Name = "btnSeparateGraph";
+            this.btnSeparateGraph.Size = new System.Drawing.Size(84, 25);
+            this.btnSeparateGraph.TabIndex = 17;
+            this.btnSeparateGraph.Text = "Graph ->";
+            this.btnSeparateGraph.UseVisualStyleBackColor = true;
+            this.btnSeparateGraph.Click += new System.EventHandler(this.btnSeparateGraph_Click);
             // 
             // CMainWindow
             // 
@@ -1352,6 +1371,7 @@
         private System.Windows.Forms.CheckBox cbLmgleiten;
         private System.Windows.Forms.Button btnDebugTickmark;
         private System.Windows.Forms.Label lblDebugKmsprung;
+        private System.Windows.Forms.Button btnSeparateGraph;
 
     }
 

@@ -272,6 +272,12 @@ namespace ZusiGraph
 
         private void CMainWindow_Load(object sender, EventArgs e) //on loading of the main window...
         {
+            //TEST
+            //pre-draw on chart so that chart grid is visible
+            //TODO: find a better way
+            //graph1.Series["geschw"].Points.AddY(0);
+            //graph1.Series["hlldruck"].Points.AddY(0);
+            
             //TEST TODO
             #region Ensure loaded settings apply
             //make sure every label and panel is visible according to checkboxes:           
@@ -1619,7 +1625,7 @@ namespace ZusiGraph
                 graph1.Series["hlldruck"].Points.AddXY(graphStreckenKmDouble, hlldruck);
                 
                 //TEST TODO plot kmSprung at 0, if true at 1
-                graph1.Series["kmSprung"].Points.AddXY(graphStreckenKmDouble, Convert.ToDouble(kmSprung)*5);
+                graph1.Series["kmSprung"].Points.AddXY(graphStreckenKmDouble, Convert.ToDouble(kmSprung));
 
                 if (kmSprung)
                     kmSprung = false;
@@ -1672,27 +1678,7 @@ namespace ZusiGraph
 
         private void graph1_DoubleClick(object sender, EventArgs e)
         {
-            switch(showseparatedgraph && graphIsSeparated)
-            {
-                case true:
-                    {
-                        showseparatedgraph = false; // reintegrate graph
-                        ShowSeparateGraphWindow();
-                        tabEinstellungen.SelectTab("tabGraph");                        
-                        break;
-                    }
-                case false:
-                    {
-                        showseparatedgraph = true; // separate graph
-                        ShowSeparateGraphWindow();
-                        tabEinstellungen.SelectTab("tabAnzeigen1");
-                        break;
-                    }
-                default: break;
-            }
-
-            //if graph is separated, check cb and vice versa
-            cbGraphSeparate.Checked = showseparatedgraph;
+            
         }
 
         private void btnDebugTickmark_Click(object sender, EventArgs e)
@@ -1700,6 +1686,38 @@ namespace ZusiGraph
             //plot a tickmark            
             //graph1.Series["hlldruck"].Points.AddY(3);
             //graph1.Series["geschw"].Points.InsertXY(graph1.ChartAreas.GetEnumerator(), 5);
+        }
+
+        private void btnSeparateGraph_Click(object sender, EventArgs e)
+        {
+            switch (showseparatedgraph && graphIsSeparated)
+            {
+                case true:
+                    {
+                        showseparatedgraph = false; // reintegrate graph
+                        ShowSeparateGraphWindow();
+                        tabEinstellungen.SelectTab("tabGraph");
+                        //change button Text
+                        btnSeparateGraph.Text = "Graph ->";
+                        break;
+                    }
+                case false:
+                    {
+                        showseparatedgraph = true; // separate graph
+                        ShowSeparateGraphWindow();
+                        tabEinstellungen.SelectTab("tabAnzeigen1");
+                        //change button Text
+                        btnSeparateGraph.Text = "Graph <-";
+                        break;
+                    }
+                default: break;
+            }
+
+            //if graph is separated, check cb and vice versa
+            cbGraphSeparate.Checked = showseparatedgraph;
+
+            
+
         }
           
     }
