@@ -117,11 +117,11 @@
             this.btnFlag = new System.Windows.Forms.Button();
             this.pnlRight = new System.Windows.Forms.Panel();
             this.pnlLeft = new System.Windows.Forms.TableLayoutPanel();
+            this.btnSeparateGraph = new System.Windows.Forms.Button();
             this.btnAufzeichnung = new System.Windows.Forms.Button();
             this.btnNacht = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.timerGraph = new System.Windows.Forms.Timer(this.components);
-            this.btnSeparateGraph = new System.Windows.Forms.Button();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabGraph.SuspendLayout();
@@ -248,7 +248,6 @@
             this.graph1.Series.Add(series4);
             this.graph1.Size = new System.Drawing.Size(401, 425);
             this.graph1.TabIndex = 0;
-            this.graph1.DoubleClick += new System.EventHandler(this.graph1_DoubleClick);
             // 
             // tabAnzeigen1
             // 
@@ -1162,6 +1161,20 @@
             this.pnlLeft.Size = new System.Drawing.Size(90, 122);
             this.pnlLeft.TabIndex = 19;
             // 
+            // btnSeparateGraph
+            // 
+            this.btnSeparateGraph.AutoSize = true;
+            this.btnSeparateGraph.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnSeparateGraph.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSeparateGraph.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSeparateGraph.Location = new System.Drawing.Point(3, 34);
+            this.btnSeparateGraph.Name = "btnSeparateGraph";
+            this.btnSeparateGraph.Size = new System.Drawing.Size(84, 25);
+            this.btnSeparateGraph.TabIndex = 17;
+            this.btnSeparateGraph.Text = "Graph ->";
+            this.btnSeparateGraph.UseVisualStyleBackColor = true;
+            this.btnSeparateGraph.Click += new System.EventHandler(this.btnSeparateGraph_Click);
+            // 
             // btnAufzeichnung
             // 
             this.btnAufzeichnung.AutoSize = true;
@@ -1207,20 +1220,6 @@
             // timerGraph
             // 
             this.timerGraph.Tick += new System.EventHandler(this.timerGraph_Tick);
-            // 
-            // btnSeparateGraph
-            // 
-            this.btnSeparateGraph.AutoSize = true;
-            this.btnSeparateGraph.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnSeparateGraph.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSeparateGraph.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSeparateGraph.Location = new System.Drawing.Point(3, 34);
-            this.btnSeparateGraph.Name = "btnSeparateGraph";
-            this.btnSeparateGraph.Size = new System.Drawing.Size(84, 25);
-            this.btnSeparateGraph.TabIndex = 17;
-            this.btnSeparateGraph.Text = "Graph ->";
-            this.btnSeparateGraph.UseVisualStyleBackColor = true;
-            this.btnSeparateGraph.Click += new System.EventHandler(this.btnSeparateGraph_Click);
             // 
             // CMainWindow
             // 

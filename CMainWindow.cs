@@ -1673,12 +1673,7 @@ namespace ZusiGraph
 
         private void graph1_Click(object sender, EventArgs e)
         {
-            
-        }
 
-        private void graph1_DoubleClick(object sender, EventArgs e)
-        {
-            
         }
 
         private void btnDebugTickmark_Click(object sender, EventArgs e)
