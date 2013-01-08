@@ -1227,26 +1227,38 @@ namespace ZusiGraph
             
         }
 
-        //TODO: rename method
-        //DEBUG
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        public void PlotDebugChart()
         {
             Color geschwDefaultColor = (graph1.Series["geschw"].Color);
 
             if (verbunden == false)
             {
                 geschwindigkeit = Convert.ToDouble(numDebugsetspeed.Value);
-                vmps = geschwindigkeit / 3.6;   
-             
-                //TEST
-                DataPoint dp = new DataPoint(1, geschwindigkeit);
+                vmps = geschwindigkeit / 3.6;
+                hlldruck = Convert.ToDouble(numDebugsethlldruck.Value);
+              
+                DataPoint dpgeschw = new DataPoint(1, geschwindigkeit);
+                DataPoint dphlldruck = new DataPoint(1, hlldruck);
                 if (geschwindigkeit >= 10)
-                    dp.Color = Color.Black;
+                    dpgeschw.Color = Color.Black;
                 else
-                    dp.Color = geschwDefaultColor;
+                    dpgeschw.Color = geschwDefaultColor;
 
-                graph1.Series["geschw"].Points.Add(dp);
+                graph1.Series["geschw"].Points.Add(dpgeschw);
+                graph1.Series["hlldruck"].Points.Add(dphlldruck);
+                graph1.Series["kmSprung"].Points.Add(1, (Convert.ToDouble(kmSprung)));
+
+                if (kmSprung)
+                    kmSprung = false;
             }
+        }
+        //TODO: rename method
+        //DEBUG
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            PlotDebugChart();
+            
+            
         }
 
         //TEST
@@ -1703,11 +1715,10 @@ namespace ZusiGraph
 
         }
 
-        private void btnDebugTickmark_Click(object sender, EventArgs e)
+        private void btnDebugkmSprung_Click(object sender, EventArgs e)
         {
-            //plot a tickmark            
-            //graph1.Series["hlldruck"].Points.AddY(3);
-            //graph1.Series["geschw"].Points.InsertXY(graph1.ChartAreas.GetEnumerator(), 5);
+            kmSprung = true;
+            PlotDebugChart();
         }
 
         private void btnSeparateGraph_Click(object sender, EventArgs e)
@@ -1766,6 +1777,11 @@ namespace ZusiGraph
         private void btnDebugFrmShift_Click(object sender, EventArgs e)
         {
             frmGraph.Location = new Point(100, 100);
+        }
+
+        private void numDebugsethlldruck_ValueChanged(object sender, EventArgs e)
+        {
+            PlotDebugChart();
         }
           
     }

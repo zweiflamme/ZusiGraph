@@ -104,7 +104,7 @@
             this.pnlDebug = new System.Windows.Forms.Panel();
             this.grpDebug = new System.Windows.Forms.GroupBox();
             this.lblDebugKmsprung = new System.Windows.Forms.Label();
-            this.btnDebugTickmark = new System.Windows.Forms.Button();
+            this.btnDebugkmSprung = new System.Windows.Forms.Button();
             this.btnDebugGraphSeparated = new System.Windows.Forms.Button();
             this.grpDebugoffline = new System.Windows.Forms.GroupBox();
             this.numDebugsetspeed = new System.Windows.Forms.NumericUpDown();
@@ -122,7 +122,9 @@
             this.btnNacht = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.timerGraph = new System.Windows.Forms.Timer(this.components);
-            this.btnDebugFrmShift = new System.Windows.Forms.Button();
+            this.numDebugsethlldruck = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabGraph.SuspendLayout();
@@ -147,6 +149,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numDebugsetspeed)).BeginInit();
             this.pnlRight.SuspendLayout();
             this.pnlLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numDebugsethlldruck)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlSettings
@@ -236,10 +239,12 @@
             series3.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             series4.ChartArea = "ChartArea1";
             series4.Color = System.Drawing.Color.Indigo;
+            series4.Enabled = false;
             series4.IsVisibleInLegend = false;
             series4.IsXValueIndexed = true;
             series4.Legend = "Legend1";
             series4.Name = "kmSprung";
+            series4.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             series4.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             series4.YValuesPerPoint = 3;
             this.graph1.Series.Add(series1);
@@ -996,9 +1001,7 @@
             // grpDebug
             // 
             this.grpDebug.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.grpDebug.Controls.Add(this.btnDebugFrmShift);
             this.grpDebug.Controls.Add(this.lblDebugKmsprung);
-            this.grpDebug.Controls.Add(this.btnDebugTickmark);
             this.grpDebug.Controls.Add(this.btnDebugGraphSeparated);
             this.grpDebug.Controls.Add(this.grpDebugoffline);
             this.grpDebug.Controls.Add(this.btnDebugFokusZusi);
@@ -1015,25 +1018,25 @@
             // 
             // lblDebugKmsprung
             // 
-            this.lblDebugKmsprung.Location = new System.Drawing.Point(6, 320);
+            this.lblDebugKmsprung.Location = new System.Drawing.Point(3, 368);
             this.lblDebugKmsprung.Name = "lblDebugKmsprung";
             this.lblDebugKmsprung.Size = new System.Drawing.Size(120, 42);
             this.lblDebugKmsprung.TabIndex = 24;
             this.lblDebugKmsprung.Text = "(kmSprung)";
             // 
-            // btnDebugTickmark
+            // btnDebugkmSprung
             // 
-            this.btnDebugTickmark.Location = new System.Drawing.Point(12, 227);
-            this.btnDebugTickmark.Name = "btnDebugTickmark";
-            this.btnDebugTickmark.Size = new System.Drawing.Size(75, 23);
-            this.btnDebugTickmark.TabIndex = 23;
-            this.btnDebugTickmark.Text = "Tickmark";
-            this.btnDebugTickmark.UseVisualStyleBackColor = true;
-            this.btnDebugTickmark.Click += new System.EventHandler(this.btnDebugTickmark_Click);
+            this.btnDebugkmSprung.Location = new System.Drawing.Point(6, 102);
+            this.btnDebugkmSprung.Name = "btnDebugkmSprung";
+            this.btnDebugkmSprung.Size = new System.Drawing.Size(75, 23);
+            this.btnDebugkmSprung.TabIndex = 23;
+            this.btnDebugkmSprung.Text = "kmSprung";
+            this.btnDebugkmSprung.UseVisualStyleBackColor = true;
+            this.btnDebugkmSprung.Click += new System.EventHandler(this.btnDebugkmSprung_Click);
             // 
             // btnDebugGraphSeparated
             // 
-            this.btnDebugGraphSeparated.Location = new System.Drawing.Point(12, 197);
+            this.btnDebugGraphSeparated.Location = new System.Drawing.Point(9, 259);
             this.btnDebugGraphSeparated.Name = "btnDebugGraphSeparated";
             this.btnDebugGraphSeparated.Size = new System.Drawing.Size(75, 23);
             this.btnDebugGraphSeparated.TabIndex = 22;
@@ -1043,12 +1046,16 @@
             // 
             // grpDebugoffline
             // 
+            this.grpDebugoffline.Controls.Add(this.label3);
+            this.grpDebugoffline.Controls.Add(this.btnDebugkmSprung);
+            this.grpDebugoffline.Controls.Add(this.label1);
+            this.grpDebugoffline.Controls.Add(this.numDebugsethlldruck);
             this.grpDebugoffline.Controls.Add(this.numDebugsetspeed);
             this.grpDebugoffline.Controls.Add(this.label4);
             this.grpDebugoffline.Controls.Add(this.label5);
             this.grpDebugoffline.Location = new System.Drawing.Point(6, 100);
             this.grpDebugoffline.Name = "grpDebugoffline";
-            this.grpDebugoffline.Size = new System.Drawing.Size(107, 68);
+            this.grpDebugoffline.Size = new System.Drawing.Size(107, 136);
             this.grpDebugoffline.TabIndex = 20;
             this.grpDebugoffline.TabStop = false;
             this.grpDebugoffline.Text = "Offline";
@@ -1098,7 +1105,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 266);
+            this.label13.Location = new System.Drawing.Point(6, 301);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(92, 13);
             this.label13.TabIndex = 20;
@@ -1107,7 +1114,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(48, 289);
+            this.label12.Location = new System.Drawing.Point(48, 324);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(28, 13);
             this.label12.TabIndex = 19;
@@ -1115,7 +1122,7 @@
             // 
             // tbVerz
             // 
-            this.tbVerz.Location = new System.Drawing.Point(6, 282);
+            this.tbVerz.Location = new System.Drawing.Point(6, 317);
             this.tbVerz.Name = "tbVerz";
             this.tbVerz.Size = new System.Drawing.Size(36, 20);
             this.tbVerz.TabIndex = 18;
@@ -1223,15 +1230,41 @@
             // 
             this.timerGraph.Tick += new System.EventHandler(this.timerGraph_Tick);
             // 
-            // btnDebugFrmShift
+            // numDebugsethlldruck
             // 
-            this.btnDebugFrmShift.Location = new System.Drawing.Point(12, 356);
-            this.btnDebugFrmShift.Name = "btnDebugFrmShift";
-            this.btnDebugFrmShift.Size = new System.Drawing.Size(75, 23);
-            this.btnDebugFrmShift.TabIndex = 25;
-            this.btnDebugFrmShift.Text = "FrmShift";
-            this.btnDebugFrmShift.UseVisualStyleBackColor = true;
-            this.btnDebugFrmShift.Click += new System.EventHandler(this.btnDebugFrmShift_Click);
+            this.numDebugsethlldruck.Location = new System.Drawing.Point(6, 76);
+            this.numDebugsethlldruck.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.numDebugsethlldruck.Name = "numDebugsethlldruck";
+            this.numDebugsethlldruck.Size = new System.Drawing.Size(49, 20);
+            this.numDebugsethlldruck.TabIndex = 28;
+            this.numDebugsethlldruck.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numDebugsethlldruck.ValueChanged += new System.EventHandler(this.numDebugsethlldruck_ValueChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(62, 78);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(22, 13);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "bar";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 60);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(51, 13);
+            this.label3.TabIndex = 30;
+            this.label3.Text = "Hll-Druck";
             // 
             // CMainWindow
             // 
@@ -1291,6 +1324,7 @@
             this.pnlRight.PerformLayout();
             this.pnlLeft.ResumeLayout(false);
             this.pnlLeft.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numDebugsethlldruck)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1378,12 +1412,14 @@
         private System.Windows.Forms.Button btnAufzeichnung;
         private System.Windows.Forms.CheckBox cbGraphSeparate;
         private System.Windows.Forms.CheckBox cbLmgleiten;
-        private System.Windows.Forms.Button btnDebugTickmark;
+        private System.Windows.Forms.Button btnDebugkmSprung;
         private System.Windows.Forms.Label lblDebugKmsprung;
         private System.Windows.Forms.Button btnSeparateGraph;
         private System.Windows.Forms.CheckBox cbGeschwMaxZul;
         private System.Windows.Forms.CheckBox cbKmSprung;
-        private System.Windows.Forms.Button btnDebugFrmShift;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown numDebugsethlldruck;
 
     }
 
