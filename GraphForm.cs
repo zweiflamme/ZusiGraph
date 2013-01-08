@@ -24,9 +24,9 @@ namespace ZusiGraph
 
         private void GraphForm_FormClosing_1(object sender, FormClosingEventArgs e)
         {
-            this.Hide();
-            //TEST
-            //Properties.Settings.Default.Save();
+            //TODO: reintegrate form into Main form
+            //Prevents user from closing the form
+            e.Cancel = true;
         }
 
         private void GraphForm_Load(object sender, EventArgs e)

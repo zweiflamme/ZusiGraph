@@ -388,13 +388,14 @@ namespace ZusiGraph
                     if (geschwindigkeit > 0.1) 
                         hasMoved = true;
 
-                    if (hasMoved == true && alwaysShowSettings == false && cbHidesettings.Checked && debugging == false)
-                    {
-                        if (settingsAreSeparated)
-                            frmSettings.Hide();
-                        else
-                            pnlRight.Visible = false; //auto hide feature: If we start moving, right panel shall be hidden                        
-                    }
+                    //I think we don't need the autohide feature here
+                    //if (hasMoved == true && alwaysShowSettings == false && cbHidesettings.Checked && debugging == false)
+                    //{
+                    //    if (settingsAreSeparated)
+                    //        frmSettings.Hide();
+                    //    else
+                    //        pnlRight.Visible = false; //auto hide feature: If we start moving, right panel shall be hidden                        
+                    //}
 
                     if (hasMoved == true && geschwindigkeit == 0) //if train has stopped
                     {
@@ -1069,37 +1070,44 @@ namespace ZusiGraph
         //if the user clicks the "Einstellungen" button...
         private void btnSettings_Click(object sender, EventArgs e)
         {
-            if (settingsAreSeparated == false) // if settings are NOT in a separate window
-            {
-                //TEST
-                if (hasMoved)
-                {
-                    alwaysShowSettings = true; //when we're moving, we do NOT want to autohide at the moment
-                    pnlRight.Visible = !pnlRight.Visible;
-                }
-                else
-                {
-                    alwaysShowSettings = false;
-                    pnlRight.Visible = !pnlRight.Visible;
 
-                }
-            }
-            else if (settingsAreSeparated == true)
-            {
-                //TEST
-                if (hasMoved)
-                {
-                    alwaysShowSettings = true; //when we're moving, we do NOT want to autohide at the moment
-                    //pnlRight.Visible = !pnlRight.Visible;
-                    frmSettings.Visible = !frmSettings.Visible;
-                }
-                else
-                {
-                    alwaysShowSettings = false;
-                    //pnlRight.Visible = !pnlRight.Visible;
-                    frmSettings.Visible = !frmSettings.Visible;
-                }
-            }
+            pnlRight.Visible = !pnlRight.Visible;
+            if (pnlRight.Visible)
+                btnSettings.Text = "Ausblenden";
+            else
+                btnSettings.Text = "Einblenden";
+
+            //if (settingsAreSeparated == false) // if settings are NOT in a separate window
+            //{
+            //    //TEST
+            //    if (hasMoved)
+            //    {
+            //        alwaysShowSettings = true; //when we're moving, we do NOT want to autohide at the moment
+            //        pnlRight.Visible = !pnlRight.Visible;
+            //    }
+            //    else
+            //    {
+            //        alwaysShowSettings = false;
+            //        pnlRight.Visible = !pnlRight.Visible;
+
+            //    }
+            //}
+            //else if (settingsAreSeparated == true)
+            //{
+            //    //TEST
+            //    if (hasMoved)
+            //    {
+            //        alwaysShowSettings = true; //when we're moving, we do NOT want to autohide at the moment
+            //        //pnlRight.Visible = !pnlRight.Visible;
+            //        frmSettings.Visible = !frmSettings.Visible;
+            //    }
+            //    else
+            //    {
+            //        alwaysShowSettings = false;
+            //        //pnlRight.Visible = !pnlRight.Visible;
+            //        frmSettings.Visible = !frmSettings.Visible;
+            //    }
+            //}
 
             FokusAnZusi();
         }
@@ -1469,10 +1477,11 @@ namespace ZusiGraph
                 graphIsSeparated = true;
 
                 this.pnlGraph.Location = new Point(0, 0);
-                this.pnlGraph.Dock = DockStyle.None; //TEST - otherwise, frmGraph does not size properly
+                //this.pnlGraph.Dock = DockStyle.None; //TEST - otherwise, frmGraph does not size properly
+                this.pnlGraph.Dock = DockStyle.Fill; //TEST - otherwise, frmGraph does not size properly
 
-                frmGraph.AutoSize = true;
-                frmGraph.PerformAutoScale();
+                //frmGraph.AutoSize = true;
+                //frmGraph.PerformAutoScale();
                 frmGraph.Show();
                
                 //DEBUG:
@@ -1573,6 +1582,7 @@ namespace ZusiGraph
         {
             //saving default user settings on FormClosing
             Properties.Settings.Default.Save();
+            
         }
 
         private void btnDefaultSettings_Click(object sender, EventArgs e)

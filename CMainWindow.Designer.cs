@@ -1195,7 +1195,7 @@
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(84, 25);
             this.btnSettings.TabIndex = 6;
-            this.btnSettings.Text = "Einstellungen";
+            this.btnSettings.Text = "Ausblenden";
             this.btnSettings.UseVisualStyleBackColor = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
