@@ -1622,12 +1622,28 @@ namespace ZusiGraph
             ShowSeparateGraphWindow();
         }
 
+        //TEST
+        
+
         private void timerGraph_Tick(object sender, EventArgs e)
         {
+            //TEST
+            Color geschwDefaultColor = graph1.Series["geschw"].Color;
+
             if (hasMoved)
             {
                 //if (cbGraphGeschwindigkeit.Checked)
-                graph1.Series["geschw"].Points.AddXY(graphStreckenKmDouble, geschwindigkeit);
+                //TEST
+                DataPoint dp = new DataPoint(graphStreckenKmDouble, geschwindigkeit);
+                if (geschwindigkeit > geschwindigkeitMaxZul * 1.1 && geschwindigkeit > (geschwindigkeitMaxZul + 7))
+                    dp.Color = Color.DarkRed;
+                else
+                    dp.Color = geschwDefaultColor;
+
+                //graph1.Series["geschw"].Points.AddXY(graphStreckenKmDouble, geschwindigkeit);
+                //TEST
+                graph1.Series["geschw"].Points.Add(dp);
+
                 //
                 graph1.Series["geschwMaxZul"].Points.AddXY(graphStreckenKmDouble, geschwindigkeitMaxZul);
                 //if (cbGraphDruckhll.Checked)
