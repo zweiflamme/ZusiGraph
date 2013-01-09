@@ -127,6 +127,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.numDebugsetGeschwMaxZul = new System.Windows.Forms.NumericUpDown();
+            this.btnDebugClearAllDP = new System.Windows.Forms.Button();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabGraph.SuspendLayout();
@@ -1002,6 +1003,7 @@
             // grpDebug
             // 
             this.grpDebug.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.grpDebug.Controls.Add(this.btnDebugClearAllDP);
             this.grpDebug.Controls.Add(this.btnDebugGraphSeparated);
             this.grpDebug.Controls.Add(this.grpDebugoffline);
             this.grpDebug.Controls.Add(this.btnDebugFokusZusi);
@@ -1018,7 +1020,7 @@
             // 
             // btnDebugGraphSeparated
             // 
-            this.btnDebugGraphSeparated.Location = new System.Drawing.Point(6, 326);
+            this.btnDebugGraphSeparated.Location = new System.Drawing.Point(8, 283);
             this.btnDebugGraphSeparated.Name = "btnDebugGraphSeparated";
             this.btnDebugGraphSeparated.Size = new System.Drawing.Size(75, 23);
             this.btnDebugGraphSeparated.TabIndex = 22;
@@ -1040,7 +1042,7 @@
             this.grpDebugoffline.Controls.Add(this.label5);
             this.grpDebugoffline.Location = new System.Drawing.Point(6, 100);
             this.grpDebugoffline.Name = "grpDebugoffline";
-            this.grpDebugoffline.Size = new System.Drawing.Size(107, 220);
+            this.grpDebugoffline.Size = new System.Drawing.Size(107, 177);
             this.grpDebugoffline.TabIndex = 20;
             this.grpDebugoffline.TabStop = false;
             this.grpDebugoffline.Text = "Offline";
@@ -1056,7 +1058,7 @@
             // 
             // btnDebugkmSprung
             // 
-            this.btnDebugkmSprung.Location = new System.Drawing.Point(6, 182);
+            this.btnDebugkmSprung.Location = new System.Drawing.Point(6, 149);
             this.btnDebugkmSprung.Name = "btnDebugkmSprung";
             this.btnDebugkmSprung.Size = new System.Drawing.Size(75, 23);
             this.btnDebugkmSprung.TabIndex = 23;
@@ -1297,6 +1299,16 @@
             0});
             this.numDebugsetGeschwMaxZul.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged_1);
             // 
+            // btnDebugClearAllDP
+            // 
+            this.btnDebugClearAllDP.Location = new System.Drawing.Point(8, 322);
+            this.btnDebugClearAllDP.Name = "btnDebugClearAllDP";
+            this.btnDebugClearAllDP.Size = new System.Drawing.Size(75, 23);
+            this.btnDebugClearAllDP.TabIndex = 23;
+            this.btnDebugClearAllDP.Text = "Clear All DP";
+            this.btnDebugClearAllDP.UseVisualStyleBackColor = true;
+            this.btnDebugClearAllDP.Click += new System.EventHandler(this.btnDebugClearAllDP_Click);
+            // 
             // CMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1454,6 +1466,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.NumericUpDown numDebugsetGeschwMaxZul;
+        private System.Windows.Forms.Button btnDebugClearAllDP;
 
     }
 

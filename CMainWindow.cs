@@ -1793,6 +1793,19 @@ namespace ZusiGraph
         {
             PlotDebugChart();
         }
+
+        private void btnDebugClearAllDP_Click(object sender, EventArgs e)
+        {
+            //DEBUG
+            //clears all datapoints from the chart
+            graph1.Series["geschw"].Points.Clear();
+            //TODO:
+            //reset the index so that no red-crossed chart is shown after clearing
+        }        
+
+
+
+
           
     }
 }
