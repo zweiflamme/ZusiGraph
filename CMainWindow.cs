@@ -531,8 +531,7 @@ namespace ZusiGraph
                     
                     if (deltaStreckenmeter > 100)
                     {
-                        //DEBUG
-                        lblDebugKmsprung.Text = "KILOMETERSPRUNG bei : " + streckenmeter.ToString();
+                       
                         //TODO: Add some gridmark into chart at kmSprung
                         kmSprung = true;
                     }
@@ -1234,15 +1233,17 @@ namespace ZusiGraph
             if (verbunden == false)
             {
                 geschwindigkeit = Convert.ToDouble(numDebugsetspeed.Value);
+                geschwindigkeitMaxZul = Convert.ToDouble(numDebugsetGeschwMaxZul.Value);
                 vmps = geschwindigkeit / 3.6;
                 hlldruck = Convert.ToDouble(numDebugsethlldruck.Value);
               
                 DataPoint dpgeschw = new DataPoint(1, geschwindigkeit);
+                DataPoint dpgeschwmaxzul = new DataPoint(1, geschwindigkeitMaxZul);
                 DataPoint dphlldruck = new DataPoint(1, hlldruck);
                 DataPoint dpkmsprung = new DataPoint(1, Convert.ToDouble(kmSprung));
 
-                if (geschwindigkeit >= 10)
-                    dpgeschw.Color = Color.Black;
+                if (geschwindigkeit > geschwindigkeitMaxZul)
+                    dpgeschw.Color = Color.DarkRed;
                 else
                     dpgeschw.Color = geschwDefaultColor;
 
@@ -1783,6 +1784,11 @@ namespace ZusiGraph
         }
 
         private void numDebugsethlldruck_ValueChanged(object sender, EventArgs e)
+        {
+            PlotDebugChart();
+        }
+
+        private void numericUpDown1_ValueChanged_1(object sender, EventArgs e)
         {
             PlotDebugChart();
         }

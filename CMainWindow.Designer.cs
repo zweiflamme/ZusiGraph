@@ -103,7 +103,6 @@
             this.lblVerbstatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.pnlDebug = new System.Windows.Forms.Panel();
             this.grpDebug = new System.Windows.Forms.GroupBox();
-            this.lblDebugKmsprung = new System.Windows.Forms.Label();
             this.btnDebugGraphSeparated = new System.Windows.Forms.Button();
             this.grpDebugoffline = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -125,6 +124,9 @@
             this.btnNacht = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.timerGraph = new System.Windows.Forms.Timer(this.components);
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.numDebugsetGeschwMaxZul = new System.Windows.Forms.NumericUpDown();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabGraph.SuspendLayout();
@@ -150,6 +152,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numDebugsetspeed)).BeginInit();
             this.pnlRight.SuspendLayout();
             this.pnlLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numDebugsetGeschwMaxZul)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlSettings
@@ -999,7 +1002,6 @@
             // grpDebug
             // 
             this.grpDebug.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.grpDebug.Controls.Add(this.lblDebugKmsprung);
             this.grpDebug.Controls.Add(this.btnDebugGraphSeparated);
             this.grpDebug.Controls.Add(this.grpDebugoffline);
             this.grpDebug.Controls.Add(this.btnDebugFokusZusi);
@@ -1014,17 +1016,9 @@
             this.grpDebug.TabStop = false;
             this.grpDebug.Text = "Debug";
             // 
-            // lblDebugKmsprung
-            // 
-            this.lblDebugKmsprung.Location = new System.Drawing.Point(3, 368);
-            this.lblDebugKmsprung.Name = "lblDebugKmsprung";
-            this.lblDebugKmsprung.Size = new System.Drawing.Size(120, 42);
-            this.lblDebugKmsprung.TabIndex = 24;
-            this.lblDebugKmsprung.Text = "(kmSprung)";
-            // 
             // btnDebugGraphSeparated
             // 
-            this.btnDebugGraphSeparated.Location = new System.Drawing.Point(9, 259);
+            this.btnDebugGraphSeparated.Location = new System.Drawing.Point(6, 326);
             this.btnDebugGraphSeparated.Name = "btnDebugGraphSeparated";
             this.btnDebugGraphSeparated.Size = new System.Drawing.Size(75, 23);
             this.btnDebugGraphSeparated.TabIndex = 22;
@@ -1034,8 +1028,11 @@
             // 
             // grpDebugoffline
             // 
+            this.grpDebugoffline.Controls.Add(this.label6);
+            this.grpDebugoffline.Controls.Add(this.label7);
             this.grpDebugoffline.Controls.Add(this.label3);
             this.grpDebugoffline.Controls.Add(this.btnDebugkmSprung);
+            this.grpDebugoffline.Controls.Add(this.numDebugsetGeschwMaxZul);
             this.grpDebugoffline.Controls.Add(this.label1);
             this.grpDebugoffline.Controls.Add(this.numDebugsethlldruck);
             this.grpDebugoffline.Controls.Add(this.numDebugsetspeed);
@@ -1043,7 +1040,7 @@
             this.grpDebugoffline.Controls.Add(this.label5);
             this.grpDebugoffline.Location = new System.Drawing.Point(6, 100);
             this.grpDebugoffline.Name = "grpDebugoffline";
-            this.grpDebugoffline.Size = new System.Drawing.Size(107, 136);
+            this.grpDebugoffline.Size = new System.Drawing.Size(107, 220);
             this.grpDebugoffline.TabIndex = 20;
             this.grpDebugoffline.TabStop = false;
             this.grpDebugoffline.Text = "Offline";
@@ -1051,7 +1048,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 60);
+            this.label3.Location = new System.Drawing.Point(6, 107);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 13);
             this.label3.TabIndex = 30;
@@ -1059,7 +1056,7 @@
             // 
             // btnDebugkmSprung
             // 
-            this.btnDebugkmSprung.Location = new System.Drawing.Point(6, 102);
+            this.btnDebugkmSprung.Location = new System.Drawing.Point(6, 182);
             this.btnDebugkmSprung.Name = "btnDebugkmSprung";
             this.btnDebugkmSprung.Size = new System.Drawing.Size(75, 23);
             this.btnDebugkmSprung.TabIndex = 23;
@@ -1070,7 +1067,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(62, 78);
+            this.label1.Location = new System.Drawing.Point(62, 125);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(22, 13);
             this.label1.TabIndex = 29;
@@ -1078,7 +1075,7 @@
             // 
             // numDebugsethlldruck
             // 
-            this.numDebugsethlldruck.Location = new System.Drawing.Point(6, 76);
+            this.numDebugsethlldruck.Location = new System.Drawing.Point(6, 123);
             this.numDebugsethlldruck.Maximum = new decimal(new int[] {
             300,
             0,
@@ -1096,7 +1093,7 @@
             // 
             // numDebugsetspeed
             // 
-            this.numDebugsetspeed.Location = new System.Drawing.Point(6, 37);
+            this.numDebugsetspeed.Location = new System.Drawing.Point(6, 84);
             this.numDebugsetspeed.Maximum = new decimal(new int[] {
             300,
             0,
@@ -1111,7 +1108,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 17);
+            this.label4.Location = new System.Drawing.Point(3, 64);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 13);
             this.label4.TabIndex = 26;
@@ -1120,7 +1117,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(62, 43);
+            this.label5.Location = new System.Drawing.Point(62, 90);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(32, 13);
             this.label5.TabIndex = 27;
@@ -1139,7 +1136,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 301);
+            this.label13.Location = new System.Drawing.Point(3, 368);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(92, 13);
             this.label13.TabIndex = 20;
@@ -1148,7 +1145,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(48, 324);
+            this.label12.Location = new System.Drawing.Point(45, 391);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(28, 13);
             this.label12.TabIndex = 19;
@@ -1156,7 +1153,7 @@
             // 
             // tbVerz
             // 
-            this.tbVerz.Location = new System.Drawing.Point(6, 317);
+            this.tbVerz.Location = new System.Drawing.Point(3, 384);
             this.tbVerz.Name = "tbVerz";
             this.tbVerz.Size = new System.Drawing.Size(36, 20);
             this.tbVerz.TabIndex = 18;
@@ -1264,6 +1261,42 @@
             // 
             this.timerGraph.Tick += new System.EventHandler(this.timerGraph_Tick);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 25);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(71, 13);
+            this.label6.TabIndex = 33;
+            this.label6.Text = "Zulässige HG";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(62, 43);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(32, 13);
+            this.label7.TabIndex = 32;
+            this.label7.Text = "km/h";
+            // 
+            // numDebugsetGeschwMaxZul
+            // 
+            this.numDebugsetGeschwMaxZul.Location = new System.Drawing.Point(6, 41);
+            this.numDebugsetGeschwMaxZul.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.numDebugsetGeschwMaxZul.Name = "numDebugsetGeschwMaxZul";
+            this.numDebugsetGeschwMaxZul.Size = new System.Drawing.Size(49, 20);
+            this.numDebugsetGeschwMaxZul.TabIndex = 31;
+            this.numDebugsetGeschwMaxZul.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numDebugsetGeschwMaxZul.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged_1);
+            // 
             // CMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1323,6 +1356,7 @@
             this.pnlRight.PerformLayout();
             this.pnlLeft.ResumeLayout(false);
             this.pnlLeft.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numDebugsetGeschwMaxZul)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1411,13 +1445,15 @@
         private System.Windows.Forms.CheckBox cbGraphSeparate;
         private System.Windows.Forms.CheckBox cbLmgleiten;
         private System.Windows.Forms.Button btnDebugkmSprung;
-        private System.Windows.Forms.Label lblDebugKmsprung;
         private System.Windows.Forms.Button btnSeparateGraph;
         private System.Windows.Forms.CheckBox cbGeschwMaxZul;
         private System.Windows.Forms.CheckBox cbKmSprung;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numDebugsethlldruck;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.NumericUpDown numDebugsetGeschwMaxZul;
 
     }
 
