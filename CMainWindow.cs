@@ -290,11 +290,7 @@ namespace ZusiGraph
             ResizeSifa();
             
 
-            //make sure radio buttons are in their correct state
-             //second rb is bound to settings
-         
-            rbUnitm.Checked = !rbUnitkm.Checked;
-            rbUnitmps.Checked = !rbUnitkph.Checked;
+            
 
             //make sure checkboxes that exclude each other are properly checked
             //TODO
@@ -382,16 +378,6 @@ namespace ZusiGraph
                     geschwindigkeit = data.Value;
                     vmps = geschwindigkeit / 3.6;
 
-                        
-
-                    //displays speed either in kph or in mps
-                    if(rbUnitkph.Checked)
-                    {//TODO}
-                    }
-                    else if (rbUnitmps.Checked)
-                    {//TODO
-                    }
-
                     if (geschwindigkeit > 0.1) 
                         hasMoved = true;
 
@@ -410,12 +396,12 @@ namespace ZusiGraph
                         alwaysShowSettings = false; //TEST: reset so that settings can autohide again
                     }
 
-                    maxVerz = Convert.ToDouble(tbVerz.Text);
+                    //maxVerz = Convert.ToDouble(tbVerz.Text);
                     //TODO: check sharp braking by by determining deltaV
-                    if (deltaV < -maxVerz) //if deceleration was greater than user set value maxVerz
-                    {
-                        scharf = true;
-                    }
+                    //if (deltaV < -maxVerz) //if deceleration was greater than user set value maxVerz
+                    //{
+                    //    scharf = true;
+                    //}
 
                     break;
                 }
@@ -828,7 +814,7 @@ namespace ZusiGraph
             //setting colors for the textboxes
             tbPort.BackColor = textboxnightcolor;
             tbServer.BackColor = textboxnightcolor;
-            tbVerz.BackColor = textboxnightcolor;
+            //tbVerz.BackColor = textboxnightcolor;
 
             //setting colors for PZB90-Panel
             //TEST: darkening background
@@ -863,7 +849,7 @@ namespace ZusiGraph
             //setting colors for the textboxes
             tbServer.BackColor = textboxdaycolor;
             tbPort.BackColor = textboxdaycolor;
-            tbVerz.BackColor = textboxdaycolor;
+            //tbVerz.BackColor = textboxdaycolor;
 
             //setting colors for PZB90-Panel
             //TEST: lightening background
@@ -1224,6 +1210,35 @@ namespace ZusiGraph
         private void numFahrschneutral_ValueChanged(object sender, EventArgs e)
         {
             
+        }
+
+        public void PlotChart()
+        {
+            Color geschwDefaultColor = (graph1.Series["geschw"].Color);
+
+            DataPoint dpgeschw = new DataPoint(graphStreckenKmDouble, geschwindigkeit);
+            DataPoint dpgeschwmaxzul = new DataPoint(graphStreckenKmDouble, geschwindigkeitMaxZul);
+            DataPoint dphlldruck = new DataPoint(graphStreckenKmDouble, hlldruck);
+            DataPoint dpkmsprung = new DataPoint(graphStreckenKmDouble, Convert.ToDouble(kmSprung));
+
+            if (geschwindigkeit > geschwindigkeitMaxZul * 1.1 && geschwindigkeit > (geschwindigkeitMaxZul + 7))
+                dpgeschw.Color = Color.DarkRed;
+            else
+                dpgeschw.Color = geschwDefaultColor;
+
+            graph1.Series["geschw"].Points.Add(dpgeschw);
+            graph1.Series["geschwMaxZul"].Points.Add(dpgeschwmaxzul);
+            graph1.Series["hlldruck"].Points.Add(dphlldruck);
+            graph1.Series["kmSprung"].Points.Add(dpkmsprung);
+
+            if (cbGraphAutoScroll.Checked)
+            {
+                double endOfXAxis = graph1.ChartAreas["ChartArea1"].AxisX.Maximum;
+                graph1.ChartAreas["ChartArea1"].AxisX.ScaleView.Scroll(endOfXAxis);
+            }
+
+            if (kmSprung)
+                kmSprung = false;
         }
 
         public void PlotDebugChart()
@@ -1644,35 +1659,10 @@ namespace ZusiGraph
 
         private void timerGraph_Tick(object sender, EventArgs e)
         {
-            //TEST
-            Color geschwDefaultColor = graph1.Series["geschw"].Color;
-
+           
             if (hasMoved)
             {
-                //if (cbGraphGeschwindigkeit.Checked)
-                //TEST
-                DataPoint dp = new DataPoint(graphStreckenKmDouble, geschwindigkeit);
-                if (geschwindigkeit > geschwindigkeitMaxZul * 1.1 && geschwindigkeit > (geschwindigkeitMaxZul + 7))
-                    dp.Color = Color.DarkRed;
-                else
-                    dp.Color = geschwDefaultColor;
-
-                //graph1.Series["geschw"].Points.AddXY(graphStreckenKmDouble, geschwindigkeit);
-                //TEST
-                graph1.Series["geschw"].Points.Add(dp);
-
-                //
-                graph1.Series["geschwMaxZul"].Points.AddXY(graphStreckenKmDouble, geschwindigkeitMaxZul);
-                //if (cbGraphDruckhll.Checked)
-                graph1.Series["hlldruck"].Points.AddXY(graphStreckenKmDouble, hlldruck);
-                
-                //TEST draw line up to the maximum Y value when kmSprung = true
-                //DataPoint kmSprungYValue = graph1.Series["geschw"].Points.FindMaxByValue();
-                //graph1.Series["kmSprung"].Points.AddXY(graphStreckenKmDouble, (Convert.ToDouble(kmSprung) * kmSprungYValue.YValues[0]));
-                graph1.Series["kmSprung"].Points.AddXY(graphStreckenKmDouble, (Convert.ToDouble(kmSprung)));
-
-                if (kmSprung)
-                    kmSprung = false;
+                PlotChart();
             }
         }
 
@@ -1799,9 +1789,50 @@ namespace ZusiGraph
             //DEBUG
             //clears all datapoints from the chart
             graph1.Series["geschw"].Points.Clear();
+            //DEBUG
+            pointIndex = 0;
             //TODO:
             //reset the index so that no red-crossed chart is shown after clearing
-        }        
+        }
+
+        //TEST
+        private Random random = new Random();
+        private int pointIndex = 0;
+
+        private void timerDebugPlotRandom_Tick(object sender, EventArgs e)
+        {
+            // Define some variables
+            int numberOfPointsInChart = 30;
+            int numberOfPointsAfterRemoval = 20;
+
+            // Simulate adding new data points
+            //for (int pointNumber = 0; pointNumber < 5; pointNumber++)
+            //{
+                graph1.Series["geschw"].Points.AddXY(pointIndex + 1, random.Next(0, 100));
+                ++pointIndex;
+            //}
+
+                double endOfXAxis = graph1.ChartAreas["ChartArea1"].AxisX.Maximum;
+                graph1.ChartAreas["ChartArea1"].AxisX.ScaleView.Scroll(endOfXAxis);
+
+            // Redraw chart
+            graph1.Invalidate();
+        }
+
+        private void btnDebugPlotRnd_Click(object sender, EventArgs e)
+        {
+            if (timerDebugPlotRandom.Enabled)
+                timerDebugPlotRandom.Stop();
+            else
+                timerDebugPlotRandom.Start();
+        }
+
+        private void btnDebugRemoveLastDP_Click(object sender, EventArgs e)
+        {
+            double endOfXAxis = graph1.ChartAreas["ChartArea1"].AxisX.Maximum;
+            graph1.ChartAreas["ChartArea1"].AxisX.ScaleView.Scroll(endOfXAxis);
+        }
+             
 
 
 

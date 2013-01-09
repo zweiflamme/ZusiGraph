@@ -75,15 +75,6 @@
             this.cbHauptsch = new System.Windows.Forms.CheckBox();
             this.tabDarstellung = new System.Windows.Forms.TabPage();
             this.cbGraphSeparate = new System.Windows.Forms.CheckBox();
-            this.grpUnits = new System.Windows.Forms.GroupBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label10 = new System.Windows.Forms.Label();
-            this.rbUnitkph = new System.Windows.Forms.RadioButton();
-            this.rbUnitmps = new System.Windows.Forms.RadioButton();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.rbUnitkm = new System.Windows.Forms.RadioButton();
-            this.label2 = new System.Windows.Forms.Label();
-            this.rbUnitm = new System.Windows.Forms.RadioButton();
             this.cbSettingsSeparate = new System.Windows.Forms.CheckBox();
             this.cbHidesettings = new System.Windows.Forms.CheckBox();
             this.cbTopmost = new System.Windows.Forms.CheckBox();
@@ -103,20 +94,19 @@
             this.lblVerbstatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.pnlDebug = new System.Windows.Forms.Panel();
             this.grpDebug = new System.Windows.Forms.GroupBox();
+            this.btnDebugClearAllDP = new System.Windows.Forms.Button();
             this.btnDebugGraphSeparated = new System.Windows.Forms.Button();
             this.grpDebugoffline = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnDebugkmSprung = new System.Windows.Forms.Button();
+            this.numDebugsetGeschwMaxZul = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.numDebugsethlldruck = new System.Windows.Forms.NumericUpDown();
             this.numDebugsetspeed = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.btnDebugFokusZusi = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.tbVerz = new System.Windows.Forms.TextBox();
-            this.btnFlag = new System.Windows.Forms.Button();
             this.pnlRight = new System.Windows.Forms.Panel();
             this.pnlLeft = new System.Windows.Forms.TableLayoutPanel();
             this.btnSeparateGraph = new System.Windows.Forms.Button();
@@ -124,10 +114,10 @@
             this.btnNacht = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.timerGraph = new System.Windows.Forms.Timer(this.components);
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.numDebugsetGeschwMaxZul = new System.Windows.Forms.NumericUpDown();
-            this.btnDebugClearAllDP = new System.Windows.Forms.Button();
+            this.timerDebugPlotRandom = new System.Windows.Forms.Timer(this.components);
+            this.btnDebugPlotRnd = new System.Windows.Forms.Button();
+            this.btnDebugScrollEnd = new System.Windows.Forms.Button();
+            this.cbGraphAutoScroll = new System.Windows.Forms.CheckBox();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabGraph.SuspendLayout();
@@ -139,9 +129,6 @@
             this.pnlBremsen.SuspendLayout();
             this.pnlSchalterst.SuspendLayout();
             this.tabDarstellung.SuspendLayout();
-            this.grpUnits.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.tabSystem.SuspendLayout();
             this.grpManageSettings.SuspendLayout();
             this.grpVerbindung.SuspendLayout();
@@ -149,11 +136,11 @@
             this.pnlDebug.SuspendLayout();
             this.grpDebug.SuspendLayout();
             this.grpDebugoffline.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numDebugsetGeschwMaxZul)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDebugsethlldruck)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDebugsetspeed)).BeginInit();
             this.pnlRight.SuspendLayout();
             this.pnlLeft.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numDebugsetGeschwMaxZul)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlSettings
@@ -662,8 +649,8 @@
             // tabDarstellung
             // 
             this.tabDarstellung.BackColor = System.Drawing.SystemColors.Control;
+            this.tabDarstellung.Controls.Add(this.cbGraphAutoScroll);
             this.tabDarstellung.Controls.Add(this.cbGraphSeparate);
-            this.tabDarstellung.Controls.Add(this.grpUnits);
             this.tabDarstellung.Controls.Add(this.cbSettingsSeparate);
             this.tabDarstellung.Controls.Add(this.cbHidesettings);
             this.tabDarstellung.Controls.Add(this.cbTopmost);
@@ -688,106 +675,6 @@
             this.cbGraphSeparate.Text = "Graph in separatem Fenster";
             this.cbGraphSeparate.UseVisualStyleBackColor = false;
             this.cbGraphSeparate.CheckedChanged += new System.EventHandler(this.cbGraphSeparate_CheckedChanged);
-            // 
-            // grpUnits
-            // 
-            this.grpUnits.Controls.Add(this.panel2);
-            this.grpUnits.Controls.Add(this.panel1);
-            this.grpUnits.Enabled = false;
-            this.grpUnits.Location = new System.Drawing.Point(6, 11);
-            this.grpUnits.Name = "grpUnits";
-            this.grpUnits.Size = new System.Drawing.Size(142, 100);
-            this.grpUnits.TabIndex = 24;
-            this.grpUnits.TabStop = false;
-            this.grpUnits.Text = "Einheiten";
-            // 
-            // panel2
-            // 
-            this.panel2.AutoSize = true;
-            this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel2.Controls.Add(this.label10);
-            this.panel2.Controls.Add(this.rbUnitkph);
-            this.panel2.Controls.Add(this.rbUnitmps);
-            this.panel2.Location = new System.Drawing.Point(6, 58);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(102, 39);
-            this.panel2.TabIndex = 20;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 3);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(85, 13);
-            this.label10.TabIndex = 3;
-            this.label10.Text = "Geschwindigkeit";
-            // 
-            // rbUnitkph
-            // 
-            this.rbUnitkph.AutoSize = true;
-            this.rbUnitkph.Location = new System.Drawing.Point(6, 19);
-            this.rbUnitkph.Name = "rbUnitkph";
-            this.rbUnitkph.Size = new System.Drawing.Size(50, 17);
-            this.rbUnitkph.TabIndex = 5;
-            this.rbUnitkph.TabStop = true;
-            this.rbUnitkph.Text = "km/h";
-            this.rbUnitkph.UseVisualStyleBackColor = true;
-            this.rbUnitkph.CheckedChanged += new System.EventHandler(this.rbUnitkph_CheckedChanged);
-            // 
-            // rbUnitmps
-            // 
-            this.rbUnitmps.AutoSize = true;
-            this.rbUnitmps.Location = new System.Drawing.Point(56, 19);
-            this.rbUnitmps.Name = "rbUnitmps";
-            this.rbUnitmps.Size = new System.Drawing.Size(43, 17);
-            this.rbUnitmps.TabIndex = 4;
-            this.rbUnitmps.Text = "m/s";
-            this.rbUnitmps.UseVisualStyleBackColor = true;
-            this.rbUnitmps.CheckedChanged += new System.EventHandler(this.rbUnitmps_CheckedChanged);
-            // 
-            // panel1
-            // 
-            this.panel1.AutoSize = true;
-            this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel1.Controls.Add(this.rbUnitkm);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.rbUnitm);
-            this.panel1.Location = new System.Drawing.Point(6, 15);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(131, 41);
-            this.panel1.TabIndex = 20;
-            // 
-            // rbUnitkm
-            // 
-            this.rbUnitkm.AutoSize = true;
-            this.rbUnitkm.Location = new System.Drawing.Point(6, 21);
-            this.rbUnitkm.Name = "rbUnitkm";
-            this.rbUnitkm.Size = new System.Drawing.Size(68, 17);
-            this.rbUnitkm.TabIndex = 2;
-            this.rbUnitkm.TabStop = true;
-            this.rbUnitkm.Text = "Kilometer";
-            this.rbUnitkm.UseVisualStyleBackColor = true;
-            this.rbUnitkm.CheckedChanged += new System.EventHandler(this.rbDarstKm_CheckedChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 5);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Streckenmeter";
-            // 
-            // rbUnitm
-            // 
-            this.rbUnitm.AutoSize = true;
-            this.rbUnitm.Location = new System.Drawing.Point(76, 21);
-            this.rbUnitm.Name = "rbUnitm";
-            this.rbUnitm.Size = new System.Drawing.Size(52, 17);
-            this.rbUnitm.TabIndex = 1;
-            this.rbUnitm.Text = "Meter";
-            this.rbUnitm.UseVisualStyleBackColor = true;
-            this.rbUnitm.CheckedChanged += new System.EventHandler(this.rbDarstMeter_CheckedChanged);
             // 
             // cbSettingsSeparate
             // 
@@ -996,31 +883,35 @@
             this.pnlDebug.Controls.Add(this.grpDebug);
             this.pnlDebug.Location = new System.Drawing.Point(430, 7);
             this.pnlDebug.Name = "pnlDebug";
-            this.pnlDebug.Size = new System.Drawing.Size(138, 420);
+            this.pnlDebug.Size = new System.Drawing.Size(138, 456);
             this.pnlDebug.TabIndex = 12;
             this.pnlDebug.Visible = false;
             // 
             // grpDebug
             // 
             this.grpDebug.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.grpDebug.Controls.Add(this.btnDebugClearAllDP);
             this.grpDebug.Controls.Add(this.btnDebugGraphSeparated);
             this.grpDebug.Controls.Add(this.grpDebugoffline);
-            this.grpDebug.Controls.Add(this.btnDebugFokusZusi);
-            this.grpDebug.Controls.Add(this.label13);
-            this.grpDebug.Controls.Add(this.label12);
-            this.grpDebug.Controls.Add(this.tbVerz);
-            this.grpDebug.Controls.Add(this.btnFlag);
             this.grpDebug.Location = new System.Drawing.Point(3, 4);
             this.grpDebug.Name = "grpDebug";
-            this.grpDebug.Size = new System.Drawing.Size(132, 413);
+            this.grpDebug.Size = new System.Drawing.Size(132, 449);
             this.grpDebug.TabIndex = 12;
             this.grpDebug.TabStop = false;
             this.grpDebug.Text = "Debug";
             // 
+            // btnDebugClearAllDP
+            // 
+            this.btnDebugClearAllDP.Location = new System.Drawing.Point(6, 263);
+            this.btnDebugClearAllDP.Name = "btnDebugClearAllDP";
+            this.btnDebugClearAllDP.Size = new System.Drawing.Size(75, 23);
+            this.btnDebugClearAllDP.TabIndex = 23;
+            this.btnDebugClearAllDP.Text = "Clear All DP";
+            this.btnDebugClearAllDP.UseVisualStyleBackColor = true;
+            this.btnDebugClearAllDP.Click += new System.EventHandler(this.btnDebugClearAllDP_Click);
+            // 
             // btnDebugGraphSeparated
             // 
-            this.btnDebugGraphSeparated.Location = new System.Drawing.Point(8, 283);
+            this.btnDebugGraphSeparated.Location = new System.Drawing.Point(6, 25);
             this.btnDebugGraphSeparated.Name = "btnDebugGraphSeparated";
             this.btnDebugGraphSeparated.Size = new System.Drawing.Size(75, 23);
             this.btnDebugGraphSeparated.TabIndex = 22;
@@ -1030,6 +921,9 @@
             // 
             // grpDebugoffline
             // 
+            this.grpDebugoffline.Controls.Add(this.btnDebugScrollEnd);
+            this.grpDebugoffline.Controls.Add(this.btnDebugClearAllDP);
+            this.grpDebugoffline.Controls.Add(this.btnDebugPlotRnd);
             this.grpDebugoffline.Controls.Add(this.label6);
             this.grpDebugoffline.Controls.Add(this.label7);
             this.grpDebugoffline.Controls.Add(this.label3);
@@ -1040,12 +934,30 @@
             this.grpDebugoffline.Controls.Add(this.numDebugsetspeed);
             this.grpDebugoffline.Controls.Add(this.label4);
             this.grpDebugoffline.Controls.Add(this.label5);
-            this.grpDebugoffline.Location = new System.Drawing.Point(6, 100);
+            this.grpDebugoffline.Location = new System.Drawing.Point(6, 54);
             this.grpDebugoffline.Name = "grpDebugoffline";
-            this.grpDebugoffline.Size = new System.Drawing.Size(107, 177);
+            this.grpDebugoffline.Size = new System.Drawing.Size(107, 306);
             this.grpDebugoffline.TabIndex = 20;
             this.grpDebugoffline.TabStop = false;
             this.grpDebugoffline.Text = "Offline";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 25);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(71, 13);
+            this.label6.TabIndex = 33;
+            this.label6.Text = "Zulässige HG";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(62, 43);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(32, 13);
+            this.label7.TabIndex = 32;
+            this.label7.Text = "km/h";
             // 
             // label3
             // 
@@ -1065,6 +977,24 @@
             this.btnDebugkmSprung.Text = "kmSprung";
             this.btnDebugkmSprung.UseVisualStyleBackColor = true;
             this.btnDebugkmSprung.Click += new System.EventHandler(this.btnDebugkmSprung_Click);
+            // 
+            // numDebugsetGeschwMaxZul
+            // 
+            this.numDebugsetGeschwMaxZul.Location = new System.Drawing.Point(6, 41);
+            this.numDebugsetGeschwMaxZul.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.numDebugsetGeschwMaxZul.Name = "numDebugsetGeschwMaxZul";
+            this.numDebugsetGeschwMaxZul.Size = new System.Drawing.Size(49, 20);
+            this.numDebugsetGeschwMaxZul.TabIndex = 31;
+            this.numDebugsetGeschwMaxZul.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numDebugsetGeschwMaxZul.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged_1);
             // 
             // label1
             // 
@@ -1124,52 +1054,6 @@
             this.label5.Size = new System.Drawing.Size(32, 13);
             this.label5.TabIndex = 27;
             this.label5.Text = "km/h";
-            // 
-            // btnDebugFokusZusi
-            // 
-            this.btnDebugFokusZusi.Location = new System.Drawing.Point(6, 52);
-            this.btnDebugFokusZusi.Name = "btnDebugFokusZusi";
-            this.btnDebugFokusZusi.Size = new System.Drawing.Size(75, 23);
-            this.btnDebugFokusZusi.TabIndex = 21;
-            this.btnDebugFokusZusi.Text = "Zusi-Fokus";
-            this.btnDebugFokusZusi.UseVisualStyleBackColor = true;
-            this.btnDebugFokusZusi.Click += new System.EventHandler(this.btnDebugFokusZusi_Click);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(3, 368);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(92, 13);
-            this.label13.TabIndex = 20;
-            this.label13.Text = "max. Verzögerung";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(45, 391);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(28, 13);
-            this.label12.TabIndex = 19;
-            this.label12.Text = "m/s²";
-            // 
-            // tbVerz
-            // 
-            this.tbVerz.Location = new System.Drawing.Point(3, 384);
-            this.tbVerz.Name = "tbVerz";
-            this.tbVerz.Size = new System.Drawing.Size(36, 20);
-            this.tbVerz.TabIndex = 18;
-            this.tbVerz.Text = "0,5";
-            // 
-            // btnFlag
-            // 
-            this.btnFlag.Location = new System.Drawing.Point(6, 25);
-            this.btnFlag.Name = "btnFlag";
-            this.btnFlag.Size = new System.Drawing.Size(60, 23);
-            this.btnFlag.TabIndex = 11;
-            this.btnFlag.Text = "lblFlag";
-            this.btnFlag.UseVisualStyleBackColor = true;
-            this.btnFlag.Click += new System.EventHandler(this.btnFlag_Click);
             // 
             // pnlRight
             // 
@@ -1263,51 +1147,39 @@
             // 
             this.timerGraph.Tick += new System.EventHandler(this.timerGraph_Tick);
             // 
-            // label6
+            // timerDebugPlotRandom
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 25);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(71, 13);
-            this.label6.TabIndex = 33;
-            this.label6.Text = "Zulässige HG";
+            this.timerDebugPlotRandom.Tick += new System.EventHandler(this.timerDebugPlotRandom_Tick);
             // 
-            // label7
+            // btnDebugPlotRnd
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(62, 43);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(32, 13);
-            this.label7.TabIndex = 32;
-            this.label7.Text = "km/h";
+            this.btnDebugPlotRnd.Location = new System.Drawing.Point(6, 195);
+            this.btnDebugPlotRnd.Name = "btnDebugPlotRnd";
+            this.btnDebugPlotRnd.Size = new System.Drawing.Size(75, 23);
+            this.btnDebugPlotRnd.TabIndex = 24;
+            this.btnDebugPlotRnd.Text = "Rnd Plot";
+            this.btnDebugPlotRnd.UseVisualStyleBackColor = true;
+            this.btnDebugPlotRnd.Click += new System.EventHandler(this.btnDebugPlotRnd_Click);
             // 
-            // numDebugsetGeschwMaxZul
+            // btnDebugScrollEnd
             // 
-            this.numDebugsetGeschwMaxZul.Location = new System.Drawing.Point(6, 41);
-            this.numDebugsetGeschwMaxZul.Maximum = new decimal(new int[] {
-            300,
-            0,
-            0,
-            0});
-            this.numDebugsetGeschwMaxZul.Name = "numDebugsetGeschwMaxZul";
-            this.numDebugsetGeschwMaxZul.Size = new System.Drawing.Size(49, 20);
-            this.numDebugsetGeschwMaxZul.TabIndex = 31;
-            this.numDebugsetGeschwMaxZul.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.numDebugsetGeschwMaxZul.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged_1);
+            this.btnDebugScrollEnd.Location = new System.Drawing.Point(9, 234);
+            this.btnDebugScrollEnd.Name = "btnDebugScrollEnd";
+            this.btnDebugScrollEnd.Size = new System.Drawing.Size(75, 23);
+            this.btnDebugScrollEnd.TabIndex = 34;
+            this.btnDebugScrollEnd.Text = "Scroll End";
+            this.btnDebugScrollEnd.UseVisualStyleBackColor = true;
+            this.btnDebugScrollEnd.Click += new System.EventHandler(this.btnDebugRemoveLastDP_Click);
             // 
-            // btnDebugClearAllDP
+            // cbGraphAutoScroll
             // 
-            this.btnDebugClearAllDP.Location = new System.Drawing.Point(8, 322);
-            this.btnDebugClearAllDP.Name = "btnDebugClearAllDP";
-            this.btnDebugClearAllDP.Size = new System.Drawing.Size(75, 23);
-            this.btnDebugClearAllDP.TabIndex = 23;
-            this.btnDebugClearAllDP.Text = "Clear All DP";
-            this.btnDebugClearAllDP.UseVisualStyleBackColor = true;
-            this.btnDebugClearAllDP.Click += new System.EventHandler(this.btnDebugClearAllDP_Click);
+            this.cbGraphAutoScroll.AutoSize = true;
+            this.cbGraphAutoScroll.Location = new System.Drawing.Point(7, 40);
+            this.cbGraphAutoScroll.Name = "cbGraphAutoScroll";
+            this.cbGraphAutoScroll.Size = new System.Drawing.Size(145, 17);
+            this.cbGraphAutoScroll.TabIndex = 26;
+            this.cbGraphAutoScroll.Text = "Graph scrollt automatisch";
+            this.cbGraphAutoScroll.UseVisualStyleBackColor = true;
             // 
             // CMainWindow
             // 
@@ -1345,12 +1217,6 @@
             this.pnlSchalterst.PerformLayout();
             this.tabDarstellung.ResumeLayout(false);
             this.tabDarstellung.PerformLayout();
-            this.grpUnits.ResumeLayout(false);
-            this.grpUnits.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.tabSystem.ResumeLayout(false);
             this.grpManageSettings.ResumeLayout(false);
             this.grpVerbindung.ResumeLayout(false);
@@ -1359,16 +1225,15 @@
             this.statusStrip1.PerformLayout();
             this.pnlDebug.ResumeLayout(false);
             this.grpDebug.ResumeLayout(false);
-            this.grpDebug.PerformLayout();
             this.grpDebugoffline.ResumeLayout(false);
             this.grpDebugoffline.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numDebugsetGeschwMaxZul)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDebugsethlldruck)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDebugsetspeed)).EndInit();
             this.pnlRight.ResumeLayout(false);
             this.pnlRight.PerformLayout();
             this.pnlLeft.ResumeLayout(false);
             this.pnlLeft.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numDebugsetGeschwMaxZul)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1383,10 +1248,6 @@
         private System.Windows.Forms.TextBox tbPort;
         private System.Windows.Forms.Panel pnlDebug;
         private System.Windows.Forms.GroupBox grpDebug;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox tbVerz;
-        private System.Windows.Forms.Button btnFlag;
         private System.Windows.Forms.Button btnDebugpanel;
         private System.Windows.Forms.Panel pnlRight;
         private System.Windows.Forms.CheckBox cbDruckbz;
@@ -1406,9 +1267,6 @@
         private System.Windows.Forms.Panel pnlGrunddaten;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblVerbstatus;
-        private System.Windows.Forms.RadioButton rbUnitm;
-        private System.Windows.Forms.RadioButton rbUnitkm;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox cbTopmost;
         private System.Windows.Forms.CheckBox cbFokusImmerzurueck;
         private System.Windows.Forms.Panel pnlSchalterst;
@@ -1428,7 +1286,6 @@
         private System.Windows.Forms.CheckBox cbLZBweg;
         private System.Windows.Forms.CheckBox cbLZBvsoll;
         private System.Windows.Forms.CheckBox cbAFBgeschw;
-        private System.Windows.Forms.Button btnDebugFokusZusi;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numDebugsetspeed;
@@ -1436,12 +1293,6 @@
         private System.Windows.Forms.Button btnAbout;
         private System.Windows.Forms.CheckBox cbHidesettings;
         private System.Windows.Forms.CheckBox cbSettingsSeparate;
-        private System.Windows.Forms.GroupBox grpUnits;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.RadioButton rbUnitmps;
-        private System.Windows.Forms.RadioButton rbUnitkph;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox grpManageSettings;
         private System.Windows.Forms.Button btnDefaultSettings;
         private System.Windows.Forms.Button btnSaveSettings;
@@ -1467,6 +1318,10 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.NumericUpDown numDebugsetGeschwMaxZul;
         private System.Windows.Forms.Button btnDebugClearAllDP;
+        private System.Windows.Forms.Timer timerDebugPlotRandom;
+        private System.Windows.Forms.Button btnDebugPlotRnd;
+        private System.Windows.Forms.Button btnDebugScrollEnd;
+        private System.Windows.Forms.CheckBox cbGraphAutoScroll;
 
     }
 
