@@ -120,6 +120,7 @@
             this.timerGraph = new System.Windows.Forms.Timer(this.components);
             this.timerDebugPlotRandom = new System.Windows.Forms.Timer(this.components);
             this.pnlInsideGraph = new System.Windows.Forms.TableLayoutPanel();
+            this.pnlGraphCheckboxes = new System.Windows.Forms.Panel();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabGraph.SuspendLayout();
@@ -144,6 +145,7 @@
             this.pnlRight.SuspendLayout();
             this.pnlLeft.SuspendLayout();
             this.pnlInsideGraph.SuspendLayout();
+            this.pnlGraphCheckboxes.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlSettings
@@ -201,7 +203,6 @@
             chartArea1.CursorX.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
             chartArea1.Name = "ChartArea1";
             this.graph1.ChartAreas.Add(chartArea1);
-            this.pnlInsideGraph.SetColumnSpan(this.graph1, 3);
             this.graph1.Dock = System.Windows.Forms.DockStyle.Fill;
             legend1.DockedToChartArea = "ChartArea1";
             legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
@@ -667,7 +668,7 @@
             // cbYAxisZoomable
             // 
             this.cbYAxisZoomable.AutoSize = true;
-            this.cbYAxisZoomable.Location = new System.Drawing.Point(246, 398);
+            this.cbYAxisZoomable.Location = new System.Drawing.Point(278, 6);
             this.cbYAxisZoomable.Name = "cbYAxisZoomable";
             this.cbYAxisZoomable.Size = new System.Drawing.Size(76, 17);
             this.cbYAxisZoomable.TabIndex = 32;
@@ -680,7 +681,7 @@
             this.cbXAxisZoomable.AutoSize = true;
             this.cbXAxisZoomable.Checked = true;
             this.cbXAxisZoomable.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbXAxisZoomable.Location = new System.Drawing.Point(164, 398);
+            this.cbXAxisZoomable.Location = new System.Drawing.Point(196, 6);
             this.cbXAxisZoomable.Name = "cbXAxisZoomable";
             this.cbXAxisZoomable.Size = new System.Drawing.Size(76, 17);
             this.cbXAxisZoomable.TabIndex = 31;
@@ -691,10 +692,9 @@
             // cbGraphAutoScroll
             // 
             this.cbGraphAutoScroll.AutoSize = true;
-            this.cbGraphAutoScroll.Location = new System.Drawing.Point(3, 398);
+            this.cbGraphAutoScroll.Location = new System.Drawing.Point(35, 6);
             this.cbGraphAutoScroll.Name = "cbGraphAutoScroll";
-            this.cbGraphAutoScroll.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.cbGraphAutoScroll.Size = new System.Drawing.Size(155, 17);
+            this.cbGraphAutoScroll.Size = new System.Drawing.Size(145, 17);
             this.cbGraphAutoScroll.TabIndex = 30;
             this.cbGraphAutoScroll.Text = "Graph scrollt automatisch";
             this.cbGraphAutoScroll.UseVisualStyleBackColor = true;
@@ -914,7 +914,9 @@
             // grpDebug
             // 
             this.grpDebug.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.grpDebug.Controls.Add(this.btnDebugScrollEnd);
             this.grpDebug.Controls.Add(this.btnDebugGraphSeparated);
+            this.grpDebug.Controls.Add(this.btnDebugClearAllDP);
             this.grpDebug.Controls.Add(this.grpDebugoffline);
             this.grpDebug.Location = new System.Drawing.Point(3, 4);
             this.grpDebug.Name = "grpDebug";
@@ -935,8 +937,6 @@
             // 
             // grpDebugoffline
             // 
-            this.grpDebugoffline.Controls.Add(this.btnDebugScrollEnd);
-            this.grpDebugoffline.Controls.Add(this.btnDebugClearAllDP);
             this.grpDebugoffline.Controls.Add(this.btnDebugPlotRnd);
             this.grpDebugoffline.Controls.Add(this.label6);
             this.grpDebugoffline.Controls.Add(this.label7);
@@ -950,14 +950,14 @@
             this.grpDebugoffline.Controls.Add(this.label5);
             this.grpDebugoffline.Location = new System.Drawing.Point(6, 54);
             this.grpDebugoffline.Name = "grpDebugoffline";
-            this.grpDebugoffline.Size = new System.Drawing.Size(107, 306);
+            this.grpDebugoffline.Size = new System.Drawing.Size(107, 232);
             this.grpDebugoffline.TabIndex = 20;
             this.grpDebugoffline.TabStop = false;
             this.grpDebugoffline.Text = "Offline";
             // 
             // btnDebugScrollEnd
             // 
-            this.btnDebugScrollEnd.Location = new System.Drawing.Point(6, 234);
+            this.btnDebugScrollEnd.Location = new System.Drawing.Point(12, 303);
             this.btnDebugScrollEnd.Name = "btnDebugScrollEnd";
             this.btnDebugScrollEnd.Size = new System.Drawing.Size(75, 23);
             this.btnDebugScrollEnd.TabIndex = 34;
@@ -967,7 +967,7 @@
             // 
             // btnDebugClearAllDP
             // 
-            this.btnDebugClearAllDP.Location = new System.Drawing.Point(6, 263);
+            this.btnDebugClearAllDP.Location = new System.Drawing.Point(12, 332);
             this.btnDebugClearAllDP.Name = "btnDebugClearAllDP";
             this.btnDebugClearAllDP.Size = new System.Drawing.Size(75, 23);
             this.btnDebugClearAllDP.TabIndex = 23;
@@ -1198,14 +1198,10 @@
             // pnlInsideGraph
             // 
             this.pnlInsideGraph.BackColor = System.Drawing.Color.White;
-            this.pnlInsideGraph.ColumnCount = 3;
+            this.pnlInsideGraph.ColumnCount = 1;
             this.pnlInsideGraph.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.pnlInsideGraph.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.pnlInsideGraph.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.pnlInsideGraph.Controls.Add(this.pnlGraphCheckboxes, 0, 1);
             this.pnlInsideGraph.Controls.Add(this.graph1, 0, 0);
-            this.pnlInsideGraph.Controls.Add(this.cbXAxisZoomable, 1, 1);
-            this.pnlInsideGraph.Controls.Add(this.cbYAxisZoomable, 2, 1);
-            this.pnlInsideGraph.Controls.Add(this.cbGraphAutoScroll, 0, 1);
             this.pnlInsideGraph.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlInsideGraph.Location = new System.Drawing.Point(0, 0);
             this.pnlInsideGraph.Name = "pnlInsideGraph";
@@ -1214,6 +1210,19 @@
             this.pnlInsideGraph.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.pnlInsideGraph.Size = new System.Drawing.Size(401, 425);
             this.pnlInsideGraph.TabIndex = 0;
+            // 
+            // pnlGraphCheckboxes
+            // 
+            this.pnlGraphCheckboxes.AutoSize = true;
+            this.pnlGraphCheckboxes.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlGraphCheckboxes.Controls.Add(this.cbGraphAutoScroll);
+            this.pnlGraphCheckboxes.Controls.Add(this.cbYAxisZoomable);
+            this.pnlGraphCheckboxes.Controls.Add(this.cbXAxisZoomable);
+            this.pnlGraphCheckboxes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlGraphCheckboxes.Location = new System.Drawing.Point(3, 398);
+            this.pnlGraphCheckboxes.Name = "pnlGraphCheckboxes";
+            this.pnlGraphCheckboxes.Size = new System.Drawing.Size(401, 24);
+            this.pnlGraphCheckboxes.TabIndex = 20;
             // 
             // CMainWindow
             // 
@@ -1270,6 +1279,8 @@
             this.pnlLeft.PerformLayout();
             this.pnlInsideGraph.ResumeLayout(false);
             this.pnlInsideGraph.PerformLayout();
+            this.pnlGraphCheckboxes.ResumeLayout(false);
+            this.pnlGraphCheckboxes.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1360,6 +1371,7 @@
         private System.Windows.Forms.CheckBox cbXAxisZoomable;
         private System.Windows.Forms.CheckBox cbGraphAutoScroll;
         private System.Windows.Forms.TableLayoutPanel pnlInsideGraph;
+        private System.Windows.Forms.Panel pnlGraphCheckboxes;
 
     }
 
