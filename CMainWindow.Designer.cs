@@ -668,7 +668,7 @@
             // cbYAxisZoomable
             // 
             this.cbYAxisZoomable.AutoSize = true;
-            this.cbYAxisZoomable.Location = new System.Drawing.Point(236, 398);
+            this.cbYAxisZoomable.Location = new System.Drawing.Point(246, 398);
             this.cbYAxisZoomable.Name = "cbYAxisZoomable";
             this.cbYAxisZoomable.Size = new System.Drawing.Size(76, 17);
             this.cbYAxisZoomable.TabIndex = 32;
@@ -681,7 +681,7 @@
             this.cbXAxisZoomable.AutoSize = true;
             this.cbXAxisZoomable.Checked = true;
             this.cbXAxisZoomable.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbXAxisZoomable.Location = new System.Drawing.Point(154, 398);
+            this.cbXAxisZoomable.Location = new System.Drawing.Point(164, 398);
             this.cbXAxisZoomable.Name = "cbXAxisZoomable";
             this.cbXAxisZoomable.Size = new System.Drawing.Size(76, 17);
             this.cbXAxisZoomable.TabIndex = 31;
@@ -694,7 +694,8 @@
             this.cbGraphAutoScroll.AutoSize = true;
             this.cbGraphAutoScroll.Location = new System.Drawing.Point(3, 398);
             this.cbGraphAutoScroll.Name = "cbGraphAutoScroll";
-            this.cbGraphAutoScroll.Size = new System.Drawing.Size(145, 17);
+            this.cbGraphAutoScroll.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.cbGraphAutoScroll.Size = new System.Drawing.Size(155, 17);
             this.cbGraphAutoScroll.TabIndex = 30;
             this.cbGraphAutoScroll.Text = "Graph scrollt automatisch";
             this.cbGraphAutoScroll.UseVisualStyleBackColor = true;
