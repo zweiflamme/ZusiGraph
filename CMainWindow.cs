@@ -1808,12 +1808,14 @@ namespace ZusiGraph
             // Simulate adding new data points
             //for (int pointNumber = 0; pointNumber < 5; pointNumber++)
             //{
-                graph1.Series["geschw"].Points.AddXY(pointIndex + 1, random.Next(0, 100));
-                ++pointIndex;
+            graph1.Series["geschw"].Points.AddXY(pointIndex + 1, random.Next(0, 100));
+            ++pointIndex;
             //}
-
+            if(cbGraphAutoScroll.Checked)
+            {
                 double endOfXAxis = graph1.ChartAreas["ChartArea1"].AxisX.Maximum;
                 graph1.ChartAreas["ChartArea1"].AxisX.ScaleView.Scroll(endOfXAxis);
+            }
 
             // Redraw chart
             graph1.Invalidate();
