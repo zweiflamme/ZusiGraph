@@ -1793,6 +1793,8 @@ namespace ZusiGraph
             graph1.Series["geschwMaxZul"].Points.Clear();
             graph1.Series["kmSprung"].Points.Clear();
             graph1.Invalidate();
+            //TODO
+            //solve red cross issue
             //DEBUG
             pointIndex = 0;
             //TODO:
