@@ -1239,6 +1239,8 @@ namespace ZusiGraph
               
                 DataPoint dpgeschw = new DataPoint(1, geschwindigkeit);
                 DataPoint dphlldruck = new DataPoint(1, hlldruck);
+                DataPoint dpkmsprung = new DataPoint(1, Convert.ToDouble(kmSprung));
+
                 if (geschwindigkeit >= 10)
                     dpgeschw.Color = Color.Black;
                 else
@@ -1246,10 +1248,11 @@ namespace ZusiGraph
 
                 graph1.Series["geschw"].Points.Add(dpgeschw);
                 graph1.Series["hlldruck"].Points.Add(dphlldruck);
-                graph1.Series["kmSprung"].Points.Add(1, (Convert.ToDouble(kmSprung)));
+                graph1.Series["kmSprung"].Points.Add(dpkmsprung);
 
                 if (kmSprung)
                     kmSprung = false;
+
             }
         }
         //TODO: rename method

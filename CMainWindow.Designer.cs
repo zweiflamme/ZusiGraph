@@ -104,9 +104,12 @@
             this.pnlDebug = new System.Windows.Forms.Panel();
             this.grpDebug = new System.Windows.Forms.GroupBox();
             this.lblDebugKmsprung = new System.Windows.Forms.Label();
-            this.btnDebugkmSprung = new System.Windows.Forms.Button();
             this.btnDebugGraphSeparated = new System.Windows.Forms.Button();
             this.grpDebugoffline = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnDebugkmSprung = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.numDebugsethlldruck = new System.Windows.Forms.NumericUpDown();
             this.numDebugsetspeed = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -122,9 +125,6 @@
             this.btnNacht = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.timerGraph = new System.Windows.Forms.Timer(this.components);
-            this.numDebugsethlldruck = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabGraph.SuspendLayout();
@@ -146,10 +146,10 @@
             this.pnlDebug.SuspendLayout();
             this.grpDebug.SuspendLayout();
             this.grpDebugoffline.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numDebugsethlldruck)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDebugsetspeed)).BeginInit();
             this.pnlRight.SuspendLayout();
             this.pnlLeft.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numDebugsethlldruck)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlSettings
@@ -239,12 +239,10 @@
             series3.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             series4.ChartArea = "ChartArea1";
             series4.Color = System.Drawing.Color.Indigo;
-            series4.Enabled = false;
             series4.IsVisibleInLegend = false;
             series4.IsXValueIndexed = true;
             series4.Legend = "Legend1";
             series4.Name = "kmSprung";
-            series4.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             series4.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             series4.YValuesPerPoint = 3;
             this.graph1.Series.Add(series1);
@@ -1024,16 +1022,6 @@
             this.lblDebugKmsprung.TabIndex = 24;
             this.lblDebugKmsprung.Text = "(kmSprung)";
             // 
-            // btnDebugkmSprung
-            // 
-            this.btnDebugkmSprung.Location = new System.Drawing.Point(6, 102);
-            this.btnDebugkmSprung.Name = "btnDebugkmSprung";
-            this.btnDebugkmSprung.Size = new System.Drawing.Size(75, 23);
-            this.btnDebugkmSprung.TabIndex = 23;
-            this.btnDebugkmSprung.Text = "kmSprung";
-            this.btnDebugkmSprung.UseVisualStyleBackColor = true;
-            this.btnDebugkmSprung.Click += new System.EventHandler(this.btnDebugkmSprung_Click);
-            // 
             // btnDebugGraphSeparated
             // 
             this.btnDebugGraphSeparated.Location = new System.Drawing.Point(9, 259);
@@ -1059,6 +1047,52 @@
             this.grpDebugoffline.TabIndex = 20;
             this.grpDebugoffline.TabStop = false;
             this.grpDebugoffline.Text = "Offline";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 60);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(51, 13);
+            this.label3.TabIndex = 30;
+            this.label3.Text = "Hll-Druck";
+            // 
+            // btnDebugkmSprung
+            // 
+            this.btnDebugkmSprung.Location = new System.Drawing.Point(6, 102);
+            this.btnDebugkmSprung.Name = "btnDebugkmSprung";
+            this.btnDebugkmSprung.Size = new System.Drawing.Size(75, 23);
+            this.btnDebugkmSprung.TabIndex = 23;
+            this.btnDebugkmSprung.Text = "kmSprung";
+            this.btnDebugkmSprung.UseVisualStyleBackColor = true;
+            this.btnDebugkmSprung.Click += new System.EventHandler(this.btnDebugkmSprung_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(62, 78);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(22, 13);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "bar";
+            // 
+            // numDebugsethlldruck
+            // 
+            this.numDebugsethlldruck.Location = new System.Drawing.Point(6, 76);
+            this.numDebugsethlldruck.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.numDebugsethlldruck.Name = "numDebugsethlldruck";
+            this.numDebugsethlldruck.Size = new System.Drawing.Size(49, 20);
+            this.numDebugsethlldruck.TabIndex = 28;
+            this.numDebugsethlldruck.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numDebugsethlldruck.ValueChanged += new System.EventHandler(this.numDebugsethlldruck_ValueChanged);
             // 
             // numDebugsetspeed
             // 
@@ -1230,42 +1264,6 @@
             // 
             this.timerGraph.Tick += new System.EventHandler(this.timerGraph_Tick);
             // 
-            // numDebugsethlldruck
-            // 
-            this.numDebugsethlldruck.Location = new System.Drawing.Point(6, 76);
-            this.numDebugsethlldruck.Maximum = new decimal(new int[] {
-            300,
-            0,
-            0,
-            0});
-            this.numDebugsethlldruck.Name = "numDebugsethlldruck";
-            this.numDebugsethlldruck.Size = new System.Drawing.Size(49, 20);
-            this.numDebugsethlldruck.TabIndex = 28;
-            this.numDebugsethlldruck.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numDebugsethlldruck.ValueChanged += new System.EventHandler(this.numDebugsethlldruck_ValueChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(62, 78);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(22, 13);
-            this.label1.TabIndex = 29;
-            this.label1.Text = "bar";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 60);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 13);
-            this.label3.TabIndex = 30;
-            this.label3.Text = "Hll-Druck";
-            // 
             // CMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1319,12 +1317,12 @@
             this.grpDebug.PerformLayout();
             this.grpDebugoffline.ResumeLayout(false);
             this.grpDebugoffline.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numDebugsethlldruck)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDebugsetspeed)).EndInit();
             this.pnlRight.ResumeLayout(false);
             this.pnlRight.PerformLayout();
             this.pnlLeft.ResumeLayout(false);
             this.pnlLeft.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numDebugsethlldruck)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
