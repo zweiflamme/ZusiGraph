@@ -1789,6 +1789,10 @@ namespace ZusiGraph
             //DEBUG
             //clears all datapoints from the chart
             graph1.Series["geschw"].Points.Clear();
+            graph1.Series["hlldruck"].Points.Clear();
+            graph1.Series["geschwMaxZul"].Points.Clear();
+            graph1.Series["kmSprung"].Points.Clear();
+            graph1.Invalidate();
             //DEBUG
             pointIndex = 0;
             //TODO:

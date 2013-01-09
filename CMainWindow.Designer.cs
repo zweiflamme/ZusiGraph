@@ -971,7 +971,7 @@
             this.btnDebugClearAllDP.Name = "btnDebugClearAllDP";
             this.btnDebugClearAllDP.Size = new System.Drawing.Size(75, 23);
             this.btnDebugClearAllDP.TabIndex = 23;
-            this.btnDebugClearAllDP.Text = "Clear All DP";
+            this.btnDebugClearAllDP.Text = "Reset Chart";
             this.btnDebugClearAllDP.UseVisualStyleBackColor = true;
             this.btnDebugClearAllDP.Click += new System.EventHandler(this.btnDebugClearAllDP_Click);
             // 
