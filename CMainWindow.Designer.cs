@@ -74,6 +74,9 @@
             this.cbFahrtrichtg = new System.Windows.Forms.CheckBox();
             this.cbHauptsch = new System.Windows.Forms.CheckBox();
             this.tabDarstellung = new System.Windows.Forms.TabPage();
+            this.cbYAxisZoomable = new System.Windows.Forms.CheckBox();
+            this.cbXAxisZoomable = new System.Windows.Forms.CheckBox();
+            this.cbGraphAutoScroll = new System.Windows.Forms.CheckBox();
             this.cbGraphSeparate = new System.Windows.Forms.CheckBox();
             this.cbSettingsSeparate = new System.Windows.Forms.CheckBox();
             this.cbTopmost = new System.Windows.Forms.CheckBox();
@@ -93,9 +96,11 @@
             this.lblVerbstatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.pnlDebug = new System.Windows.Forms.Panel();
             this.grpDebug = new System.Windows.Forms.GroupBox();
-            this.btnDebugClearAllDP = new System.Windows.Forms.Button();
             this.btnDebugGraphSeparated = new System.Windows.Forms.Button();
             this.grpDebugoffline = new System.Windows.Forms.GroupBox();
+            this.btnDebugScrollEnd = new System.Windows.Forms.Button();
+            this.btnDebugClearAllDP = new System.Windows.Forms.Button();
+            this.btnDebugPlotRnd = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -114,11 +119,7 @@
             this.btnSettings = new System.Windows.Forms.Button();
             this.timerGraph = new System.Windows.Forms.Timer(this.components);
             this.timerDebugPlotRandom = new System.Windows.Forms.Timer(this.components);
-            this.btnDebugPlotRnd = new System.Windows.Forms.Button();
-            this.btnDebugScrollEnd = new System.Windows.Forms.Button();
-            this.cbYAxisZoomable = new System.Windows.Forms.CheckBox();
-            this.cbXAxisZoomable = new System.Windows.Forms.CheckBox();
-            this.cbGraphAutoScroll = new System.Windows.Forms.CheckBox();
+            this.pnlInsideGraph = new System.Windows.Forms.TableLayoutPanel();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabGraph.SuspendLayout();
@@ -142,6 +143,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numDebugsetspeed)).BeginInit();
             this.pnlRight.SuspendLayout();
             this.pnlLeft.SuspendLayout();
+            this.pnlInsideGraph.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlSettings
@@ -171,7 +173,7 @@
             // 
             // tabGraph
             // 
-            this.tabGraph.BackColor = System.Drawing.SystemColors.Control;
+            this.tabGraph.BackColor = System.Drawing.Color.White;
             this.tabGraph.Controls.Add(this.pnlGraph);
             this.tabGraph.Location = new System.Drawing.Point(4, 22);
             this.tabGraph.Name = "tabGraph";
@@ -183,7 +185,7 @@
             // pnlGraph
             // 
             this.pnlGraph.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.pnlGraph.Controls.Add(this.graph1);
+            this.pnlGraph.Controls.Add(this.pnlInsideGraph);
             this.pnlGraph.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlGraph.Location = new System.Drawing.Point(3, 3);
             this.pnlGraph.Name = "pnlGraph";
@@ -200,13 +202,14 @@
             chartArea1.CursorY.IsUserSelectionEnabled = true;
             chartArea1.Name = "ChartArea1";
             this.graph1.ChartAreas.Add(chartArea1);
+            this.pnlInsideGraph.SetColumnSpan(this.graph1, 3);
             this.graph1.Dock = System.Windows.Forms.DockStyle.Fill;
             legend1.DockedToChartArea = "ChartArea1";
             legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
             legend1.Name = "Legend1";
             legend1.TableStyle = System.Windows.Forms.DataVisualization.Charting.LegendTableStyle.Tall;
             this.graph1.Legends.Add(legend1);
-            this.graph1.Location = new System.Drawing.Point(0, 0);
+            this.graph1.Location = new System.Drawing.Point(3, 3);
             this.graph1.Name = "graph1";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
@@ -241,7 +244,7 @@
             this.graph1.Series.Add(series2);
             this.graph1.Series.Add(series3);
             this.graph1.Series.Add(series4);
-            this.graph1.Size = new System.Drawing.Size(401, 425);
+            this.graph1.Size = new System.Drawing.Size(401, 389);
             this.graph1.TabIndex = 0;
             // 
             // tabAnzeigen1
@@ -650,9 +653,6 @@
             // tabDarstellung
             // 
             this.tabDarstellung.BackColor = System.Drawing.SystemColors.Control;
-            this.tabDarstellung.Controls.Add(this.cbYAxisZoomable);
-            this.tabDarstellung.Controls.Add(this.cbXAxisZoomable);
-            this.tabDarstellung.Controls.Add(this.cbGraphAutoScroll);
             this.tabDarstellung.Controls.Add(this.cbGraphSeparate);
             this.tabDarstellung.Controls.Add(this.cbSettingsSeparate);
             this.tabDarstellung.Controls.Add(this.cbTopmost);
@@ -664,6 +664,40 @@
             this.tabDarstellung.TabIndex = 1;
             this.tabDarstellung.Text = "Darstellung";
             this.tabDarstellung.Click += new System.EventHandler(this.tabDarstellung_Click);
+            // 
+            // cbYAxisZoomable
+            // 
+            this.cbYAxisZoomable.AutoSize = true;
+            this.cbYAxisZoomable.Location = new System.Drawing.Point(236, 398);
+            this.cbYAxisZoomable.Name = "cbYAxisZoomable";
+            this.cbYAxisZoomable.Size = new System.Drawing.Size(76, 17);
+            this.cbYAxisZoomable.TabIndex = 32;
+            this.cbYAxisZoomable.Text = "Y zoombar";
+            this.cbYAxisZoomable.UseVisualStyleBackColor = true;
+            this.cbYAxisZoomable.CheckedChanged += new System.EventHandler(this.cbYAxisZoomable_CheckedChanged);
+            // 
+            // cbXAxisZoomable
+            // 
+            this.cbXAxisZoomable.AutoSize = true;
+            this.cbXAxisZoomable.Checked = true;
+            this.cbXAxisZoomable.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbXAxisZoomable.Location = new System.Drawing.Point(154, 398);
+            this.cbXAxisZoomable.Name = "cbXAxisZoomable";
+            this.cbXAxisZoomable.Size = new System.Drawing.Size(76, 17);
+            this.cbXAxisZoomable.TabIndex = 31;
+            this.cbXAxisZoomable.Text = "X zoombar";
+            this.cbXAxisZoomable.UseVisualStyleBackColor = true;
+            this.cbXAxisZoomable.CheckedChanged += new System.EventHandler(this.cbXAxisZoomable_CheckedChanged);
+            // 
+            // cbGraphAutoScroll
+            // 
+            this.cbGraphAutoScroll.AutoSize = true;
+            this.cbGraphAutoScroll.Location = new System.Drawing.Point(3, 398);
+            this.cbGraphAutoScroll.Name = "cbGraphAutoScroll";
+            this.cbGraphAutoScroll.Size = new System.Drawing.Size(145, 17);
+            this.cbGraphAutoScroll.TabIndex = 30;
+            this.cbGraphAutoScroll.Text = "Graph scrollt automatisch";
+            this.cbGraphAutoScroll.UseVisualStyleBackColor = true;
             // 
             // cbGraphSeparate
             // 
@@ -889,16 +923,6 @@
             this.grpDebug.TabStop = false;
             this.grpDebug.Text = "Debug";
             // 
-            // btnDebugClearAllDP
-            // 
-            this.btnDebugClearAllDP.Location = new System.Drawing.Point(6, 263);
-            this.btnDebugClearAllDP.Name = "btnDebugClearAllDP";
-            this.btnDebugClearAllDP.Size = new System.Drawing.Size(75, 23);
-            this.btnDebugClearAllDP.TabIndex = 23;
-            this.btnDebugClearAllDP.Text = "Clear All DP";
-            this.btnDebugClearAllDP.UseVisualStyleBackColor = true;
-            this.btnDebugClearAllDP.Click += new System.EventHandler(this.btnDebugClearAllDP_Click);
-            // 
             // btnDebugGraphSeparated
             // 
             this.btnDebugGraphSeparated.Location = new System.Drawing.Point(6, 25);
@@ -930,6 +954,36 @@
             this.grpDebugoffline.TabIndex = 20;
             this.grpDebugoffline.TabStop = false;
             this.grpDebugoffline.Text = "Offline";
+            // 
+            // btnDebugScrollEnd
+            // 
+            this.btnDebugScrollEnd.Location = new System.Drawing.Point(6, 234);
+            this.btnDebugScrollEnd.Name = "btnDebugScrollEnd";
+            this.btnDebugScrollEnd.Size = new System.Drawing.Size(75, 23);
+            this.btnDebugScrollEnd.TabIndex = 34;
+            this.btnDebugScrollEnd.Text = "Scroll End";
+            this.btnDebugScrollEnd.UseVisualStyleBackColor = true;
+            this.btnDebugScrollEnd.Click += new System.EventHandler(this.btnDebugRemoveLastDP_Click);
+            // 
+            // btnDebugClearAllDP
+            // 
+            this.btnDebugClearAllDP.Location = new System.Drawing.Point(6, 263);
+            this.btnDebugClearAllDP.Name = "btnDebugClearAllDP";
+            this.btnDebugClearAllDP.Size = new System.Drawing.Size(75, 23);
+            this.btnDebugClearAllDP.TabIndex = 23;
+            this.btnDebugClearAllDP.Text = "Clear All DP";
+            this.btnDebugClearAllDP.UseVisualStyleBackColor = true;
+            this.btnDebugClearAllDP.Click += new System.EventHandler(this.btnDebugClearAllDP_Click);
+            // 
+            // btnDebugPlotRnd
+            // 
+            this.btnDebugPlotRnd.Location = new System.Drawing.Point(6, 195);
+            this.btnDebugPlotRnd.Name = "btnDebugPlotRnd";
+            this.btnDebugPlotRnd.Size = new System.Drawing.Size(75, 23);
+            this.btnDebugPlotRnd.TabIndex = 24;
+            this.btnDebugPlotRnd.Text = "Rnd Plot";
+            this.btnDebugPlotRnd.UseVisualStyleBackColor = true;
+            this.btnDebugPlotRnd.Click += new System.EventHandler(this.btnDebugPlotRnd_Click);
             // 
             // label6
             // 
@@ -1141,59 +1195,25 @@
             // 
             this.timerDebugPlotRandom.Tick += new System.EventHandler(this.timerDebugPlotRandom_Tick);
             // 
-            // btnDebugPlotRnd
+            // pnlInsideGraph
             // 
-            this.btnDebugPlotRnd.Location = new System.Drawing.Point(6, 195);
-            this.btnDebugPlotRnd.Name = "btnDebugPlotRnd";
-            this.btnDebugPlotRnd.Size = new System.Drawing.Size(75, 23);
-            this.btnDebugPlotRnd.TabIndex = 24;
-            this.btnDebugPlotRnd.Text = "Rnd Plot";
-            this.btnDebugPlotRnd.UseVisualStyleBackColor = true;
-            this.btnDebugPlotRnd.Click += new System.EventHandler(this.btnDebugPlotRnd_Click);
-            // 
-            // btnDebugScrollEnd
-            // 
-            this.btnDebugScrollEnd.Location = new System.Drawing.Point(6, 234);
-            this.btnDebugScrollEnd.Name = "btnDebugScrollEnd";
-            this.btnDebugScrollEnd.Size = new System.Drawing.Size(75, 23);
-            this.btnDebugScrollEnd.TabIndex = 34;
-            this.btnDebugScrollEnd.Text = "Scroll End";
-            this.btnDebugScrollEnd.UseVisualStyleBackColor = true;
-            this.btnDebugScrollEnd.Click += new System.EventHandler(this.btnDebugRemoveLastDP_Click);
-            // 
-            // cbYAxisZoomable
-            // 
-            this.cbYAxisZoomable.AutoSize = true;
-            this.cbYAxisZoomable.Location = new System.Drawing.Point(88, 102);
-            this.cbYAxisZoomable.Name = "cbYAxisZoomable";
-            this.cbYAxisZoomable.Size = new System.Drawing.Size(76, 17);
-            this.cbYAxisZoomable.TabIndex = 32;
-            this.cbYAxisZoomable.Text = "Y zoombar";
-            this.cbYAxisZoomable.UseVisualStyleBackColor = true;
-            this.cbYAxisZoomable.CheckedChanged += new System.EventHandler(this.cbYAxisZoomable_CheckedChanged);
-            // 
-            // cbXAxisZoomable
-            // 
-            this.cbXAxisZoomable.AutoSize = true;
-            this.cbXAxisZoomable.Checked = true;
-            this.cbXAxisZoomable.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbXAxisZoomable.Location = new System.Drawing.Point(6, 102);
-            this.cbXAxisZoomable.Name = "cbXAxisZoomable";
-            this.cbXAxisZoomable.Size = new System.Drawing.Size(76, 17);
-            this.cbXAxisZoomable.TabIndex = 31;
-            this.cbXAxisZoomable.Text = "X zoombar";
-            this.cbXAxisZoomable.UseVisualStyleBackColor = true;
-            this.cbXAxisZoomable.CheckedChanged += new System.EventHandler(this.cbXAxisZoomable_CheckedChanged);
-            // 
-            // cbGraphAutoScroll
-            // 
-            this.cbGraphAutoScroll.AutoSize = true;
-            this.cbGraphAutoScroll.Location = new System.Drawing.Point(6, 79);
-            this.cbGraphAutoScroll.Name = "cbGraphAutoScroll";
-            this.cbGraphAutoScroll.Size = new System.Drawing.Size(145, 17);
-            this.cbGraphAutoScroll.TabIndex = 30;
-            this.cbGraphAutoScroll.Text = "Graph scrollt automatisch";
-            this.cbGraphAutoScroll.UseVisualStyleBackColor = true;
+            this.pnlInsideGraph.BackColor = System.Drawing.Color.White;
+            this.pnlInsideGraph.ColumnCount = 3;
+            this.pnlInsideGraph.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.pnlInsideGraph.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.pnlInsideGraph.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.pnlInsideGraph.Controls.Add(this.graph1, 0, 0);
+            this.pnlInsideGraph.Controls.Add(this.cbXAxisZoomable, 1, 1);
+            this.pnlInsideGraph.Controls.Add(this.cbYAxisZoomable, 2, 1);
+            this.pnlInsideGraph.Controls.Add(this.cbGraphAutoScroll, 0, 1);
+            this.pnlInsideGraph.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlInsideGraph.Location = new System.Drawing.Point(0, 0);
+            this.pnlInsideGraph.Name = "pnlInsideGraph";
+            this.pnlInsideGraph.RowCount = 2;
+            this.pnlInsideGraph.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pnlInsideGraph.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.pnlInsideGraph.Size = new System.Drawing.Size(401, 425);
+            this.pnlInsideGraph.TabIndex = 0;
             // 
             // CMainWindow
             // 
@@ -1248,6 +1268,8 @@
             this.pnlRight.PerformLayout();
             this.pnlLeft.ResumeLayout(false);
             this.pnlLeft.PerformLayout();
+            this.pnlInsideGraph.ResumeLayout(false);
+            this.pnlInsideGraph.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1337,6 +1359,7 @@
         private System.Windows.Forms.CheckBox cbYAxisZoomable;
         private System.Windows.Forms.CheckBox cbXAxisZoomable;
         private System.Windows.Forms.CheckBox cbGraphAutoScroll;
+        private System.Windows.Forms.TableLayoutPanel pnlInsideGraph;
 
     }
 
