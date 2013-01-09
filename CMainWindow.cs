@@ -1500,8 +1500,8 @@ namespace ZusiGraph
         private void cbHidesettings_CheckedChanged(object sender, EventArgs e)
         {
             //TEST
-            if (hasMoved && cbHidesettings.Checked)
-                pnlRight.Visible = false;
+            //if (hasMoved && cbHidesettings.Checked)
+            //    pnlRight.Visible = false;
         }
 
         public void createSettingsForm()
@@ -1831,6 +1831,17 @@ namespace ZusiGraph
         {
             double endOfXAxis = graph1.ChartAreas["ChartArea1"].AxisX.Maximum;
             graph1.ChartAreas["ChartArea1"].AxisX.ScaleView.Scroll(endOfXAxis);
+        }
+
+        private void cbXAxisZoomable_CheckedChanged(object sender, EventArgs e)
+        {
+            graph1.ChartAreas["ChartArea1"].CursorX.IsUserSelectionEnabled = cbXAxisZoomable.Checked;
+        }
+
+        private void cbYAxisZoomable_CheckedChanged(object sender, EventArgs e)
+        {
+            graph1.ChartAreas["ChartArea1"].CursorY.IsUserSelectionEnabled = cbYAxisZoomable.Checked;
+
         }
              
 

@@ -76,7 +76,6 @@
             this.tabDarstellung = new System.Windows.Forms.TabPage();
             this.cbGraphSeparate = new System.Windows.Forms.CheckBox();
             this.cbSettingsSeparate = new System.Windows.Forms.CheckBox();
-            this.cbHidesettings = new System.Windows.Forms.CheckBox();
             this.cbTopmost = new System.Windows.Forms.CheckBox();
             this.cbFokusImmerzurueck = new System.Windows.Forms.CheckBox();
             this.tabSystem = new System.Windows.Forms.TabPage();
@@ -117,6 +116,8 @@
             this.timerDebugPlotRandom = new System.Windows.Forms.Timer(this.components);
             this.btnDebugPlotRnd = new System.Windows.Forms.Button();
             this.btnDebugScrollEnd = new System.Windows.Forms.Button();
+            this.cbYAxisZoomable = new System.Windows.Forms.CheckBox();
+            this.cbXAxisZoomable = new System.Windows.Forms.CheckBox();
             this.cbGraphAutoScroll = new System.Windows.Forms.CheckBox();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
@@ -649,10 +650,11 @@
             // tabDarstellung
             // 
             this.tabDarstellung.BackColor = System.Drawing.SystemColors.Control;
+            this.tabDarstellung.Controls.Add(this.cbYAxisZoomable);
+            this.tabDarstellung.Controls.Add(this.cbXAxisZoomable);
             this.tabDarstellung.Controls.Add(this.cbGraphAutoScroll);
             this.tabDarstellung.Controls.Add(this.cbGraphSeparate);
             this.tabDarstellung.Controls.Add(this.cbSettingsSeparate);
-            this.tabDarstellung.Controls.Add(this.cbHidesettings);
             this.tabDarstellung.Controls.Add(this.cbTopmost);
             this.tabDarstellung.Controls.Add(this.cbFokusImmerzurueck);
             this.tabDarstellung.Location = new System.Drawing.Point(4, 22);
@@ -665,10 +667,10 @@
             // 
             // cbGraphSeparate
             // 
-            this.cbGraphSeparate.BackColor = System.Drawing.Color.LightGray;
+            this.cbGraphSeparate.BackColor = System.Drawing.Color.Transparent;
             this.cbGraphSeparate.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
             this.cbGraphSeparate.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.cbGraphSeparate.Location = new System.Drawing.Point(6, 190);
+            this.cbGraphSeparate.Location = new System.Drawing.Point(6, 30);
             this.cbGraphSeparate.Name = "cbGraphSeparate";
             this.cbGraphSeparate.Size = new System.Drawing.Size(119, 35);
             this.cbGraphSeparate.TabIndex = 25;
@@ -678,10 +680,10 @@
             // 
             // cbSettingsSeparate
             // 
-            this.cbSettingsSeparate.BackColor = System.Drawing.Color.LightGray;
+            this.cbSettingsSeparate.BackColor = System.Drawing.Color.Transparent;
             this.cbSettingsSeparate.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
             this.cbSettingsSeparate.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.cbSettingsSeparate.Location = new System.Drawing.Point(6, 155);
+            this.cbSettingsSeparate.Location = new System.Drawing.Point(6, 202);
             this.cbSettingsSeparate.Name = "cbSettingsSeparate";
             this.cbSettingsSeparate.Size = new System.Drawing.Size(119, 35);
             this.cbSettingsSeparate.TabIndex = 23;
@@ -689,22 +691,10 @@
             this.cbSettingsSeparate.UseVisualStyleBackColor = false;
             this.cbSettingsSeparate.CheckedChanged += new System.EventHandler(this.cbSettingsSeparate_CheckedChanged);
             // 
-            // cbHidesettings
-            // 
-            this.cbHidesettings.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.cbHidesettings.Enabled = false;
-            this.cbHidesettings.Location = new System.Drawing.Point(6, 275);
-            this.cbHidesettings.Name = "cbHidesettings";
-            this.cbHidesettings.Size = new System.Drawing.Size(159, 33);
-            this.cbHidesettings.TabIndex = 22;
-            this.cbHidesettings.Text = "Einstellungen automatisch ausblenden";
-            this.cbHidesettings.UseVisualStyleBackColor = true;
-            this.cbHidesettings.CheckedChanged += new System.EventHandler(this.cbHidesettings_CheckedChanged);
-            // 
             // cbTopmost
             // 
             this.cbTopmost.AutoSize = true;
-            this.cbTopmost.Location = new System.Drawing.Point(6, 252);
+            this.cbTopmost.Location = new System.Drawing.Point(6, 179);
             this.cbTopmost.Name = "cbTopmost";
             this.cbTopmost.Size = new System.Drawing.Size(128, 17);
             this.cbTopmost.TabIndex = 17;
@@ -717,7 +707,7 @@
             this.cbFokusImmerzurueck.AutoSize = true;
             this.cbFokusImmerzurueck.Checked = true;
             this.cbFokusImmerzurueck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbFokusImmerzurueck.Location = new System.Drawing.Point(6, 331);
+            this.cbFokusImmerzurueck.Location = new System.Drawing.Point(6, 243);
             this.cbFokusImmerzurueck.Name = "cbFokusImmerzurueck";
             this.cbFokusImmerzurueck.Size = new System.Drawing.Size(181, 17);
             this.cbFokusImmerzurueck.TabIndex = 16;
@@ -1163,7 +1153,7 @@
             // 
             // btnDebugScrollEnd
             // 
-            this.btnDebugScrollEnd.Location = new System.Drawing.Point(9, 234);
+            this.btnDebugScrollEnd.Location = new System.Drawing.Point(6, 234);
             this.btnDebugScrollEnd.Name = "btnDebugScrollEnd";
             this.btnDebugScrollEnd.Size = new System.Drawing.Size(75, 23);
             this.btnDebugScrollEnd.TabIndex = 34;
@@ -1171,13 +1161,37 @@
             this.btnDebugScrollEnd.UseVisualStyleBackColor = true;
             this.btnDebugScrollEnd.Click += new System.EventHandler(this.btnDebugRemoveLastDP_Click);
             // 
+            // cbYAxisZoomable
+            // 
+            this.cbYAxisZoomable.AutoSize = true;
+            this.cbYAxisZoomable.Location = new System.Drawing.Point(88, 102);
+            this.cbYAxisZoomable.Name = "cbYAxisZoomable";
+            this.cbYAxisZoomable.Size = new System.Drawing.Size(76, 17);
+            this.cbYAxisZoomable.TabIndex = 32;
+            this.cbYAxisZoomable.Text = "Y zoombar";
+            this.cbYAxisZoomable.UseVisualStyleBackColor = true;
+            this.cbYAxisZoomable.CheckedChanged += new System.EventHandler(this.cbYAxisZoomable_CheckedChanged);
+            // 
+            // cbXAxisZoomable
+            // 
+            this.cbXAxisZoomable.AutoSize = true;
+            this.cbXAxisZoomable.Checked = true;
+            this.cbXAxisZoomable.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbXAxisZoomable.Location = new System.Drawing.Point(6, 102);
+            this.cbXAxisZoomable.Name = "cbXAxisZoomable";
+            this.cbXAxisZoomable.Size = new System.Drawing.Size(76, 17);
+            this.cbXAxisZoomable.TabIndex = 31;
+            this.cbXAxisZoomable.Text = "X zoombar";
+            this.cbXAxisZoomable.UseVisualStyleBackColor = true;
+            this.cbXAxisZoomable.CheckedChanged += new System.EventHandler(this.cbXAxisZoomable_CheckedChanged);
+            // 
             // cbGraphAutoScroll
             // 
             this.cbGraphAutoScroll.AutoSize = true;
-            this.cbGraphAutoScroll.Location = new System.Drawing.Point(7, 40);
+            this.cbGraphAutoScroll.Location = new System.Drawing.Point(6, 79);
             this.cbGraphAutoScroll.Name = "cbGraphAutoScroll";
             this.cbGraphAutoScroll.Size = new System.Drawing.Size(145, 17);
-            this.cbGraphAutoScroll.TabIndex = 26;
+            this.cbGraphAutoScroll.TabIndex = 30;
             this.cbGraphAutoScroll.Text = "Graph scrollt automatisch";
             this.cbGraphAutoScroll.UseVisualStyleBackColor = true;
             // 
@@ -1291,7 +1305,6 @@
         private System.Windows.Forms.NumericUpDown numDebugsetspeed;
         private System.Windows.Forms.GroupBox grpDebugoffline;
         private System.Windows.Forms.Button btnAbout;
-        private System.Windows.Forms.CheckBox cbHidesettings;
         private System.Windows.Forms.CheckBox cbSettingsSeparate;
         private System.Windows.Forms.GroupBox grpManageSettings;
         private System.Windows.Forms.Button btnDefaultSettings;
@@ -1321,6 +1334,8 @@
         private System.Windows.Forms.Timer timerDebugPlotRandom;
         private System.Windows.Forms.Button btnDebugPlotRnd;
         private System.Windows.Forms.Button btnDebugScrollEnd;
+        private System.Windows.Forms.CheckBox cbYAxisZoomable;
+        private System.Windows.Forms.CheckBox cbXAxisZoomable;
         private System.Windows.Forms.CheckBox cbGraphAutoScroll;
 
     }
