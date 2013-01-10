@@ -36,6 +36,7 @@
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CMainWindow));
             this.pnlSettings = new System.Windows.Forms.Panel();
             this.tabEinstellungen = new System.Windows.Forms.TabControl();
@@ -304,10 +305,17 @@
             series4.Name = "kmSprung";
             series4.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             series4.YValuesPerPoint = 3;
+            series5.ChartArea = "ChartArea1";
+            series5.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            series5.IsXValueIndexed = true;
+            series5.Legend = "Legend1";
+            series5.Name = "zugnr";
+            series5.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             this.graph1.Series.Add(series1);
             this.graph1.Series.Add(series2);
             this.graph1.Series.Add(series3);
             this.graph1.Series.Add(series4);
+            this.graph1.Series.Add(series5);
             this.graph1.Size = new System.Drawing.Size(401, 389);
             this.graph1.TabIndex = 0;
             // 
@@ -1229,7 +1237,7 @@
             // lblzugnummer
             // 
             this.lblzugnummer.AutoSize = true;
-            this.lblzugnummer.Location = new System.Drawing.Point(12, 380);
+            this.lblzugnummer.Location = new System.Drawing.Point(16, 396);
             this.lblzugnummer.Name = "lblzugnummer";
             this.lblzugnummer.Size = new System.Drawing.Size(67, 13);
             this.lblzugnummer.TabIndex = 35;

@@ -259,6 +259,7 @@ namespace ZusiGraph
 
         String zugdatei = "", zugdateiOld = "";
         String zugnummer = "";
+        bool zughaschanged = false; //if zugdatei has changed
 
         //TEST for graph
         String graphStreckenKm = "";
@@ -703,7 +704,10 @@ namespace ZusiGraph
                         zugnummer = zugdatei.Substring(lastUnderscoreIndex + 1, lastPointIndex - lastUnderscoreIndex - 1);
 
                         if (zugdatei != zugdateiOld)
+                        {
                             lblzugnummer.Text = zugnummer;
+                            zughaschanged = true;                            
+                        }
                         else
                             lblzugnummer.Text = "alt";
 
@@ -1251,16 +1255,21 @@ namespace ZusiGraph
             DataPoint dpgeschwmaxzul = new DataPoint(graphStreckenKmDouble, geschwindigkeitMaxZul);
             DataPoint dphlldruck = new DataPoint(graphStreckenKmDouble, hlldruck);
             DataPoint dpkmsprung = new DataPoint(graphStreckenKmDouble, Convert.ToDouble(kmSprung));
+            DataPoint dpzugnr = new DataPoint(graphStreckenKmDouble, Convert.ToDouble(zughaschanged));
 
             if (geschwindigkeit > geschwindigkeitMaxZul * 1.1 && geschwindigkeit > (geschwindigkeitMaxZul + 7))
                 dpgeschw.Color = Color.DarkRed;
             else
                 dpgeschw.Color = geschwDefaultColor;
 
+            if (zughaschanged)
+                dpzugnr.Label = zugnummer;
+
             graph1.Series["geschw"].Points.Add(dpgeschw);
             graph1.Series["geschwMaxZul"].Points.Add(dpgeschwmaxzul);
             graph1.Series["hlldruck"].Points.Add(dphlldruck);
             graph1.Series["kmSprung"].Points.Add(dpkmsprung);
+            graph1.Series["zugnr"].Points.Add(dpzugnr);
 
             if (cbGraphAutoScroll.Checked)
             {
@@ -1270,6 +1279,8 @@ namespace ZusiGraph
 
             if (kmSprung)
                 kmSprung = false;
+            if (zughaschanged) //resets labeling for series zugnr
+                zughaschanged = false;
         }
 
         public void PlotDebugChart()
