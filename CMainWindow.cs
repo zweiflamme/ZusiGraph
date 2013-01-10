@@ -712,6 +712,11 @@ namespace ZusiGraph
                         const string pattern = @"(?<=_)[a-zA-Z0-9]*(?=.zug$)";
                         string text = zugdatei.ToString();
 
+                        //TODO:
+                        //example paths yet to be recognized: 
+                        //Strecken\Netz_Nordbaden\Elsenztalbahn\Fahrplan\Zuege_86\Neckar\D899.zug
+                        //or Dg4170_7310 and so on...
+
                         //for alternate regex:
                         //var groupFileCode = Regex.Match(text, pattern);
                         var fileCode = Regex.Match(text, pattern);
@@ -722,11 +727,19 @@ namespace ZusiGraph
 
                         if (zugdatei != zugdateiOld)
                         {
-                            lblzugnummer.Text = zugnummer;
+                            //DEBUG as long as regex is not fully reliable
+                            //example path yet to be recognized: Strecken\Netz_Nordbaden\Elsenztalbahn\Fahrplan\Zuege_86\Neckar\D899.zug
+                            //or Dg4170_7310 and so on...
+                            if (zugnummer != "") //if substring extraction was successful
+                                lblzugnummer.Text = zugnummer;
+                            else //if substring is empty, change zugnummer to unbekannt
+                            {
+                                zugnummer = "unbekannt";
+                                lblzugnummer.Text = zugnummer;
+                            }
+
                             zughaschanged = true;                            
-                        }
-                        else
-                            lblzugnummer.Text = "alt";
+                        }                      
 
                         break;
                     }
