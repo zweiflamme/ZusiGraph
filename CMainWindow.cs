@@ -54,7 +54,7 @@ namespace ZusiGraph
             MyTCPConnection.FloatReceived += TCPConnection_FloatReceived;            
             MyTCPConnection.BoolReceived += TCPConnection_BoolReceived;
             //MyTCPConnection.IntReceived += TCPConnection_IntReceived;
-            //MyTCPConnection.StringReceived += TCPConnection_StringReceived;
+            MyTCPConnection.StringReceived += TCPConnection_StringReceived;
             MyTCPConnection.DateTimeReceived += TCPConnection_DateTimeReceived;
             //MyTCPConnection.BrakeConfigReceived += TCPConnection_BrakeConfigReceived;
             MyTCPConnection.DoorsReceived += TCPConnection_DoorsReceived;
@@ -115,11 +115,10 @@ namespace ZusiGraph
             
             MyTCPConnection.RequestData(2646); // "Türen"
 
+            //###//
+            MyTCPConnection.RequestData(2656); // "Zugdatei"
+            //###//
             
-            
-            
-
-            ////TODO MyTCPConnection.RequestData(2656); // "Zugdatei"
             //TODO: is this needed? MyTCPConnection.RequestData(2574); // "LZB/AFB Soll-Geschwindigkeit"
             //TODO: is this needed? MyTCPConnection.RequestData(2615); // "Schalter AFB-Geschwindigkeit"
             #endregion 
@@ -257,6 +256,9 @@ namespace ZusiGraph
 
         double streckenmeterOld = 0.0;
         double deltaStreckenmeter = 0.0;
+
+        String zugdatei = "", zugdateiOld = "";
+        String zugnummer = "";
 
         //TEST for graph
         String graphStreckenKm = "";
@@ -683,6 +685,35 @@ namespace ZusiGraph
             }
             
 
+        }
+
+        private void TCPConnection_StringReceived(object sender, DataSet<String> data) //Handles MyTCPConnection.BoolReceived
+        {
+            switch (data.Id)
+            {
+                #region Zugdatei
+                case 2656:
+                    {
+                        zugdateiOld = zugdatei;
+                        zugdatei = data.Value;
+
+                        //extracting substring to get Zugnummer of file path
+                        int lastUnderscoreIndex = zugdatei.LastIndexOf('_');
+                        int lastPointIndex = zugdatei.LastIndexOf('.');
+                        zugnummer = zugdatei.Substring(lastUnderscoreIndex + 1, lastPointIndex - lastUnderscoreIndex - 1);
+
+                        if (zugdatei != zugdateiOld)
+                            lblzugnummer.Text = zugnummer;
+                        else
+                            lblzugnummer.Text = "alt";
+
+                        break;
+                    }
+                #endregion
+
+                default:
+                    break;
+            }
         }
 
         private void TCPConnection_DoorsReceived(object sender, DataSet<DoorState> data) // Handles MyTCPConnection.DoorsReceived 
