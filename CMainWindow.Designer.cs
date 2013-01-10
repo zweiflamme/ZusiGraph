@@ -62,7 +62,6 @@
             this.cbKmSprung = new System.Windows.Forms.CheckBox();
             this.cbLmgleiten = new System.Windows.Forms.CheckBox();
             this.cbGeschwindigkeit = new System.Windows.Forms.CheckBox();
-            this.cbFahrstufe = new System.Windows.Forms.CheckBox();
             this.cbLmsifa = new System.Windows.Forms.CheckBox();
             this.cbTime = new System.Windows.Forms.CheckBox();
             this.cbLmschleudern = new System.Windows.Forms.CheckBox();
@@ -123,6 +122,7 @@
             this.timerGraph = new System.Windows.Forms.Timer(this.components);
             this.timerDebugPlotRandom = new System.Windows.Forms.Timer(this.components);
             this.lblzugnummer = new System.Windows.Forms.Label();
+            this.cbZugnummer = new System.Windows.Forms.CheckBox();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabGraph.SuspendLayout();
@@ -269,6 +269,9 @@
             chartArea1.Name = "ChartArea1";
             this.graph1.ChartAreas.Add(chartArea1);
             this.graph1.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.BackColor = System.Drawing.Color.Transparent;
+            legend1.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.VerticalCenter;
+            legend1.BackSecondaryColor = System.Drawing.Color.DarkGray;
             legend1.DockedToChartArea = "ChartArea1";
             legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
             legend1.Name = "Legend1";
@@ -307,8 +310,10 @@
             series4.YValuesPerPoint = 3;
             series5.ChartArea = "ChartArea1";
             series5.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            series5.IsVisibleInLegend = false;
             series5.IsXValueIndexed = true;
             series5.Legend = "Legend1";
+            series5.LegendText = "Zugnummer";
             series5.Name = "zugnr";
             series5.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             this.graph1.Series.Add(series1);
@@ -399,7 +404,7 @@
             this.pnlAFBLZB.Controls.Add(this.cbAFBgeschw);
             this.pnlAFBLZB.Location = new System.Drawing.Point(6, 366);
             this.pnlAFBLZB.Name = "pnlAFBLZB";
-            this.pnlAFBLZB.Size = new System.Drawing.Size(182, 45);
+            this.pnlAFBLZB.Size = new System.Drawing.Size(194, 45);
             this.pnlAFBLZB.TabIndex = 24;
             // 
             // cbLZBvziel
@@ -453,17 +458,17 @@
             // pnlGrunddaten
             // 
             this.pnlGrunddaten.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlGrunddaten.Controls.Add(this.cbZugnummer);
             this.pnlGrunddaten.Controls.Add(this.cbGeschwMaxZul);
             this.pnlGrunddaten.Controls.Add(this.cbKmSprung);
             this.pnlGrunddaten.Controls.Add(this.cbLmgleiten);
             this.pnlGrunddaten.Controls.Add(this.cbGeschwindigkeit);
-            this.pnlGrunddaten.Controls.Add(this.cbFahrstufe);
             this.pnlGrunddaten.Controls.Add(this.cbLmsifa);
             this.pnlGrunddaten.Controls.Add(this.cbTime);
             this.pnlGrunddaten.Controls.Add(this.cbLmschleudern);
             this.pnlGrunddaten.Location = new System.Drawing.Point(6, 35);
             this.pnlGrunddaten.Name = "pnlGrunddaten";
-            this.pnlGrunddaten.Size = new System.Drawing.Size(182, 95);
+            this.pnlGrunddaten.Size = new System.Drawing.Size(194, 95);
             this.pnlGrunddaten.TabIndex = 19;
             // 
             // cbGeschwMaxZul
@@ -486,9 +491,9 @@
             this.cbKmSprung.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbKmSprung.Location = new System.Drawing.Point(3, 38);
             this.cbKmSprung.Name = "cbKmSprung";
-            this.cbKmSprung.Size = new System.Drawing.Size(112, 17);
+            this.cbKmSprung.Size = new System.Drawing.Size(83, 17);
             this.cbKmSprung.TabIndex = 9;
-            this.cbKmSprung.Text = "Kilometer-Sprünge";
+            this.cbKmSprung.Text = "km-Sprünge";
             this.cbKmSprung.UseVisualStyleBackColor = true;
             this.cbKmSprung.CheckedChanged += new System.EventHandler(this.cbKmSprung_CheckedChanged);
             // 
@@ -516,23 +521,11 @@
             this.cbGeschwindigkeit.UseVisualStyleBackColor = true;
             this.cbGeschwindigkeit.CheckedChanged += new System.EventHandler(this.cbGeschwindigkeit_CheckedChanged);
             // 
-            // cbFahrstufe
-            // 
-            this.cbFahrstufe.AutoSize = true;
-            this.cbFahrstufe.Enabled = false;
-            this.cbFahrstufe.Location = new System.Drawing.Point(3, 56);
-            this.cbFahrstufe.Name = "cbFahrstufe";
-            this.cbFahrstufe.Size = new System.Drawing.Size(70, 17);
-            this.cbFahrstufe.TabIndex = 7;
-            this.cbFahrstufe.Text = "Fahrstufe";
-            this.cbFahrstufe.UseVisualStyleBackColor = true;
-            this.cbFahrstufe.CheckedChanged += new System.EventHandler(this.cbFahrstufe_CheckedChanged);
-            // 
             // cbLmsifa
             // 
             this.cbLmsifa.AutoSize = true;
             this.cbLmsifa.Enabled = false;
-            this.cbLmsifa.Location = new System.Drawing.Point(115, 21);
+            this.cbLmsifa.Location = new System.Drawing.Point(108, 21);
             this.cbLmsifa.Name = "cbLmsifa";
             this.cbLmsifa.Size = new System.Drawing.Size(44, 17);
             this.cbLmsifa.TabIndex = 2;
@@ -544,7 +537,7 @@
             // 
             this.cbTime.AutoSize = true;
             this.cbTime.Enabled = false;
-            this.cbTime.Location = new System.Drawing.Point(115, 3);
+            this.cbTime.Location = new System.Drawing.Point(108, 3);
             this.cbTime.Name = "cbTime";
             this.cbTime.Size = new System.Drawing.Size(59, 17);
             this.cbTime.TabIndex = 6;
@@ -575,7 +568,7 @@
             this.pnlBremsen.Controls.Add(this.cbDruckbz);
             this.pnlBremsen.Location = new System.Drawing.Point(6, 246);
             this.pnlBremsen.Name = "pnlBremsen";
-            this.pnlBremsen.Size = new System.Drawing.Size(182, 89);
+            this.pnlBremsen.Size = new System.Drawing.Size(194, 89);
             this.pnlBremsen.TabIndex = 19;
             // 
             // cbZusbremse
@@ -675,7 +668,7 @@
             this.pnlSchalterst.Controls.Add(this.cbHauptsch);
             this.pnlSchalterst.Location = new System.Drawing.Point(6, 162);
             this.pnlSchalterst.Name = "pnlSchalterst";
-            this.pnlSchalterst.Size = new System.Drawing.Size(182, 54);
+            this.pnlSchalterst.Size = new System.Drawing.Size(194, 54);
             this.pnlSchalterst.TabIndex = 23;
             // 
             // checkBox1
@@ -1243,6 +1236,19 @@
             this.lblzugnummer.TabIndex = 35;
             this.lblzugnummer.Text = "(zugnummer)";
             // 
+            // cbZugnummer
+            // 
+            this.cbZugnummer.AutoSize = true;
+            this.cbZugnummer.Checked = true;
+            this.cbZugnummer.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbZugnummer.Location = new System.Drawing.Point(108, 38);
+            this.cbZugnummer.Name = "cbZugnummer";
+            this.cbZugnummer.Size = new System.Drawing.Size(82, 17);
+            this.cbZugnummer.TabIndex = 27;
+            this.cbZugnummer.Text = "Zugnummer";
+            this.cbZugnummer.UseVisualStyleBackColor = true;
+            this.cbZugnummer.CheckedChanged += new System.EventHandler(this.cbZugnummer_CheckedChanged);
+            // 
             // CMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1326,7 +1332,6 @@
         private System.Windows.Forms.TabPage tabSystem;
         private System.Windows.Forms.CheckBox cbLmsifa;
         private System.Windows.Forms.CheckBox cbLmschleudern;
-        private System.Windows.Forms.CheckBox cbFahrstufe;
         private System.Windows.Forms.CheckBox cbTime;
         private System.Windows.Forms.CheckBox cbGrunddaten;
         private System.Windows.Forms.CheckBox cbBremsen;
@@ -1393,6 +1398,7 @@
         private System.Windows.Forms.TableLayoutPanel pnlInsideGraph;
         private System.Windows.Forms.Panel pnlGraphCheckboxes;
         private System.Windows.Forms.Label lblzugnummer;
+        private System.Windows.Forms.CheckBox cbZugnummer;
 
     }
 

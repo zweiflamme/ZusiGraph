@@ -13,6 +13,7 @@ using Zusi_Datenausgabe; //TODO: v1.0.0
 using System.Runtime.InteropServices; //to hand over the focus to Zusi main window
 using System.Media; //for sound playback
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Text.RegularExpressions; //for zugnummer substring extraction
 
 namespace ZusiGraph
 {
@@ -698,10 +699,26 @@ namespace ZusiGraph
                         zugdateiOld = zugdatei;
                         zugdatei = data.Value;
 
+                        //using substring methods
                         //extracting substring to get Zugnummer of file path
-                        int lastUnderscoreIndex = zugdatei.LastIndexOf('_');
-                        int lastPointIndex = zugdatei.LastIndexOf('.');
-                        zugnummer = zugdatei.Substring(lastUnderscoreIndex + 1, lastPointIndex - lastUnderscoreIndex - 1);
+                        //int lastUnderscoreIndex = zugdatei.LastIndexOf('_');
+                        //int lastPointIndex = zugdatei.LastIndexOf('.');
+                        //zugnummer = zugdatei.Substring(lastUnderscoreIndex + 1, lastPointIndex - lastUnderscoreIndex - 1);
+
+                        //using regex instead:
+                        //TODO: implement support for whitespace
+                        //my regex: (?<=_)[a-zA-Z0-9]*(?=.zug$)
+                        //alternate regex: _(?<FileCode>([^_][a-zA-Z0-9])+)\.zug$
+                        const string pattern = @"(?<=_)[a-zA-Z0-9]*(?=.zug$)";
+                        string text = zugdatei.ToString();
+
+                        //for alternate regex:
+                        //var groupFileCode = Regex.Match(text, pattern);
+                        var fileCode = Regex.Match(text, pattern);
+
+                        //for alternate regex:
+                        //zugnummer = groupFileCode.Groups["FileCode"].Value;
+                        zugnummer = fileCode.Value.ToString();
 
                         if (zugdatei != zugdateiOld)
                         {
@@ -1892,6 +1909,11 @@ namespace ZusiGraph
         {
             graph1.ChartAreas["ChartArea1"].CursorY.IsUserSelectionEnabled = cbYAxisZoomable.Checked;
 
+        }
+
+        private void cbZugnummer_CheckedChanged(object sender, EventArgs e)
+        {
+            graph1.Series["zugnr"].Enabled = cbZugnummer.Checked;
         }
              
 
